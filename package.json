@@ -1,0 +1,27 @@
+{
+  "name": "forust",
+  "version": "1.0.0",
+  "license": "ISC",
+  "homepage": "https://github.com/mniberyl/forust",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mniberyl/forust.git"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^9.4.4",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "sass": "1.26.3"
+  }
+}
