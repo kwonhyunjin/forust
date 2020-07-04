@@ -16,7 +16,8 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "eslint src --ext js --ext jsx"
   },
   "dependencies": {
     "next": "^9.4.4",
