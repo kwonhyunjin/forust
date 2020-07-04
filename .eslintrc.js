@@ -21,6 +21,12 @@ module.exports = {
     "airbnb/hooks",
   ],
   "rules": {
+    "import/order": ["error", {
+      "alphabetize": {
+        "order": "asc",
+        "caseInsensitive": true,
+      },
+    }],
     "react/jsx-props-no-spreading": "off",
   },
 };
