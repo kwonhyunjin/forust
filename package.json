@@ -17,7 +17,8 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint src --ext js --ext jsx"
+    "lint": "eslint src --ext js --ext jsx",
+    "lint:fix": "yarn lint --fix"
   },
   "husky": {
     "hooks": {
