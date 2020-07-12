@@ -1,0 +1,57 @@
+.auth-layout {
+  position: relative;
+  background: #f4faf8;
+  box-sizing: border-box;
+  width: 600px;
+  height: 1080px;
+  padding-top: spacing(16);
+  padding-left: spacing(15);
+  padding-bottom: spacing(24);
+}
+
+.auth-logo {
+  margin-bottom: spacing(17);
+
+  img {
+    width: 178px;
+    height: 42px;
+    object-fit: contain;
+  }
+}
+
+.auth-desc {
+  margin-bottom: 99px;
+
+  &__title {
+    width: 455px;
+    height: 100px;
+    margin-bottom: spacing(6);
+
+    p {
+      font-size: 40px;
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.25;
+      letter-spacing: normal;
+      color: $gray-900;
+    }
+  }
+
+  &__ul {
+    li {
+      font-size: $font-size-level-4;
+      line-height: 1.5;
+      color: $gray-700;
+    }
+  }
+}
+
+.auth-desc:after {
+  position: absolute;
+  content: '';
+  background: url('/sign_up_bg.png') no-repeat;
+  width: 760px;
+  height: 491px;
+  bottom: 96px;
+}

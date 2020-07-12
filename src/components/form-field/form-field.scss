@@ -1,0 +1,23 @@
+.form-field {
+  width: 100%;
+
+  &__label {
+    display: block;
+    font-size: $font-size-level-3;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: $gray-700;
+    margin-bottom: spacing(1);
+  }
+
+  &__message {
+    color: $gray-600;
+    font-size: $font-size-level-1;
+    line-height: 1.5;
+    padding-left: 2px;
+  }
+}
+

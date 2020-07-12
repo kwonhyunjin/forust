@@ -1,0 +1,3 @@
+@function spacing($base) {
+  @return $base * $spacing;
+}

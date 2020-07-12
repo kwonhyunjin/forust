@@ -1,0 +1,33 @@
+.button {
+  width: 93px;
+  height: 40px;
+  border-radius: 20px;
+  background: $green;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  font-size: $font-size-level-3;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.86;
+  letter-spacing: normal;
+  color: #ffffff;
+}
+
+.button:hover {
+  background: $green-light;
+}
+
+.button:focus {
+  background: $green;
+  box-shadow: 0 0 0 4px rgba($green, .33);
+}
+
+.button:active {
+  background: $green-dark;
+}
+
+.button:disabled {
+  background: $gray-300;
+}
