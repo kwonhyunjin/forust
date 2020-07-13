@@ -2,11 +2,11 @@ import React from 'react';
 
 export default function AuthLayout() {
   return (
-    <section className="auth-layout">
-      <h1 className="visually-hidden">Join the community And solve problem.</h1>
+    <div className="auth-layout">
+      <h2 className="visually-hidden">Join the community And solve the issue.</h2>
       <div className="auth-logo">
         <a href="/">
-          <img src="/logo.svg" alt="Logo" />
+          <img src="/logo.svg" alt="Home" />
         </a>
       </div>
       <div className="auth-desc">
@@ -14,7 +14,7 @@ export default function AuthLayout() {
           <p>
             Join the community
             <br />
-            And solve problem.
+            And solve the issue.
           </p>
         </div>
         <div className="auth-desc__contents">
@@ -26,6 +26,6 @@ export default function AuthLayout() {
           </ul>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

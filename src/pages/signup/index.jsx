@@ -11,10 +11,10 @@ export default function Signup({ error }) {
       <h1 className="visually-hidden">FORUST</h1>
       <Layout />
       <section className="auth-form">
-        <h1 className="visually-hidden">Sign up</h1>
+        <h2 className="visually-hidden">Signup</h2>
         <div className="form">
           <div className="form-title">
-            <p>Sign up to Forust</p>
+            <p>Create your Forust Account</p>
           </div>
           <form className="form-contents">
             <div className="form-contents__row form-contents__row--half">

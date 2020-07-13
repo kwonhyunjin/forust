@@ -3,10 +3,8 @@
   background: #f4faf8;
   box-sizing: border-box;
   width: 600px;
-  height: 1080px;
-  padding-top: spacing(16);
-  padding-left: spacing(15);
-  padding-bottom: spacing(24);
+  min-height: 1080px;
+  padding: spacing(16) 0 spacing(24) spacing(15)
 }
 
 .auth-logo {
@@ -50,7 +48,7 @@
 .auth-desc:after {
   position: absolute;
   content: '';
-  background: url('/sign_up_bg.png') no-repeat;
+  background: url('/signup-bg.png') no-repeat;
   width: 760px;
   height: 491px;
   bottom: 96px;
