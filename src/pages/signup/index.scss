@@ -13,15 +13,15 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 416px;
+  max-width: 416px;
+  width: 100%;
 }
 
 .form-title {
-  width: 100%;
   border-bottom: 1px solid $gray-300;
   margin-bottom: spacing(4);
 
-  p {
+  h2 {
     height: 36px;
     font-size: $font-size-level-6;
     font-weight: bold;
@@ -36,7 +36,6 @@
 
 .form-contents {
   &__row {
-    width: 100%;
     margin-top: spacing(5);
 
     &--half {
@@ -65,7 +64,6 @@
 .form-contents__sub {
   font-size: $font-size-level-2;
   margin-top: spacing(3);
-  width: 189px;
   height: 18px;
   color: $gray-600;
 
