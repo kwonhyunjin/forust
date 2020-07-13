@@ -1,15 +1,15 @@
 .button {
-  width: 93px;
-  height: 40px;
-  border-radius: 20px;
-  background: $green;
   display: inline-flex;
   justify-content: center;
   align-content: center;
+  width: 93px;
+  height: 40px;
+  background: $green;
+  border-radius: 20px;
+  color: #ffffff;
   font-size: $font-size-level-3;
   font-weight: bold;
   line-height: 40px;
-  color: #ffffff;
 }
 
 .button:hover {

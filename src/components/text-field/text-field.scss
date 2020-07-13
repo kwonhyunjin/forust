@@ -1,25 +1,21 @@
 .text-field {
   width: 150px;
   height: 40px;
+  background: #fff;
+  border: 1px solid $gray-300;
   border-radius: 8px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.08);
   box-sizing: border-box;
-  border: 1px solid $gray-300;
-  background: #fff;
   padding: 0;
   padding-left: spacing(3);
-  font-size: $font-size-level-2;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 3.33;
-  letter-spacing: normal;
   color: $gray-900;
+  font-size: $font-size-level-2;
+  line-height: 3.33;
 }
 
 .text-field:hover, .text-field:focus {
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.16);
   border: 1px solid $gray-500;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.16);
 }
 
 .text-field::placeholder {
@@ -27,7 +23,7 @@
 }
 
 .text-field:disabled {
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
   background: $gray-50;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
   color: $gray-400;
 }

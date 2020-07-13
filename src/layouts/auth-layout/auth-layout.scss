@@ -1,10 +1,10 @@
 .auth-layout {
   position: relative;
-  background: #f4faf8;
-  box-sizing: border-box;
   width: 600px;
   min-height: 1080px;
-  padding: spacing(16) 0 spacing(24) spacing(15)
+  padding: spacing(16) 0 spacing(24) spacing(15);
+  background: #f4faf8;
+  box-sizing: border-box;
 }
 
 .auth-logo {
@@ -21,26 +21,21 @@
   margin-bottom: 99px;
 
   &__title {
-    width: 455px;
     height: 100px;
     margin-bottom: spacing(6);
 
     p {
+      color: $gray-900;
       font-size: 40px;
       font-weight: bold;
-      font-stretch: normal;
-      font-style: normal;
       line-height: 1.25;
-      letter-spacing: normal;
-      color: $gray-900;
     }
   }
 
   &__ul {
     li {
-      font-size: $font-size-level-4;
-      line-height: 1.5;
       color: $gray-700;
+      font-size: $font-size-level-4;
     }
   }
 }
@@ -48,8 +43,8 @@
 .auth-desc:after {
   position: absolute;
   content: '';
-  background: url('/signup-bg.png') no-repeat;
   width: 760px;
   height: 491px;
   bottom: 96px;
+  background: url('/signup-bg.png') no-repeat;
 }

@@ -1,11 +1,11 @@
 .signup {
-  width: 100%;
   display: flex;
+  width: 100%;
 }
 
 .auth-form {
-  width: calc(100% - 600px);
   position: relative;
+  width: calc(100% - 600px);
 }
 
 .form {
@@ -18,19 +18,15 @@
 }
 
 .form-title {
-  border-bottom: 1px solid $gray-300;
   margin-bottom: spacing(4);
+  border-bottom: 1px solid $gray-300;
 
   h2 {
+    margin-bottom: 19px;
     height: 36px;
+    color: $gray-900;
     font-size: $font-size-level-6;
     font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.5;
-    letter-spacing: normal;
-    color: $gray-900;
-    margin-bottom: 19px;
   }
 }
 
@@ -39,8 +35,8 @@
     margin-top: spacing(5);
 
     &--half {
-      width: 200px;
       display: inline-block;
+      width: 200px;
     }
 
     .form-input {
@@ -62,18 +58,14 @@
 }
 
 .form-contents__sub {
-  font-size: $font-size-level-2;
-  margin-top: spacing(3);
   height: 18px;
+  margin-top: spacing(3);
   color: $gray-600;
+  font-size: $font-size-level-2;
 
   a {
+    color: $gray-900;
     font-size: $font-size-level-2;
     font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.5;
-    letter-spacing: normal;
-    color: $gray-900;
   }
 }

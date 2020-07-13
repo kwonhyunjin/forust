@@ -3,21 +3,16 @@
 
   &__label {
     display: block;
+    margin-bottom: spacing(1);
+    color: $gray-700;
     font-size: $font-size-level-3;
     font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.5;
-    letter-spacing: normal;
-    color: $gray-700;
-    margin-bottom: spacing(1);
   }
 
   &__message {
+    padding-left: 2px;
     color: $gray-600;
     font-size: $font-size-level-1;
-    line-height: 1.5;
-    padding-left: 2px;
   }
 }
 
