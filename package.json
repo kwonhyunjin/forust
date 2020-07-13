@@ -19,7 +19,9 @@
     "start": "next start",
     "clean": "npx rimraf .next",
     "lint": "eslint src --ext js --ext jsx",
-    "lint:fix": "yarn lint --fix"
+    "lint:fix": "yarn lint --fix",
+    "deploy:firebase": "node firebase.deploy.js",
+    "deploy:firebase:dev": "yarn deploy:firebase --dev"
   },
   "husky": {
     "hooks": {
