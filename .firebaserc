@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "development": "forust-dev",
+    "production": "forust-prod"
+  }
+}
