@@ -1,11 +1,12 @@
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 export default function FormField({
-  children, error, label,
+  children, className, error, label, ...rest
 }) {
   return (
-    <div className="form-field">
+    <div {...rest} className={classNames('form-field', className)}>
       <label className="form-field__label">
         {label}
       </label>
@@ -17,6 +18,7 @@ export default function FormField({
 
 FormField.propTypes = {
   children: PropTypes.node,
+  className: PropTypes.string,
   error: PropTypes.node,
   label: PropTypes.node,
 };
