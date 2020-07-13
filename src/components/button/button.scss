@@ -3,15 +3,12 @@
   height: 40px;
   border-radius: 20px;
   background: $green;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-content: center;
   font-size: $font-size-level-3;
   font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 2.86;
-  letter-spacing: normal;
+  line-height: 40px;
   color: #ffffff;
 }
 
@@ -20,7 +17,6 @@
 }
 
 .button:focus {
-  background: $green;
   box-shadow: 0 0 0 4px rgba($green, .33);
 }
 
