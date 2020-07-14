@@ -2,29 +2,29 @@
   display: inline-flex;
   justify-content: center;
   align-content: center;
-  width: 93px;
   height: 40px;
+  padding: 0 spacing(5);
   background: $green;
   border-radius: 20px;
   color: #ffffff;
   font-size: $font-size-level-3;
   font-weight: bold;
   line-height: 40px;
-}
 
-.button:hover {
-  background: $green-light;
-}
+  &:hover {
+    background: $green-light;
+  }
 
-.button:focus {
-  box-shadow: 0 0 0 4px rgba($green, .33);
-}
+  &:focus {
+    box-shadow: 0 0 0 4px rgba($green, .33);
+  }
 
-.button:active {
-  background: $green-dark;
-  box-shadow: none;
-}
+  &:active {
+    background: $green-dark;
+    box-shadow: none;
+  }
 
-.button:disabled {
-  background: $gray-300;
+  &:disabled {
+    background: $gray-300;
+  }
 }

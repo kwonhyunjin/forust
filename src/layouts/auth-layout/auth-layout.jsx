@@ -5,30 +5,24 @@ export default function AuthLayout({ children }) {
   return (
     <div className="auth-layout">
       <div className="auth-header">
-        <div className="auth-logo">
-          <a href="/">
-            <img src="/logo.svg" alt="Home" />
-          </a>
-        </div>
-        <div className="auth-desc">
-          <div className="auth-desc__title">
-            <p>
-              Join the community
-              <br />
-              And solve the issue.
-            </p>
-          </div>
-          <div className="auth-desc__contents">
-            <ul className="auth-desc__ul">
-              <li>•  Get unstuck — ask a question</li>
-              <li>•  Unlock new privileges like voting and commenting</li>
-              <li>•  Save your favorite tags, filters, and jobs</li>
-              <li>•  Earn reputation and badges</li>
-            </ul>
-          </div>
-        </div>
+        <a href="/" className="auth-logo">
+          <img src="/images/logo.svg" alt="Home" className="auth-logo__img" />
+        </a>
+        <p className="auth-greeting">
+          Join the community
+          <br />
+          And solve the issue.
+        </p>
+        <ul className="auth-benefits">
+          <li className="auth-benefits__item">•  Get unstuck — ask a question</li>
+          <li className="auth-benefits__item">•  Unlock new privileges like voting and commenting</li>
+          <li className="auth-benefits__item">•  Save your favorite tags, filters, and jobs</li>
+          <li className="auth-benefits__item">•  Earn reputation and badges</li>
+        </ul>
       </div>
-      {children}
+      <div className="auth-container">
+        {children}
+      </div>
     </div>
   );
 }

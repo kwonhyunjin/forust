@@ -9,6 +9,12 @@
     font-weight: bold;
   }
 
+  &__slot {
+    .text-field {
+      width: 100%;
+    }
+  }
+
   &__message {
     padding-left: 2px;
     color: $gray-600;

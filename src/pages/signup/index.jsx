@@ -6,37 +6,51 @@ import React from 'react';
 
 export default function Signup() {
   return (
-    <AuthLayout>
+    <>
       <h1 className="visually-hidden">FORUST</h1>
-      <div className="auth-container">
-        <div className="form">
-          <div className="form-title">
-            <h2>Create your Forust Account</h2>
+      <AuthLayout>
+        <form className="auth-form">
+          <h2 className="auth-form-heading">Create your Forust Account</h2>
+          <div className="grid-row">
+            <div className="grid-col">
+              <FormField label="Name">
+                <TextField type="text" id="name" />
+              </FormField>
+            </div>
+            <div className="grid-col">
+              <FormField label="Username">
+                <TextField type="text" id="username" />
+              </FormField>
+            </div>
           </div>
-          <form className="form-contents">
-            <div className="form-contents__row form-contents__row--half">
-              <FormField label="Name"><TextField className="form-input" type="text" id="name" /></FormField>
+          <div className="grid-row">
+            <div className="grid-col">
+              <FormField label="Email">
+                <TextField type="text" id="email" />
+              </FormField>
             </div>
-            <div className="form-contents__row form-contents__row--half">
-              <FormField label="Username"><TextField className="form-input" type="text" id="username" /></FormField>
+          </div>
+          <div className="grid-row">
+            <div className="grid-col">
+              <FormField label="Password">
+                <TextField type="password" id="password" />
+              </FormField>
             </div>
-            <div className="form-contents__row">
-              <FormField label="Email"><TextField className="form-input" type="text" id="email" /></FormField>
+          </div>
+          <div className="grid-row auth-form-submit-row">
+            <div className="grid-col">
+              <Button className="auth-submit" type="submit">Create Account</Button>
             </div>
-            <div className="form-contents__row">
-              <FormField label="Password"><TextField className="form-input" type="password" id="password" /></FormField>
-            </div>
-            <div className="form-contents__row form-contents__btn">
-              <Button className="form-btn" type="submit">Create Account</Button>
-            </div>
-            <div className="form-contents__row form-contents__sub">
+          </div>
+          <div className="grid-row auth-form-desc-row">
+            <div className="grid-col">
               Already have an account?
               {' '}
               <a href="/login">Login.</a>
             </div>
-          </form>
-        </div>
-      </div>
-    </AuthLayout>
+          </div>
+        </form>
+      </AuthLayout>
+    </>
   );
 }

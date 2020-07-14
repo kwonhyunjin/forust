@@ -1,58 +1,25 @@
-.auth-container {
-  position: relative;
-  width: calc(100% - 600px);
+.auth-form {
+  width: 416px;
 }
 
-.form {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 416px;
-  width: 100%;
-}
-
-.form-title {
-  margin-bottom: spacing(4);
+.auth-form-heading {
   border-bottom: 1px solid $gray-300;
-
-  h2 {
-    margin-bottom: 19px;
-    height: 36px;
-    color: $gray-900;
-    font-size: $font-size-level-6;
-    font-weight: bold;
-  }
+  margin-bottom: spacing(9);
+  padding-bottom: spacing(5);
+  color: $gray-900;
+  font-size: $font-size-level-6;
+  font-weight: bold;
 }
 
-.form-contents {
-  &__row {
-    margin-top: spacing(5);
-
-    &--half {
-      display: inline-block;
-      width: 200px;
-    }
-
-    .form-input {
-      width: 100%;
-    }
-  }
-
-  div:first-child {
-    margin-right: spacing(4);
-  }
-}
-
-.form-contents__btn {
+.auth-form-submit-row {
   margin-top: spacing(9);
-
-  .form-btn {
-    width: 200px;
-  }
 }
 
-.form-contents__sub {
+.auth-submit {
+  width: 200px;
+}
+
+.auth-form-desc-row {
   height: 18px;
   margin-top: spacing(3);
   color: $gray-600;
