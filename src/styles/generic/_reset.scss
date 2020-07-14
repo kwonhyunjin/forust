@@ -3,11 +3,11 @@
 }
 
 html {
-  min-width: 1200px;
-  font-family: 'Spoqa Han Sans', sans-serif;
-  line-height: 1.5;
+  min-width: $document-min-width;
+  font-family: $font-family-base;
+  line-height: $line-height-base;
 }
 
 body {
-  font-size: 14px;
+  font-size: $font-size-base;
 }

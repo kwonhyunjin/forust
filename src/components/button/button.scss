@@ -10,9 +10,11 @@
   font-size: $font-size-level-3;
   font-weight: bold;
   line-height: 40px;
+  transition: $transition-duration-normal $ease-out;
+  transition-property: box-shadow, background-color;
 
   &:hover {
-    background: $green-light;
+    background-color: $green-light;
   }
 
   &:focus {
@@ -20,11 +22,11 @@
   }
 
   &:active {
-    background: $green-dark;
+    background-color: $green-dark;
     box-shadow: none;
   }
 
   &:disabled {
-    background: $gray-300;
+    background-color: $gray-300;
   }
 }

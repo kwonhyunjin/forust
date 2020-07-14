@@ -10,6 +10,8 @@
   color: $gray-900;
   font-size: $font-size-level-2;
   line-height: 38px;
+  transition: $transition-duration-fast $ease-out;
+  transition-property: border, box-shadow, color, background-color;
 
   &:hover, &:focus {
     border: 1px solid $gray-500;
@@ -21,7 +23,7 @@
   }
 
   &:disabled {
-    background: $gray-50;
+    background-color: $gray-50;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
     color: $gray-400;
   }
