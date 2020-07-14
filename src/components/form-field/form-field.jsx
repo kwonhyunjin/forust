@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 export default function FormField({
-  children, className, label, ...rest
+  children, className, error, label, ...rest
 }) {
   return (
     <div {...rest} className={classNames('form-field', className)}>
@@ -11,7 +11,7 @@ export default function FormField({
         {label}
       </label>
       <div className="form-field__slot">{children}</div>
-      <p className="form-field__message">Error Message</p>
+      {error && <p className="form-field__message">{error}</p>}
     </div>
   );
 }

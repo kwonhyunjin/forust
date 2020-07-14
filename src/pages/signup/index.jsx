@@ -6,10 +6,9 @@ import React from 'react';
 
 export default function Signup() {
   return (
-    <main className="signup">
+    <AuthLayout>
       <h1 className="visually-hidden">FORUST</h1>
-      <AuthLayout />
-      <section className="auth-form">
+      <div className="auth-container">
         <div className="form">
           <div className="form-title">
             <h2>Create your Forust Account</h2>
@@ -33,11 +32,11 @@ export default function Signup() {
             <div className="form-contents__row form-contents__sub">
               Already have an account?
               {' '}
-              <a href="/signin">Login.</a>
+              <a href="/login">Login.</a>
             </div>
           </form>
         </div>
-      </section>
-    </main>
+      </div>
+    </AuthLayout>
   );
 }

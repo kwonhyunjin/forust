@@ -1,4 +1,9 @@
 .auth-layout {
+  display: flex;
+  width: 100%;
+}
+
+.auth-header {
   position: relative;
   width: 600px;
   min-height: 1080px;
