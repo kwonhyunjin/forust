@@ -1,17 +1,23 @@
 .form-field {
-  width: 100%;
+  &__wrapper {
+    display: block;
+    pointer-events: none;
+  }
 
   &__label {
-    display: block;
+    display: inline-block;
+    vertical-align: top;
     margin-bottom: spacing(1);
     color: $gray-700;
     font-size: $font-size-level-3;
     font-weight: bold;
+    pointer-events: auto;
   }
 
   &__slot {
     .text-field {
       width: 100%;
+      pointer-events: auto;
     }
   }
 

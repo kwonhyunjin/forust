@@ -7,10 +7,10 @@ export default function FormField({
 }) {
   return (
     <div {...rest} className={classNames('form-field', className)}>
-      <label className="form-field__label">
-        {label}
+      <label className="form-field__wrapper">
+        <span className="form-field__label">{label}</span>
+        <div className="form-field__slot">{children}</div>
       </label>
-      <div className="form-field__slot">{children}</div>
       {error && <p className="form-field__message">{error}</p>}
     </div>
   );
