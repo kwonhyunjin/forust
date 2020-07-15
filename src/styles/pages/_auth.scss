@@ -31,3 +31,63 @@
     font-weight: bold;
   }
 }
+
+.auth-form-label-row {
+  position: relative;
+  cursor: pointer;
+
+  input {
+    display: none;
+  }
+}
+
+ .auth-form-label {
+  display: flex;
+  align-items: center;
+  height: 18px;
+  color: $gray-600;
+  font-size: $font-size-level-2;
+}
+
+.auth-form-label::before,
+.auth-form-label::after {
+  transition: all 0.2s ease-in-out;
+}
+
+.auth-form-label::before {
+  content: '';
+  display: block;
+  width: 16px;
+  height: 16px;
+  border: 1px solid $gray-300;
+  border-radius: 2px;
+  box-sizing: border-box;;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.08);
+  top: -3px;
+  left: 0;
+  transform: rotate(0deg) scale(1);
+  margin-right: 4px;
+}
+
+.auth-form-label::after {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 14px;
+  border-width: 0 2px 2px 0;
+  border-style: solid;
+  border-color: $green;
+  position: absolute;
+  top: -2px;
+  left: 0;
+  transform: rotate(180deg) scale(0);
+}
+
+.auth-form-label-row> input:checked +  .auth-form-label::before {
+  transform: rotate(40deg) scale(0);
+}
+
+.auth-form-label-row > input:checked +  .auth-form-label::after {
+  left: 8px;
+  transform: rotate(40deg) scale(1);
+}
