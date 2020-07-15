@@ -35,9 +35,9 @@ export default function Login() {
           </div>
           <div className="grid-row">
             <div className="grid-col">
-              <label htmlFor="checkbox" className="login-label">
-                <CheckBox id="checkbox" />
-                <span className="login-label__desc">Keep me logged in.</span>
+              <label className="keep-auth">
+                <CheckBox />
+                <span className="keep-auth__label">Keep me logged in.</span>
               </label>
             </div>
           </div>

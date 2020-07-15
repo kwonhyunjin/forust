@@ -1,5 +1,11 @@
-*:focus {
-  outline: none;
+:root *:focus {
+  outline: initial;
+  outline-style: auto;
+  outline-color: $green-dark;
+}
+
+[tabindex^='-']:focus {
+  outline-style: none;
 }
 
 html {
