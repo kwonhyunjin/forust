@@ -2,11 +2,18 @@ import Button from '@/components/button/button';
 import FormField from '@/components/form-field/form-field';
 import TextField from '@/components/text-field/text-field';
 import AuthLayout from '@/layouts/auth-layout/auth-layout';
+import { NextSeo } from 'next-seo';
 import React from 'react';
 
 export default function Signup() {
   return (
     <>
+      <NextSeo
+        title="Create Account | Forust"
+        openGraph={{
+          title: 'Create Account | Forust',
+        }}
+      />
       <h1 className="visually-hidden">FORUST</h1>
       <AuthLayout>
         <form className="auth-form">
