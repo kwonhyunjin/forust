@@ -1,0 +1,12 @@
+a {
+  text-decoration: none;
+  color: $gray-900;
+
+  &:hover, &:focus {
+    text-decoration: underline;
+  }
+
+  &:visited {
+    color: $gray-900;
+  }
+}

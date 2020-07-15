@@ -1,0 +1,3 @@
+@function spacing($level) {
+  @return $level * $spacing;
+}

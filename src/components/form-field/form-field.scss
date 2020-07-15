@@ -1,0 +1,31 @@
+.form-field {
+  &__wrapper {
+    display: block;
+    pointer-events: none;
+  }
+
+  &__label {
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: spacing(1);
+    color: $gray-700;
+    font-size: $font-size-level-3;
+    font-weight: bold;
+    pointer-events: auto;
+  }
+
+  &__slot {
+    display: flex;
+
+    .text-field {
+      width: 100%;
+      pointer-events: auto;
+    }
+  }
+
+  &__message {
+    padding-left: 2px;
+    color: $gray-600;
+    font-size: $font-size-level-1;
+  }
+}

@@ -1,0 +1,32 @@
+.text-field {
+  height: 40px;
+  background: #fff;
+  border: 1px solid $gray-300;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+  padding: 0;
+  padding-left: spacing(3);
+  color: $gray-900;
+  font-size: $font-size-level-2;
+  line-height: 38px;
+  transition: $transition-duration-fast $ease-out;
+  transition-property: border, box-shadow, color, background-color;
+
+  &:hover, &:focus {
+    border: 1px solid $gray-500;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.16);
+  }
+
+  &::placeholder {
+    color: $gray-500;
+  }
+
+  &:disabled {
+    background-color: $gray-50;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
+    color: $gray-400;
+  }
+}
+
+

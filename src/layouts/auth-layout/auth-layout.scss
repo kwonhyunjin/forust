@@ -1,0 +1,60 @@
+.auth-layout {
+  display: flex;
+  width: 100%;
+  min-height: 1080px;
+  height: 100vh;
+}
+
+.auth-header {
+  flex: 0 0 600px;
+  position: relative;
+  padding: spacing(16) 0 0 spacing(15);
+  background: #f4faf8;
+  box-sizing: border-box;
+}
+
+.auth-logo {
+  display: inline-block;
+  margin-bottom: spacing(17);
+  vertical-align: top;
+
+  &__img {
+    display: block;
+    width: 178px;
+    height: 42px;
+  }
+}
+
+.auth-greeting {
+  height: 100px;
+  margin-bottom: spacing(6);
+  color: $gray-900;
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 1.25;
+
+}
+
+.auth-benefits {
+  &__item {
+    color: $gray-700;
+    font-size: $font-size-level-4;
+  }
+}
+
+.auth-header:after {
+  position: absolute;
+  content: '';
+  width: 760px;
+  height: 491px;
+  bottom: 96px;
+  background: url('/images/auth-layout-illustration.png') no-repeat;
+}
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  padding-top: 320px;
+  flex: 1 1;
+}

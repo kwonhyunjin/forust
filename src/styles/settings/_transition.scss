@@ -1,0 +1,8 @@
+$transition-duration-fast: .12s;
+$transition-duration-normal: .2s;
+$transition-duration-slow: .3s;
+
+// @todo 적절한 값으로 변경
+$ease-in: cubic-bezier(0.55, 0, 1, 0.45);
+$ease-out: cubic-bezier(0, 0.55, 0.45, 1);
+$ease-in-out: cubic-bezier(0.85, 0, 0.15, 1);

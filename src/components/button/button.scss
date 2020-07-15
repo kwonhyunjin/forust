@@ -1,0 +1,32 @@
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-content: center;
+  height: 40px;
+  padding: 0 spacing(5);
+  background: $green;
+  border-radius: 20px;
+  color: #ffffff;
+  font-size: $font-size-level-3;
+  font-weight: bold;
+  line-height: 40px;
+  transition: $transition-duration-normal $ease-out;
+  transition-property: box-shadow, background-color;
+
+  &:hover {
+    background-color: $green-light;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 4px rgba($green, .33);
+  }
+
+  &:active {
+    background-color: $green-dark;
+    box-shadow: none;
+  }
+
+  &:disabled {
+    background-color: $gray-300;
+  }
+}
