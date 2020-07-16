@@ -31,3 +31,15 @@
     font-weight: bold;
   }
 }
+
+.keep-auth {
+  display: flex;
+  align-items: center;
+
+  &__label {
+    height: 18px;
+    padding-left: spacing(1);
+    color: $gray-600;
+    font-size: $font-size-level-2;
+  }
+}

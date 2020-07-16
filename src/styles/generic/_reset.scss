@@ -1,11 +1,17 @@
-*:focus {
-  outline: none;
-}
-
 html {
   min-width: $document-min-width;
   font-family: $font-family-base;
   line-height: $line-height-base;
+}
+
+html *:focus {
+  outline: initial;
+  outline-style: auto;
+  outline-color: $green-dark;
+}
+
+[tabindex^='-']:focus {
+  outline-style: none;
 }
 
 body {
