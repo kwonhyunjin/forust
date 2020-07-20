@@ -1,0 +1,141 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 82px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: $container-min-width;
+  width: 100%;
+  margin: 0 auto;
+  padding: spacing(5) 0;
+}
+
+.header-item {
+  display: flex;
+  align-items: center;
+}
+
+.header-container {
+  position: relative;
+  flex: 0 0 780px;
+  box-sizing: border-box;
+}
+
+.header-logo {
+  display: inline-block;
+  vertical-align: top;
+
+  &__img {
+    display: block;
+  }
+}
+
+.header-search {
+  width: 500px;
+  height: 44px;
+  margin-right: spacing(22.5);
+  padding: 0 spacing(5);
+  background-color: $gray-100;
+  border-radius: 22px;
+  box-sizing: border-box;
+
+  &__field {
+    width: 100%;
+    margin-left: spacing(7);
+    padding: 0;
+    background: transparent;
+    border: 0;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__img {
+    position: absolute;
+  }
+}
+
+.header-notice {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: spacing(8);
+  box-sizing: border-box;
+
+  &__img {
+    display: block;
+  }
+}
+
+.header-profile {
+  &__img {
+    width: 32px;
+    height: 32px;
+    background: #ddd;
+    margin-right: spacing(3);
+    border-radius: 50px;
+    vertical-align: middle;
+  }
+
+  &__user {
+    display: flex;
+    font-size: $font-size-level-3;
+    line-height: 2.29;
+    color: #000000;
+  }
+
+  &__dropdown-icon {
+      vertical-align: middle;
+  }
+}
+
+.profile-overlay {
+  display: flex;
+  border: none;
+  cursor: pointer;
+  list-style: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 100;
+  width: 150px;
+  padding: spacing(1);
+  margin-top: 2px;
+  list-style: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(149,157,165,.2);
+  box-sizing: border-box;
+
+  &__items {
+    padding: spacing(1) spacing(2) spacing(1) spacing(4);
+    cursor: pointer;
+
+    &:hover {
+      background: $green;
+      color: #fff;
+    }
+  }
+}
