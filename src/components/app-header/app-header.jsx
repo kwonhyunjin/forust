@@ -28,10 +28,10 @@ export default function AppHeader() {
                 </span>
               </summary>
               <ul className="profile-dropdown">
-                <li className="profile-dropdown__items">Your Profile</li>
-                <li className="profile-dropdown__items">Your Question</li>
+                <li className="profile-dropdown__item">Your Profile</li>
+                <li className="profile-dropdown__item">Your Question</li>
                 <hr />
-                <li className="profile-dropdown__items">Sign out</li>
+                <li className="profile-dropdown__item">Sign out</li>
               </ul>
             </details>
           </div>
