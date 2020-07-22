@@ -1,0 +1,10 @@
+.app-layout {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-container {
+  display: flex;
+  margin-top: spacing(20.5);
+  box-sizing: border-box;
+}

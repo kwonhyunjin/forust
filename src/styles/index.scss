@@ -5,12 +5,14 @@
 @import './generic/index';
 @import './elements/index';
 @import './objects/index';
+@import '~@/components/app-header/app-header';
+@import '~@/components/app-nav/app-nav';
 @import '~@/components/button/button';
 @import '~@/components/checkbox/checkbox';
 @import '~@/components/form-field/form-field';
-@import '~@/components/header/header';
 @import '~@/components/text-field/text-field';
 @import '~@/layouts/auth-layout/auth-layout';
+@import '~@/layouts/default-layout/default-layout';
 @import './pages/index';
 @import '~@/pages/forum-list/forum-list';
 @import './utils/index';

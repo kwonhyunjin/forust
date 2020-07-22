@@ -1,13 +1,16 @@
 import React from 'react';
 
-export default function Header() {
+export default function AppHeader() {
   return (
     <>
-      <header className="header">
+      <header className="app-header">
         <div className="header-wrapper">
-          <a href="/" className="header-item header-logo">
-            <img src="/images/logo-symbol.svg" alt="Home" className="header-logo__img" />
-          </a>
+          <h1 className="header-item app-logo">
+            <a href="/" className="app-logo__link">
+              <img src="/images/logo-symbol.svg" alt="Home" className="app-logo__img" />
+            </a>
+            <p className="visually-hidden">FORUST</p>
+          </h1>
           <div className="header-item header-container">
             <form className="header-item header-search">
               <input className="header-search__field" type="text" placeholder="Type to search" />

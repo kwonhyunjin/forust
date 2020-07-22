@@ -1,3 +1,13 @@
-.container {
-  padding-top: spacing(20.5);
+.forum-list {
+  width: 100%;
+  padding-top: spacing(20);
+}
+
+.question-summary {
+  display: flex;
+  padding: spacing(10) spacing(10) spacing(10) spacing(6);
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 5px 25px -5px rgba(0, 0, 0, .1);
+  margin-bottom: spacing(10);
 }

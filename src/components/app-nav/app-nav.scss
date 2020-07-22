@@ -1,0 +1,41 @@
+.app-nav {
+  display: flex;
+  flex: 0 0 240px;
+  margin-right: spacing(20);
+  padding-top: spacing(20);
+  box-sizing: border-box;
+}
+
+.nav-menu {
+  width: 100%;
+
+  &__items {
+    height: 44px;
+    margin-bottom: spacing(4);
+    padding-left: spacing(6);
+    box-sizing: border-box;
+    font-size: $font-size-level-3;
+    line-height: 3.14;
+    cursor: pointer;
+
+    &:hover {
+      border-radius: 22px;
+      background-color: rgba(187, 226, 210, 0.25);
+    }
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      text-decoration: none;
+      font-weight: bold;
+      color: $green-dark;
+    }
+  }
+
+  &__img {
+    margin-right: spacing(4);
+  }
+}

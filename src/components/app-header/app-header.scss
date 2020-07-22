@@ -1,9 +1,10 @@
-.header {
+.app-header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   height: 82px;
+  display: flex;
   background-color: #ffffff;
   box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
@@ -11,8 +12,6 @@
 
 .header-wrapper {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   max-width: $container-min-width;
   width: 100%;
   margin: 0 auto;
@@ -27,12 +26,11 @@
 .header-container {
   position: relative;
   flex: 0 0 780px;
-  box-sizing: border-box;
+  margin-left: spacing(20);
 }
 
-.header-logo {
-  display: inline-block;
-  vertical-align: top;
+.app-logo {
+  flex: 1 1;
 
   &__img {
     display: block;
