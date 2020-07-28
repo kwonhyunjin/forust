@@ -1,39 +1,24 @@
+import AppLogo from '@/components/app-logo/app-logo';
+import DropDown from '@/components/drop-down/drop-down';
 import React from 'react';
+import Inbox from '../../svgs/icon-bell-outline.svg';
+import Search from '../../svgs/icon-magniify.svg';
 
 export default function AppHeader() {
   return (
     <>
       <header className="app-header">
-        <div className="header-wrapper">
-          <h1 className="header-item app-logo">
-            <a href="/" className="app-logo__link">
-              <img src="/images/logo-symbol.svg" alt="Home" className="app-logo__img" />
-            </a>
-            <p className="visually-hidden">FORUST</p>
-          </h1>
-          <div className="header-item header-container">
-            <form className="header-item header-search">
-              <input className="header-search__field" type="text" placeholder="Type to search" />
-              <img src="/images/search.svg" alt="Search" className="header-search__img" />
+        <div className="app-header-wrapper">
+          <AppLogo />
+          <div className="app-header-container">
+            <form className="app-search">
+              <Search className="app-search__img" alt="" aria-hidden="true" />
+              <input className="app-search__field" type="search" placeholder="Type to Search" aria-label="Search" />
             </form>
-            <a href="/" className="header-item header-notice">
-              <img src="/images/header-bell.svg" alt="Notice" className="header-notice__img" />
+            <a href="/" className="app-inbox" aria-label="Inbox">
+              <Inbox className="app-inbox__img" alt="" aria-hidden="true" />
             </a>
-            <details className="header-item header-profile">
-              <summary className="profile-overlay" aria-label="View profile and more">
-                <img src="/images/chamdori.jpeg" alt="Profile" className="header-profile__img" />
-                <span className="header-profile__user">
-                  Chamdori
-                  <img src="/images/profile-dropdown.svg" alt="Profile-Dropdown" className="header-profile__dropdown-icon" />
-                </span>
-              </summary>
-              <ul className="profile-dropdown">
-                <li className="profile-dropdown__item">Your Profile</li>
-                <li className="profile-dropdown__item">Your Question</li>
-                <hr />
-                <li className="profile-dropdown__item">Sign out</li>
-              </ul>
-            </details>
+            <DropDown />
           </div>
         </div>
       </header>
