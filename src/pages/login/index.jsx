@@ -1,5 +1,5 @@
 import Button from '@/components/button/button';
-import CheckBox from '@/components/checkbox/checkbox';
+import CheckBox from '@/components/check-box/check-box';
 import FormField from '@/components/form-field/form-field';
 import TextField from '@/components/text-field/text-field';
 import AuthLayout from '@/layouts/auth-layout/auth-layout';
