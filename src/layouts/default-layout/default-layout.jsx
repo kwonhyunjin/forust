@@ -10,7 +10,9 @@ export default function DefaultLayout({ children }) {
         <AppHeader />
         <div className="app-container">
           <AppNav />
-          {children}
+          <div className="app-index">
+            {children}
+          </div>
         </div>
       </div>
     </>
