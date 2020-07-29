@@ -1,41 +1,47 @@
 .app-nav {
-  display: flex;
-  flex: 0 0 240px;
-  margin-right: spacing(20);
-  padding-top: spacing(20);
-  box-sizing: border-box;
-}
+  flex: 1;
+  padding: spacing(20) spacing(20) 0 0;
 
-.nav-menu {
-  width: 100%;
-
-  &__items {
+  &__item {
+    display: flex;
+    align-items: center;
     height: 44px;
     margin-bottom: spacing(4);
-    padding-left: spacing(6);
-    box-sizing: border-box;
-    font-size: $font-size-level-3;
-    line-height: 3.14;
-    cursor: pointer;
-
-    &:hover {
-      border-radius: 22px;
-      background-color: rgba(187, 226, 210, 0.25);
-    }
   }
 
   &__link {
     display: flex;
     align-items: center;
+    width: 100%;
+    padding: 10px spacing(6);
 
     &:hover {
+      background: $gray-100;
+      border-radius: 22px;
       text-decoration: none;
-      font-weight: bold;
-      color: $green-dark;
     }
   }
 
   &__img {
     margin-right: spacing(4);
+  }
+}
+
+.is-active {
+  height: 44px;
+  background: rgba(187, 226, 210, 0.25);
+  border-radius: 22px;
+  box-sizing: border-box;
+  font-size: $font-size-level-3;
+  font-weight: bold;
+  line-height: 3.14;
+  color: $green-dark;
+
+  path {
+    fill: $green-dark;
+  }
+
+  &:hover {
+    background: rgba(187, 226, 210, 0.25);
   }
 }
