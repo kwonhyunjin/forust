@@ -1,9 +1,12 @@
 .app-logo {
-  display: inline-block;
-  vertical-align: top;
+  flex: 1;
 
   &__link {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  &__img {
     display: block;
-    height: auto;
   }
 }

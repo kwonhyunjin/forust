@@ -3,8 +3,11 @@ import LogoSymbol from '../../svgs/logo-symbol.svg';
 
 export default function AppLogo() {
   return (
-    <a href="/" className="app-logo">
-      <LogoSymbol className="app-logo__link" />
-    </a>
+    <h1 className="app-logo">
+      <a href="/" className="app-logo__link">
+        <LogoSymbol className="app-logo__img" />
+      </a>
+      <p className="visually-hidden">FORUST</p>
+    </h1>
   );
 }
