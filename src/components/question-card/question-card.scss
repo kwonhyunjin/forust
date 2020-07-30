@@ -1,0 +1,131 @@
+.question-wrapper {
+  width: 100%;
+}
+
+.question-card {
+  display: flex;
+  height: 100%;
+  padding: spacing(10) spacing(10) spacing(10) spacing(12);
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 5px 25px -5px rgba(0, 0, 0, .1);
+  box-sizing: border-box;
+}
+
+.card {
+  margin-bottom: spacing(10);
+}
+
+.question-vote {
+  display: flex;
+  flex: 0 0 72px;
+  flex-direction: column;
+  align-items: center;
+
+  &__button {
+    width: 24px;
+    height: 16px;
+    background: none;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__up {
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid #c4c4c4;
+    padding: 0;
+  }
+
+  &__down {
+    border-top: 12px solid #c4c4c4;
+    border-bottom: 12px solid transparent;
+    padding: 0;
+  }
+
+  &__result {
+    height: 20px;
+    padding: spacing(2) 0;
+    font-size: $font-size-level-5;
+    font-weight: bold;
+    line-height: 1;
+    color: $blue;
+  }
+}
+
+.question {
+  flex: 1 1;
+  padding-left: spacing(6);
+
+  &__title {
+    display: block;
+    margin-bottom: spacing(5);
+    box-sizing: border-box;
+    font-size: $font-size-level-5;
+    font-weight: bold;
+    color: $gray-900;
+  }
+
+  &__content {
+    max-height: 140px;
+    height: 100%;
+    margin-bottom: spacing(4);
+    font-size: $font-size-level-3;
+    line-height: 2;
+    color: $gray-700;
+    white-space: normal;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &__tags {
+    margin-bottom: spacing(7);
+
+    &-item {
+      height: 22px;
+      border-radius: 4px;
+      background-color: rgba(187, 226, 210, 0.25);
+      padding: 0 spacing(2);
+      margin-right: spacing(2);
+      font-size: $font-size-level-2;
+      font-weight: bold;
+      line-height: 1.83;
+      color: $green-dark;
+    }
+  }
+}
+
+.question-benefits {
+  display: flex;
+  align-items: center;
+  float: right;
+  height: 32px;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    font-size: $font-size-level-2;
+    line-height: 1.17;
+    color: $gray-500;
+
+    & + & {
+      margin-left: spacing(5);
+    }
+  }
+
+  &__img {
+    width: 20px;
+    height: 20px;
+    margin-right: spacing(2);
+
+    path {
+      fill: $gray-500;
+    }
+  }
+}
