@@ -38,12 +38,14 @@
     border-top: 12px solid transparent;
     border-bottom: 12px solid #c4c4c4;
     padding: 0;
+    margin-bottom: spacing(1);
   }
 
   &__down {
     border-top: 12px solid #c4c4c4;
     border-bottom: 12px solid transparent;
     padding: 0;
+    margin-top: spacing(1);
   }
 
   &__result {
@@ -52,9 +54,18 @@
     font-size: $font-size-level-5;
     font-weight: bold;
     line-height: 1;
-    color: $blue;
+    color: $gray-500;
+
+    &--like {
+      color: $blue;
+    }
+
+    &--unlike {
+      color: $red;
+    }
   }
 }
+
 
 .question {
   flex: 1 1;

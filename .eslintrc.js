@@ -32,6 +32,7 @@ module.exports = {
     }],
     "jsx-a11y/label-has-associated-control": 0,
     "max-len": 0,
+    "no-nested-ternary": 0,
     "react/button-has-type": 0,
     "react/jsx-props-no-spreading": 0,
     "react/require-default-props": 0,
