@@ -10,10 +10,6 @@
   list-style: none;
   cursor: pointer;
 
-  &:focus {
-    outline: none;
-  }
-
   &::-webkit-details-marker {
     display: none;
   }
@@ -21,12 +17,14 @@
   &__img {
     width: 32px;
     height: 32px;
+    background: $skeleton-color;
     border-radius: 50px;
     overflow: hidden;
 
     &--item {
       width: 100%;
       height: 100%;
+      background: #fff;
     }
   }
 
@@ -62,7 +60,7 @@
     padding: spacing(1) spacing(2) spacing(1) spacing(4);
     cursor: pointer;
 
-    &:hover {
+    &:hover, &:focus {
       background: $green;
       color: #fff;
     }

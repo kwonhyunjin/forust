@@ -15,7 +15,7 @@ export default function Login() {
           title: 'Login | Forust',
         }}
       />
-      <h1 className="visually-hidden">FORUST</h1>
+      <h1 className="blind">Forust</h1>
       <AuthLayout>
         <div className="auth-form">
           <h2 className="auth-form-heading">Login to Forust</h2>

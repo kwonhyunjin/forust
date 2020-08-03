@@ -1,4 +1,4 @@
-.visually-hidden {
+.blind {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -6,4 +6,17 @@
   white-space: nowrap;
   overflow: hidden;
   clip-path: inset(50%);
+}
+
+.blind-inline {
+  display: inline-block;
+  color: transparent;
+  background: none;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  pointer-events: none;
 }

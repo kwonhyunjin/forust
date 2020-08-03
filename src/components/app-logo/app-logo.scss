@@ -1,5 +1,7 @@
 .app-logo {
-  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  width: 320px;
 
   &__link {
     display: inline-block;

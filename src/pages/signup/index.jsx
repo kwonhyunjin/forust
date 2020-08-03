@@ -14,7 +14,7 @@ export default function Signup() {
           title: 'Create Account | Forust',
         }}
       />
-      <h1 className="visually-hidden">FORUST</h1>
+      <h1 className="blind">Forust</h1>
       <AuthLayout>
         <form className="auth-form">
           <h2 className="auth-form-heading">Create your Forust Account</h2>

@@ -6,9 +6,9 @@ import Help from '../../svgs/icon-help-circle.svg';
 
 export default function AppNav() {
   return (
-    <>
-      <ul className="app-nav" aria-labelledby="app-nav">
-        <h2 className="visually-hidden" id="app-nav">AppNav</h2>
+    <nav className="app-nav" aria-labelledby="app-nav-heading">
+      <h2 className="blind" id="app-nav-heading">Main menu</h2>
+      <ul className="app-nav__list">
         <li className="app-nav__item">
           <a href="/forum-list" className="app-nav__link is-active" aria-current="page">
             <Help className="app-nav__img" />
@@ -34,6 +34,6 @@ export default function AppNav() {
           </a>
         </li>
       </ul>
-    </>
+    </nav>
   );
 }

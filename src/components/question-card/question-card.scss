@@ -1,11 +1,7 @@
-.question-wrapper {
-  width: 100%;
-}
-
 .question-card {
   display: flex;
   height: 100%;
-  padding: spacing(10) spacing(10) spacing(10) spacing(12);
+  padding: spacing(10) spacing(10) spacing(10) spacing(6);
   border-radius: 8px;
   background-color: #ffffff;
   box-shadow: 0 5px 25px -5px rgba(0, 0, 0, .1);
@@ -21,6 +17,7 @@
   flex: 0 0 72px;
   flex-direction: column;
   align-items: center;
+  padding-top: spacing(2);
 
   &__button {
     width: 24px;
@@ -29,28 +26,22 @@
     border-left: 12px solid transparent;
     border-right: 12px solid transparent;
 
-    &:focus {
-      outline: none;
+    &--up {
+      border-top: 12px solid transparent;
+      border-bottom: 12px solid $skeleton-color;
+      padding: 0;
     }
-  }
 
-  &__up {
-    border-top: 12px solid transparent;
-    border-bottom: 12px solid #c4c4c4;
-    padding: 0;
-    margin-bottom: spacing(1);
-  }
-
-  &__down {
-    border-top: 12px solid #c4c4c4;
-    border-bottom: 12px solid transparent;
-    padding: 0;
-    margin-top: spacing(1);
+    &--down {
+      border-top: 12px solid $skeleton-color;
+      border-bottom: 12px solid transparent;
+      padding: 0;
+    }
   }
 
   &__result {
     height: 20px;
-    padding: spacing(2) 0;
+    padding: spacing(3) 0;
     font-size: $font-size-level-5;
     font-weight: bold;
     line-height: 1;

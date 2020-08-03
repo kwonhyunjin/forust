@@ -7,7 +7,7 @@ export default function AppLogo() {
       <a href="/" className="app-logo__link">
         <LogoSymbol className="app-logo__img" />
       </a>
-      <p className="visually-hidden">FORUST</p>
+      <p className="blind">Forust</p>
     </h1>
   );
 }

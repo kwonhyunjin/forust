@@ -1,6 +1,6 @@
 .app-nav {
   flex: 1;
-  padding: spacing(20) spacing(20) 0 0;
+  padding: spacing(25) spacing(20) 0 0;
 
   &__item {
     display: flex;
@@ -13,12 +13,17 @@
     display: flex;
     align-items: center;
     width: 100%;
-    padding: 10px spacing(6);
+    height: 100%;
+    padding: 0 spacing(6);
+    font-size: $font-size-level-3;
     color: $gray-700;
+    border-radius: 22px;
+    box-sizing: border-box;
+    transition: $transition-duration-normal $ease-out;
+    transition-property: color, background-color;
 
-    &:hover {
-      background: $gray-100;
-      border-radius: 22px;
+    &:hover, &:focus {
+      background-color: $gray-100;
       text-decoration: none;
     }
   }
@@ -28,21 +33,12 @@
   }
 }
 
-.is-active {
-  height: 44px;
-  background: rgba(187, 226, 210, 0.25);
-  border-radius: 22px;
-  box-sizing: border-box;
-  font-size: $font-size-level-3;
+.app-nav__link.is-active {
+  background-color: rgba($green-light, 0.25);
   font-weight: bold;
-  line-height: 3.14;
   color: $green-dark;
 
   path {
     fill: $green-dark;
-  }
-
-  &:hover {
-    background: rgba(187, 226, 210, 0.25);
   }
 }
