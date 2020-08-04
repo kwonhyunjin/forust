@@ -1,5 +1,5 @@
+import Icon from '@/components/icon/icon';
 import React from 'react';
-import IconCaretDown from '../../svgs/icon-caret-down.svg';
 
 export default function DropDown() {
   return (
@@ -8,8 +8,8 @@ export default function DropDown() {
         <div className="app-user__img">
           <img className="app-user__img--item" src="/images/avatar-sample.jpeg" alt="" aria-hidden="true" />
         </div>
-        <p className="app-user__name">Chamdori</p>
-        <IconCaretDown className="app-user__icon" alt="" aria-hidden="true" />
+        <p className="app-user__name">AAAAAAAAAAAAAAAA</p>
+        <Icon type="caret-down" className="app-user__icon" aria-hidden="true" />
       </summary>
       {/* @todo dropdown style */}
     </details>

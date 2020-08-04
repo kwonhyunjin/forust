@@ -1,7 +1,9 @@
 .app-logo {
   display: flex;
   justify-content: flex-start;
-  width: 320px;
+  margin-right: $container-min-width - $app-main-width - $app-logo-size;;
+  width: $app-logo-size;
+  height: $app-logo-size;
 
   &__link {
     display: inline-block;

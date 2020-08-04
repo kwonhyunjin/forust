@@ -9,8 +9,8 @@
   box-sizing: border-box;
 }
 
-.app-index {
+.app-main {
   display: flex;
-  flex: 0 0 780px;
+  flex: 0 0 $app-main-width;
   padding-top: 80px;
 }

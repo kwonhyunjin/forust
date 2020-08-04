@@ -1,8 +1,6 @@
+import Icon from '@/components/icon/icon';
+import Link from 'next/link';
 import React from 'react';
-import Participation from '../../svgs/icon-chat.svg';
-import Solved from '../../svgs/icon-check-circle.svg';
-import Unsolved from '../../svgs/icon-close-circle.svg';
-import Help from '../../svgs/icon-help-circle.svg';
 
 export default function AppNav() {
   return (
@@ -10,28 +8,36 @@ export default function AppNav() {
       <h2 className="blind" id="app-nav-heading">Main menu</h2>
       <ul className="app-nav__list">
         <li className="app-nav__item">
-          <a href="/forum-list" className="app-nav__link is-active" aria-current="page">
-            <Help className="app-nav__img" />
-            All Questions
-          </a>
+          <Link href="/all-question">
+            <a className="app-nav__link is-active" aria-current="page">
+              <Icon type="help-circle" className="app-nav__icon" />
+              All Questions
+            </a>
+          </Link>
         </li>
         <li className="app-nav__item">
-          <a href="/forum-list" className="app-nav__link">
-            <Participation className="app-nav__img" />
-            My Participation
-          </a>
+          <Link href="/my-participation">
+            <a className="app-nav__link">
+              <Icon type="chat" className="app-nav__icon" />
+              My Participation
+            </a>
+          </Link>
         </li>
         <li className="app-nav__item">
-          <a href="/forum-list" className="app-nav__link">
-            <Unsolved className="app-nav__img" />
-            Unsolved
-          </a>
+          <Link href="/unsolved">
+            <a className="app-nav__link">
+              <Icon type="close-circle" className="app-nav__icon" />
+              Unsolved
+            </a>
+          </Link>
         </li>
         <li className="app-nav__item">
-          <a href="/forum-list" className="app-nav__link">
-            <Solved className="app-nav__img" />
-            Solved
-          </a>
+          <Link href="/solved">
+            <a className="app-nav__link">
+              <Icon type="check-circle" className="app-nav__icon" />
+              Solved
+            </a>
+          </Link>
         </li>
       </ul>
     </nav>

@@ -3,6 +3,7 @@ import FormField from '@/components/form-field/form-field';
 import TextField from '@/components/text-field/text-field';
 import AuthLayout from '@/layouts/auth-layout/auth-layout';
 import { NextSeo } from 'next-seo';
+import Link from 'next/link';
 import React from 'react';
 
 export default function Signup() {
@@ -53,7 +54,7 @@ export default function Signup() {
             <div className="grid-col">
               Already have an account?
               {' '}
-              <a href="/login">Login.</a>
+              <Link href="/login"><a>Login.</a></Link>
             </div>
           </div>
         </form>

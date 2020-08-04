@@ -1,18 +1,12 @@
-.question-card {
+.question-summary-card {
   display: flex;
   height: 100%;
   padding: spacing(10) spacing(10) spacing(10) spacing(6);
-  border-radius: 8px;
-  background-color: #ffffff;
-  box-shadow: 0 5px 25px -5px rgba(0, 0, 0, .1);
+  margin-bottom: spacing(10);
   box-sizing: border-box;
 }
 
-.card {
-  margin-bottom: spacing(10);
-}
-
-.question-vote {
+.post-vote {
   display: flex;
   flex: 0 0 72px;
   flex-direction: column;
@@ -58,12 +52,13 @@
 }
 
 
-.question {
+.post-main {
   flex: 1 1;
   padding-left: spacing(6);
 
   &__title {
-    display: block;
+    display: inline-block;
+    vertical-align: top;
     margin-bottom: spacing(5);
     box-sizing: border-box;
     font-size: $font-size-level-5;
@@ -89,10 +84,10 @@
   &__tags {
     margin-bottom: spacing(7);
 
-    &-item {
+    &--item {
       height: 22px;
       border-radius: 4px;
-      background-color: rgba(187, 226, 210, 0.25);
+      background-color: rgba($green-light, 0.25);
       padding: 0 spacing(2);
       margin-right: spacing(2);
       font-size: $font-size-level-2;
@@ -103,7 +98,7 @@
   }
 }
 
-.question-benefits {
+.question-counter {
   display: flex;
   align-items: center;
   float: right;
@@ -121,7 +116,7 @@
     }
   }
 
-  &__img {
+  &__icon {
     width: 20px;
     height: 20px;
     margin-right: spacing(2);
