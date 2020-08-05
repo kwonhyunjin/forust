@@ -1,5 +1,6 @@
 import Icon from '@/components/icon/icon';
 import PostProfile from '@/components/post-profile/post-profile';
+import Tag from '@/components/tag/tag';
 import classNames from 'classnames';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
@@ -38,9 +39,9 @@ export default function QuestionSummaryCard({ className, ...rest }) {
         </Link>
         <span className="post-main__content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
         <div className="post-main__tags">
-          <Link href="forum-list"><a className="post-main__tags--item">next.js</a></Link>
-          <Link href="forum-list"><a className="post-main__tags--item">react</a></Link>
-          <Link href="forum-list"><a className="post-main__tags--item">javascript</a></Link>
+          <Tag className="post-main__tags--item" tag="next.js" />
+          <Tag className="post-main__tags--item" tag="javascript" />
+          <Tag className="post-main__tags--item" tag="react" />
         </div>
         <PostProfile />
         <ul className="question-counter">

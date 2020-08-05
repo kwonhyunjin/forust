@@ -85,14 +85,7 @@
     margin-bottom: spacing(7);
 
     &--item {
-      height: 22px;
-      border-radius: 4px;
       background-color: rgba($green-light, 0.25);
-      padding: 0 spacing(2);
-      margin-right: spacing(2);
-      font-size: $font-size-level-2;
-      font-weight: bold;
-      line-height: 1.83;
       color: $green-dark;
     }
   }
