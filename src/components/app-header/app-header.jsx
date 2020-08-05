@@ -10,11 +10,11 @@ export default function AppHeader() {
         <div className="app-header__wrapper">
           <AppLogo />
           <form className="app-search">
-            <Icon type="magniify" className="app-search__img" aria-hidden="true" />
+            <Icon type="magniify" className="app-search__icon" aria-hidden="true" />
             <input className="app-search__field" type="search" placeholder="Type to Search" aria-label="Search" />
           </form>
           <button type="button" className="app-inbox" aria-label="Inbox">
-            <Icon type="bell-outline" className="app-inbox__img" aria-hidden="true" />
+            <Icon type="bell-outline" className="app-inbox__icon" aria-hidden="true" />
           </button>
           <DropDown />
         </div>

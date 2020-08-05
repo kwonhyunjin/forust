@@ -38,6 +38,11 @@
 
   &__icon {
     margin-left: spacing(1);
+    font-size: $font-size-level-5;
+
+    path {
+      fill: $gray-900;
+    }
   }
 }
 

@@ -10,7 +10,7 @@ export default function AppNav() {
         <li className="app-nav__item">
           <Link href="/all-question">
             <a className="app-nav__link is-active" aria-current="page">
-              <Icon type="help-circle" className="app-nav__icon" />
+              <Icon type="help-circle" className="app-nav__icon" aria-hidden="true" />
               All Questions
             </a>
           </Link>
@@ -18,7 +18,7 @@ export default function AppNav() {
         <li className="app-nav__item">
           <Link href="/my-participation">
             <a className="app-nav__link">
-              <Icon type="chat" className="app-nav__icon" />
+              <Icon type="chat" className="app-nav__icon" aria-hidden="true" />
               My Participation
             </a>
           </Link>
@@ -26,7 +26,7 @@ export default function AppNav() {
         <li className="app-nav__item">
           <Link href="/unsolved">
             <a className="app-nav__link">
-              <Icon type="close-circle" className="app-nav__icon" />
+              <Icon type="close-circle" className="app-nav__icon" aria-hidden="true" />
               Unsolved
             </a>
           </Link>
@@ -34,7 +34,7 @@ export default function AppNav() {
         <li className="app-nav__item">
           <Link href="/solved">
             <a className="app-nav__link">
-              <Icon type="check-circle" className="app-nav__icon" />
+              <Icon type="check-circle" className="app-nav__icon" aria-hidden="true" />
               Solved
             </a>
           </Link>

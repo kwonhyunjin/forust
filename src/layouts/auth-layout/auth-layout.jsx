@@ -9,7 +9,7 @@ export default function AuthLayout({ children }) {
       <div className="auth-header">
         <Link href="/">
           <a className="auth-logo">
-            <Logo className="auth-logo__img" />
+            <Logo className="auth-logo__icon" />
           </a>
         </Link>
         <p className="auth-greeting">

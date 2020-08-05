@@ -7,7 +7,7 @@ export default function AppLogo() {
     <h1 className="app-logo">
       <Link href="/">
         <a className="app-logo__link">
-          <LogoSymbol className="app-logo__img" />
+          <LogoSymbol className="app-logo__icon" />
         </a>
       </Link>
       <p className="blind">Forust</p>

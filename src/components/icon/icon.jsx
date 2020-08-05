@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -12,12 +13,13 @@ try {
   })();
 } catch (e) { console.log(e); }
 
-export default function Icon({ type }) {
+export default function Icon({ className, type, ...rest }) {
   return (
-    <i className="icon" dangerouslySetInnerHTML={{ __html: icons[`./${type}.svg`] }} />
+    <i className={classNames('icon', className)} dangerouslySetInnerHTML={{ __html: icons[`./${type}.svg`] }} {...rest} />
   );
 }
 
 Icon.propTypes = {
+  className: PropTypes.string,
   type: PropTypes.string,
 };

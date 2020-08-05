@@ -45,11 +45,11 @@ export default function QuestionSummaryCard({ className, ...rest }) {
         <PostProfile />
         <ul className="question-counter">
           <li className="question-counter__item">
-            <Icon type="eye" className="question-counter__icon" />
+            <Icon type="eye" className="question-counter__icon" aria-hidden="true" />
             9,813
           </li>
           <li className="question-counter__item">
-            <Icon type="comment" className="question-counter__icon" />
+            <Icon type="comment" className="question-counter__icon" aria-hidden="true" />
             319
           </li>
         </ul>

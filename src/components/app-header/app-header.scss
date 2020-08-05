@@ -29,7 +29,9 @@
   border-radius: 22px;
   box-sizing: border-box;
 
-  &__img {
+  &__icon {
+    font-size: $font-size-level-6;
+
     path {
       fill: $indigo-600;
     }
@@ -54,7 +56,9 @@
   align-items: center;
   margin-right: spacing(8);
 
-  &__img {
+  &__icon {
+    font-size: $font-size-level-6;
+
     path {
       fill: $indigo-600;
     }
