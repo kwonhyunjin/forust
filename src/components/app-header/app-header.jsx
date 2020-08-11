@@ -1,5 +1,5 @@
 import AppLogo from '@/components/app-logo/app-logo';
-import DropDown from '@/components/dropdown/dropdown';
+import Dropdown from '@/components/dropdown/dropdown';
 import Icon from '@/components/icon/icon';
 import React from 'react';
 
@@ -16,7 +16,9 @@ export default function AppHeader() {
           <button type="button" className="app-inbox" aria-label="Inbox">
             <Icon type="bell-outline" className="app-inbox__icon" aria-hidden="true" />
           </button>
-          <DropDown />
+          <Dropdown toggle={<button>test</button>}>
+            <Dropdown.Menuitem>hihi</Dropdown.Menuitem>
+          </Dropdown>
         </div>
       </header>
     </>
