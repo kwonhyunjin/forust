@@ -31,10 +31,7 @@
   &__icon {
     margin-right: spacing(4);
     font-size: 24px;
-
-    path {
-      fill: $indigo-600;
-    }
+    color: $indigo-600;
   }
 }
 
@@ -43,7 +40,7 @@
   font-weight: bold;
   color: $green-dark;
 
-  path {
-    fill: $green-dark;
+  .app-nav__icon {
+    color: inherit;
   }
 }

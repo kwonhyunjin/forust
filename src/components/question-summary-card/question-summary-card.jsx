@@ -20,9 +20,9 @@ export default function QuestionSummaryCard({ className, ...rest }) {
         </Link>
         <span className="question-summary-card__content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
         <PostTag className="question-summary-card__tags">
-          <Tag className="question-summary-card__tags-item">next.js</Tag>
-          <Tag className="question-summary-card__tags-item">javascript</Tag>
-          <Tag className="question-summary-card__tags-item">react</Tag>
+          <Tag>next.js</Tag>
+          <Tag>javascript</Tag>
+          <Tag>react</Tag>
         </PostTag>
         <PostProfile className="question-summary-card__profile" />
         <ul className="question-summary-card__count">

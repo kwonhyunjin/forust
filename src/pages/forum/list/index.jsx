@@ -4,15 +4,15 @@ import React from 'react';
 
 export default function ForumList() {
   return (
-    <>
-      <DefaultLayout>
+    <DefaultLayout>
+      <section aria-labelledby="forum-list-heading">
         <h2 className="blind" id="forum-list-heading">Question list</h2>
-        <div className="forum-list" aria-labelledby="forum-list-heading" role="list">
+        <div className="forum-list" role="list">
           <QuestionSummaryCard role="listitem" />
           <QuestionSummaryCard role="listitem" />
           <QuestionSummaryCard role="listitem" />
         </div>
-      </DefaultLayout>
-    </>
+      </section>
+    </DefaultLayout>
   );
 }

@@ -19,11 +19,11 @@ export default function PostVote({ className }) {
 
   return (
     <div className={classNames('post-vote', className)}>
-      <button className="post-vote__button post-vote__button--up" type="button" aria-label="Up" onClick={handleUpClick} />
       <p className={classNames('post-vote__result', count === 0 ? 'post-vote__result' : color ? 'post-vote__result--unlike' : 'post-vote__result--like')}>
         <span className="blind-inline">Votes: </span>
         {count}
       </p>
+      <button className="post-vote__button post-vote__button--up" type="button" aria-label="Up" onClick={handleUpClick} />
       <button className="post-vote__button post-vote__button--down" type="button" aria-label="Down" onClick={handleDownClick} />
     </div>
   );
