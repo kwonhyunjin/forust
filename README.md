@@ -22,6 +22,10 @@ yarn build
 yarn start
 ```
 
+## Designs and Styleguides
+
+See it in [Zeplin](https://app.zeplin.io/project/5efa09d5d38b4182ae35c444) or [Zeplin Scene](https://scene.zeplin.io/project/5efa09d5d38b4182ae35c444).
+
 ## Deploy your own
 
 Deploy it to the cloud with [Vercel](https://vercel.com/import?filter=next.js&utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
