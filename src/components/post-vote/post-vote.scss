@@ -1,0 +1,43 @@
+.post-vote {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: center;
+
+  &__button {
+    width: 24px;
+    height: 16px;
+    background: none;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+
+    &--up {
+      border-top: 12px solid transparent;
+      border-bottom: 12px solid $skeleton-color;
+      padding: 0;
+    }
+
+    &--down {
+      border-top: 12px solid $skeleton-color;
+      border-bottom: 12px solid transparent;
+      padding: 0;
+    }
+  }
+
+  &__result {
+    height: 20px;
+    padding: spacing(3) 0;
+    font-size: $font-size-level-5;
+    font-weight: bold;
+    line-height: 1;
+    color: $gray-500;
+
+    &--like {
+      color: $blue;
+    }
+
+    &--unlike {
+      color: $red;
+    }
+  }
+}
