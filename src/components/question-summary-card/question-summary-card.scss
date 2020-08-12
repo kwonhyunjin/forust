@@ -4,57 +4,16 @@
   padding: spacing(10) spacing(10) spacing(10) spacing(6);
   margin-bottom: spacing(10);
   box-sizing: border-box;
-}
 
-.post-vote {
-  display: flex;
-  flex: 0 0 72px;
-  flex-direction: column;
-  align-items: center;
-  padding-top: spacing(2);
-
-  &__button {
-    width: 24px;
-    height: 16px;
-    background: none;
-    border-left: 12px solid transparent;
-    border-right: 12px solid transparent;
-
-    &--up {
-      border-top: 12px solid transparent;
-      border-bottom: 12px solid $skeleton-color;
-      padding: 0;
-    }
-
-    &--down {
-      border-top: 12px solid $skeleton-color;
-      border-bottom: 12px solid transparent;
-      padding: 0;
-    }
+  &__vote {
+    width: 72px;
+    padding-top: spacing(2);
   }
 
-  &__result {
-    height: 20px;
-    padding: spacing(3) 0;
-    font-size: $font-size-level-5;
-    font-weight: bold;
-    line-height: 1;
-    color: $gray-500;
-
-    &--like {
-      color: $blue;
-    }
-
-    &--unlike {
-      color: $red;
-    }
+  &__main {
+    flex: 1 1;
+    padding-left: spacing(6);
   }
-}
-
-
-.post-main {
-  flex: 1 1;
-  padding-left: spacing(6);
 
   &__title {
     display: inline-block;
@@ -83,21 +42,25 @@
 
   &__tags {
     margin-bottom: spacing(7);
-
-    &--item {
-      background-color: rgba($green-light, 0.25);
-      color: $green-dark;
-    }
   }
-}
 
-.question-counter {
-  display: flex;
-  align-items: center;
-  float: right;
-  height: 32px;
+  &__tags-item {
+    background-color: rgba($green-light, 0.25);
+    color: $green-dark;
+  }
 
-  &__item {
+  &__profile {
+    float: left;
+  }
+
+  &__count {
+    display: flex;
+    align-items: center;
+    float: right;
+    height: 32px;
+  }
+
+  &__count-item {
     display: flex;
     align-items: center;
     font-size: $font-size-level-2;
@@ -109,7 +72,7 @@
     }
   }
 
-  &__icon {
+  &__count-icon {
     width: 20px;
     height: 20px;
     font-size: $font-size-level-5;

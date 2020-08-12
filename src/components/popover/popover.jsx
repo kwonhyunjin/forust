@@ -1,13 +1,14 @@
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-export default function Popover({ children, toggle }) {
+export default function Popover({ children, className, toggle }) {
   return (
-    <details>
-      <summary>
+    <details className={classNames('popover-wrapper', className)}>
+      <summary className="popover-summary">
         {toggle}
       </summary>
-      <div>
+      <div className="popover-overlay">
         {children}
       </div>
     </details>
@@ -16,5 +17,6 @@ export default function Popover({ children, toggle }) {
 
 Popover.propTypes = {
   children: PropTypes.node,
+  className: PropTypes.string,
   toggle: PropTypes.node,
 };

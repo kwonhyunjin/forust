@@ -1,4 +1,5 @@
 import Popover from '@/components/popover/popover';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -12,9 +13,9 @@ DropdownMenuitem.propTypes = {
   children: PropTypes.node,
 };
 
-function Dropdown({ children, toggle }) {
+function Dropdown({ children, className, toggle }) {
   return (
-    <Popover toggle={toggle}>
+    <Popover className={classNames(className)} toggle={toggle}>
       {children}
     </Popover>
   );
@@ -22,10 +23,10 @@ function Dropdown({ children, toggle }) {
 
 Dropdown.propTypes = {
   children: PropTypes.node,
+  className: PropTypes.string,
   toggle: PropTypes.node,
 };
 
-// Object.assign(Dropdown, { Menuitem: DropdownMenuitem });
 Dropdown.Menuitem = DropdownMenuitem;
 
 export default Dropdown;

@@ -15,7 +15,7 @@ try {
 
 export default function Icon({ className, type, ...rest }) {
   return (
-    <i className={classNames('icon', className)} dangerouslySetInnerHTML={{ __html: icons[`./${type}.svg`] }} {...rest} />
+    <i {...rest} className={classNames('icon', className)} dangerouslySetInnerHTML={{ __html: icons[`./${type}.svg`] }} />
   );
 }
 
