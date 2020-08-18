@@ -5,22 +5,20 @@
 Install it and run:
 
 ```bash
-npm install
-npm run dev
-# or
-yarn
+yarn install
 yarn dev
 ```
 
 Run production build with:
 
 ```bash
-npm run build
-npm run start
-# or
 yarn build
 yarn start
 ```
+
+## Designs and Styleguides
+
+See it in [Zeplin](https://app.zeplin.io/project/5efa09d5d38b4182ae35c444) or [Zeplin Scene](https://scene.zeplin.io/project/5efa09d5d38b4182ae35c444).
 
 ## Deploy your own
 

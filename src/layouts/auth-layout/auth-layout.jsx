@@ -1,13 +1,17 @@
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
+import Logo from '../../svgs/logo.svg';
 
 export default function AuthLayout({ children }) {
   return (
     <div className="auth-layout">
       <div className="auth-header">
-        <a href="/" className="auth-logo">
-          <img src="/images/logo.svg" alt="Home" className="auth-logo__img" />
-        </a>
+        <Link href="/">
+          <a className="auth-logo">
+            <Logo className="auth-logo__icon" />
+          </a>
+        </Link>
         <p className="auth-greeting">
           Join the community
           <br />

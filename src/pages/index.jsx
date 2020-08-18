@@ -1,7 +1,3 @@
-import React from 'react';
+import ForumList from '@/pages/forum/list/index';
 
-export default function Home() {
-  return (
-    <div className="app" />
-  );
-}
+export default ForumList;

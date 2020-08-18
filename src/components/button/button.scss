@@ -6,15 +6,17 @@
   padding: 0 spacing(5);
   background: $green;
   border-radius: 20px;
+  border: 1px solid $green;
   color: #ffffff;
   font-size: $font-size-level-3;
   font-weight: bold;
-  line-height: 40px;
+  line-height: 38px;
   transition: $transition-duration-normal $ease-out;
-  transition-property: box-shadow, background-color;
+  transition-property: box-shadow, background-color, border-color;
 
   &:hover {
     background-color: $green-light;
+    border-color: $green-light;
   }
 
   &:focus {
@@ -24,11 +26,13 @@
 
   &:active {
     background-color: $green-dark;
+    border-color: $green-dark;
     box-shadow: none;
     outline: none;
   }
 
   &:disabled {
     background-color: $gray-300;
+    border-color: $gray-300;
   }
 }

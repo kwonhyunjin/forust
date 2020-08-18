@@ -1,0 +1,38 @@
+.post-profile {
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &__avatar {
+    width: 32px;
+    height: 32px;
+    background: $skeleton-color;
+    border-radius: 9999px;
+  }
+
+  &__avatar-img {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+  }
+
+  &__info {
+    margin-left: spacing(3);
+  }
+
+  &__name {
+    margin-bottom: spacing(1);
+    font-size: $font-size-level-2;
+    line-height: 1.17;
+    color: $gray-900;
+  }
+
+  &__date {
+    font-size: $font-size-level-1;
+    line-height: 1;
+    color: $gray-600;
+  }
+}

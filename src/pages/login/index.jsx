@@ -1,21 +1,24 @@
 import Button from '@/components/button/button';
-import CheckBox from '@/components/checkbox/checkbox';
+import CheckBox from '@/components/check-box/check-box';
 import FormField from '@/components/form-field/form-field';
 import TextField from '@/components/text-field/text-field';
 import AuthLayout from '@/layouts/auth-layout/auth-layout';
 import { NextSeo } from 'next-seo';
+import Link from 'next/link';
 import React from 'react';
+
+const pageTitle = 'Login | Forust';
 
 export default function Login() {
   return (
     <>
       <NextSeo
-        title="Login | Forust"
+        title={pageTitle}
         openGraph={{
-          title: 'Login | Forust',
+          title: pageTitle,
         }}
       />
-      <h1 className="visually-hidden">FORUST</h1>
+      <h1 className="blind">Forust</h1>
       <AuthLayout>
         <div className="auth-form">
           <h2 className="auth-form-heading">Login to Forust</h2>
@@ -50,7 +53,9 @@ export default function Login() {
             <div className="grid-col">
               Not a member?
               {' '}
-              <a href="/signup">Create account now!</a>
+              <Link href="/signup">
+                <a>Create account now!</a>
+              </Link>
             </div>
           </div>
         </div>

@@ -16,10 +16,10 @@
 
   &__slot {
     display: flex;
+    pointer-events: auto;
 
     .text-field {
       width: 100%;
-      pointer-events: auto;
     }
   }
 
