@@ -2,9 +2,9 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-export default function PostTags({ className, children }) {
+export default function PostTags({ className, children, ...rest }) {
   return (
-    <div className={classNames('post-tags', className)}>{children}</div>
+    <div {...rest} className={classNames('post-tags', className)}>{children}</div>
   );
 }
 

@@ -11,7 +11,7 @@ try {
     const iconValues = await Promise.all(iconKeys.map(iconsContext));
     iconValues.forEach((icon, index) => { icons[iconKeys[index]] = icon; });
   })();
-} catch (e) { console.log(e); }
+} catch (e) { console.error(e); }
 
 export default function Icon({ className, type, ...rest }) {
   return (

@@ -3,19 +3,20 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-function DropdownMenuitem({ children }) {
+function DropdownMenuitem({ children, className }) {
   return (
-    <button>{children}</button>
+    <button className={classNames('dropdown__menuitem', className)}>{children}</button>
   );
 }
 
 DropdownMenuitem.propTypes = {
   children: PropTypes.node,
+  className: PropTypes.string,
 };
 
 function Dropdown({ children, className, toggle }) {
   return (
-    <Popover className={classNames(className)} toggle={toggle}>
+    <Popover className={classNames('dropdown', className)} toggle={toggle}>
       {children}
     </Popover>
   );

@@ -17,6 +17,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
+    "clean": "npx rimraf .next",
     "lint": "eslint src --ext js --ext jsx",
     "lint:fix": "yarn lint --fix"
   },

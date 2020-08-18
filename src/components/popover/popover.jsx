@@ -2,16 +2,15 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+// @todo popover 컴포넌트 개발
 export default function Popover({ children, className, toggle }) {
   return (
-    <details className={classNames('popover-wrapper', className)}>
-      <summary className="popover-summary">
-        {toggle}
-      </summary>
-      <div className="popover-overlay">
+    <>
+      {toggle}
+      <div className={classNames('popover', className)} style={{ display: 'none' }}>
         {children}
       </div>
-    </details>
+    </>
   );
 }
 

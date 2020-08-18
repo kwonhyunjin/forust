@@ -7,28 +7,28 @@ export default function AppHeader() {
   return (
     <>
       <header className="app-header">
-        <div className="app-header__wrapper">
+        <div className="app-header__wrapper container">
           <AppLogo />
           <form className="app-search">
-            <Icon type="magniify" className="app-search__icon" aria-hidden="true" />
+            <Icon type="magnify" className="app-search__icon" aria-hidden="true" />
             <input className="app-search__field" type="search" placeholder="Type to Search" aria-label="Search" />
           </form>
           <button type="button" className="app-inbox" aria-label="Inbox">
             <Icon type="bell-outline" className="app-inbox__icon" aria-hidden="true" />
           </button>
           <Dropdown
-            className="app-profile"
             toggle={(
-              <>
-                <div className="app-profile__img">
-                  <img src="/images/avatar-sample.jpeg" className="app-profile__img-icon" alt="" aria-hidden="true" />
+              <button className="app-profile">
+                <div className="app-profile__avatar">
+                  <img src="/images/avatar-sample.jpeg" className="app-profile__avatar-img" alt="" aria-hidden="true" />
                 </div>
-                <p className="app-profile__name">Chamdori</p>
+                <span className="app-profile__name">Chamdori</span>
                 <Icon type="caret-down" className="app-profile__icon" aria-hidden="true" />
-              </>
+              </button>
             )}
           >
-            <Dropdown.Menuitem>hihi</Dropdown.Menuitem>
+            <Dropdown.Menuitem>Settings</Dropdown.Menuitem>
+            <Dropdown.Menuitem>Logout</Dropdown.Menuitem>
           </Dropdown>
         </div>
       </header>

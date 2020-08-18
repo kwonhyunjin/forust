@@ -1,3 +1,5 @@
-.post-tags .tag {
-  margin-right: spacing(2);
+.post-tags {
+  & .tag {
+    margin-right: spacing(2);
+  }
 }

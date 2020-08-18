@@ -7,13 +7,15 @@ import { NextSeo } from 'next-seo';
 import Link from 'next/link';
 import React from 'react';
 
+const pageTitle = 'Login | Forust';
+
 export default function Login() {
   return (
     <>
       <NextSeo
-        title="Login | Forust"
+        title={pageTitle}
         openGraph={{
-          title: 'Login | Forust',
+          title: pageTitle,
         }}
       />
       <h1 className="blind">Forust</h1>

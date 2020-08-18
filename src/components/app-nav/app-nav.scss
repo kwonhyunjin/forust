@@ -39,8 +39,8 @@
   background-color: rgba($green-light, 0.25);
   font-weight: bold;
   color: $green-dark;
+}
 
-  .app-nav__icon {
-    color: inherit;
-  }
+.app-nav__link.is-active .app-nav__icon {
+  color: inherit;
 }

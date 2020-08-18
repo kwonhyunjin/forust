@@ -2,29 +2,29 @@
   display: flex;
   align-items: center;
 
-  &__link {
+  &:hover {
+    text-decoration: none;
+  }
+
+  &__avatar {
     width: 32px;
     height: 32px;
     background: $skeleton-color;
     border-radius: 9999px;
   }
 
-  &__icon {
+  &__avatar-img {
     width: 100%;
     height: 100%;
     background: #fff;
   }
-}
 
-.profile-list {
-  margin-left: spacing(3);
-
-  &__user {
-    margin-bottom: spacing(1);
+  &__info {
+    margin-left: spacing(3);
   }
 
-  &__link {
-    display: block;
+  &__name {
+    margin-bottom: spacing(1);
     font-size: $font-size-level-2;
     line-height: 1.17;
     color: $gray-900;

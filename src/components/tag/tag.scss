@@ -1,10 +1,14 @@
 .tag {
-  background-color: rgba($green-light, 0.25);
   border-radius: 4px;
   padding: 0 spacing(2);
   font-size: $font-size-level-2;
   font-weight: bold;
-  color: $green-dark;
   line-height: 1.83;
   cursor: pointer;
+  background: rgba($green-light, 0.25);
+  color: $green-dark;
+
+  &:hover {
+    text-decoration: none;
+  }
 }

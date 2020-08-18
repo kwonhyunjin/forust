@@ -1,6 +1,6 @@
 import Icon from '@/components/icon/icon';
 import PostProfile from '@/components/post-profile/post-profile';
-import PostTag from '@/components/post-tags/post-tags';
+import PostTags from '@/components/post-tags/post-tags';
 import PostVote from '@/components/post-vote/post-vote';
 import Tag from '@/components/tag/tag';
 import classNames from 'classnames';
@@ -19,12 +19,12 @@ export default function QuestionSummaryCard({ className, ...rest }) {
           </a>
         </Link>
         <span className="question-summary-card__content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
-        <PostTag className="question-summary-card__tags">
+        <PostTags className="question-summary-card__tags">
           <Tag>next.js</Tag>
           <Tag>javascript</Tag>
           <Tag>react</Tag>
-        </PostTag>
-        <PostProfile className="question-summary-card__profile" />
+        </PostTags>
+        <PostProfile className="question-summary-card__profile" aria-label="Author" />
         <ul className="question-summary-card__count">
           <li className="question-summary-card__count-item">
             <Icon type="eye" className="question-summary-card__count-icon" aria-label="View count:" />

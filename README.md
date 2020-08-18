@@ -5,19 +5,13 @@
 Install it and run:
 
 ```bash
-npm install
-npm run dev
-# or
-yarn
+yarn install
 yarn dev
 ```
 
 Run production build with:
 
 ```bash
-npm run build
-npm run start
-# or
 yarn build
 yarn start
 ```
