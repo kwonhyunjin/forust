@@ -7,7 +7,7 @@ export default function ForumList() {
     <DefaultLayout>
       <section aria-labelledby="forum-list-heading">
         <h2 className="blind" id="forum-list-heading">Question list</h2>
-        <div className="forum-list" role="list">
+        <div className="forum forum-list" role="list">
           <QuestionSummaryCard role="listitem" />
           <QuestionSummaryCard role="listitem" />
           <QuestionSummaryCard role="listitem" />

@@ -1,0 +1,26 @@
+.answer-writing-card {
+  padding: spacing(12) spacing(15);
+
+  &::after {
+    display: table;
+    clear: both;
+    content: '';
+  }
+
+  &__heading {
+    margin-bottom: spacing(5);
+    font-size: $font-size-level-6;
+    font-weight: bold;
+    color: $font-color-primary;
+  }
+
+  &__field {
+    width: 100%;
+    height: 400px;
+    margin-bottom: spacing(2);
+  }
+
+  &__submit {
+    float: right;
+  }
+}
