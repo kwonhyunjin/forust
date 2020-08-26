@@ -43,7 +43,7 @@
   }
 }
 
-.auth-header:after {
+.auth-header::after {
   position: absolute;
   content: '';
   width: 760px;

@@ -2,7 +2,7 @@
   display: inline-block;
   height: 100%;
   margin-bottom: spacing(10);
-  padding: spacing(12) spacing(10);
+  padding: spacing(12) spacing(15);
   box-sizing: border-box;
 
   &__wrapper {
@@ -12,11 +12,13 @@
   &__header {
     position: relative;
     margin-bottom: spacing(10);
+    padding-right: $post-vote-width;
   }
 
   &__title {
     display: inline-block;
     margin-bottom: spacing(2);
+    word-break: break-all;
     font-size: $font-size-level-6;
     font-weight: bold;
     color: $gray-900;
@@ -35,23 +37,15 @@
   &__vote {
     position: absolute;
     top: 0;
-    right: 0;
+    right: spacing(-4);
   }
 
   &__content {
-    width: 100%;
-    max-height: 140px;
-    height: 100%;
     margin-bottom: 20px;
     font-size: 14px;
     line-height: 2;
+    word-break: break-all;
     color: $gray-900;
-    white-space: normal;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
   }
 
   &__tags {
@@ -62,28 +56,28 @@
     float: left;
   }
 
-  &__benefits {
+  &__actions {
     display: flex;
     align-items: flex-end;
     float: right;
     height: 32px;
   }
 
-  &__benefits-item {
+  &__action-item {
     display: flex;
     margin-left: spacing(3);
     font-size: $font-size-level-2;
     color: $gray-600;
   }
 
-  &__benefits-icon {
+  &__action-icon {
     display: flex;
     align-items: center;
     margin-right: spacing(1);
     color: $gray-500;
   }
 
-  &__comments-item {
+  &__comment-item {
     margin-bottom: spacing(4);
   }
 }

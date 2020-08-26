@@ -5,9 +5,9 @@
   width: $app-logo-size;
   height: $app-logo-size;
 
-  &__link {
-    display: inline-block;
-    vertical-align: top;
+  &__heading {
+    line-height: 1;
+    font-size: inherit;
   }
 
   &__icon {

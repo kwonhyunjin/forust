@@ -4,13 +4,13 @@ import LogoSymbol from '../../svgs/logo-symbol.svg';
 
 export default function AppLogo() {
   return (
-    <h1 className="app-logo">
-      <Link href="/">
-        <a className="app-logo__link">
+    <Link href="/">
+      <a className="app-logo">
+        <h1 className="app-logo__heading">
           <LogoSymbol className="app-logo__icon" />
-        </a>
-      </Link>
-      <p className="blind">Forust</p>
-    </h1>
+          <span className="blind">Forust</span>
+        </h1>
+      </a>
+    </Link>
   );
 }

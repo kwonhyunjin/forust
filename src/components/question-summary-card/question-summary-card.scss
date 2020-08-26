@@ -15,11 +15,14 @@
     padding-left: spacing(6);
   }
 
-  &__title {
+  &__link {
     display: inline-block;
     vertical-align: top;
     margin-bottom: spacing(5);
-    box-sizing: border-box;
+  }
+
+  &__title {
+    word-break: break-all;
     font-size: $font-size-level-5;
     font-weight: bold;
     color: $gray-900;
@@ -27,12 +30,11 @@
 
   &__content {
     max-height: 140px;
-    height: 100%;
     margin-bottom: spacing(4);
     font-size: $font-size-level-3;
     line-height: 2;
     color: $gray-700;
-    white-space: normal;
+    word-break: break-all;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 5;
