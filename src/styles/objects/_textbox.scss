@@ -1,15 +1,12 @@
-.text-field {
-  height: 40px;
-  background: #fff;
-  border: 1px solid $gray-300;
+.textbox {
+  padding: 11px spacing(3);
   border-radius: 8px;
-  box-shadow: 0 1px 2px 0 rgba(#000, 0.08);
+  box-shadow: 0 1px 2px 0 rgba(#000, 0.06);
   box-sizing: border-box;
-  padding: 0;
-  padding-left: spacing(3);
-  color: $gray-900;
+  border: solid 1px $gray-300;
+  background-color: #ffffff;
   font-size: $font-size-level-2;
-  line-height: 38px;
+  color: $font-color-primary;
   transition: $transition-duration-fast $ease-out;
   transition-property: border, box-shadow, color, background-color;
 
@@ -20,14 +17,12 @@
   }
 
   &::placeholder {
-    color: $gray-500;
+    color: $font-color-placeholder;
   }
 
   &:disabled {
     background-color: $gray-50;
-    box-shadow: 0 1px 2px 0 rgba(#000, 0.04);
-    color: $gray-400;
+    box-shadow: 0 1px 2px 0 rgba(#000, 0.06);
+    color: $font-color-disabled;
   }
 }
-
-

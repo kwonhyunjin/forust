@@ -1,7 +1,7 @@
 .comment {
   word-break: break-all;
   font-size: $font-size-level-2;
-  color: $gray-900;
+  color: $font-color-primary;
 
   &:hover, &:focus-within {
     .comment__actions {
@@ -18,7 +18,7 @@
   }
 
   &__date {
-    color: $gray-700;
+    color: $font-color-secondary;
   }
 
   &__actions {

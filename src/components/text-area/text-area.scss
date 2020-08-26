@@ -1,13 +1,3 @@
 .text-area {
-  border-radius: 8px;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  box-sizing: border-box;
-  border: solid 1px $gray-300;
-  background-color: #ffffff;
-  color: $gray-900;
   resize: none;
-
-  &::placeholder {
-    color: $gray-500;
-  }
 }

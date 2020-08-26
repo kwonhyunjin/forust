@@ -13,7 +13,7 @@ export default function QuestionSummaryCard({ className, ...rest }) {
     <article {...rest} className={classNames('card question-summary-card', className)}>
       <PostVote className="question-summary-card__vote" />
       <div className="question-summary-card__main">
-        <Link href="#">
+        <Link href="/forum/detail">
           <a className="question-summary-card__link">
             <h2 className="question-summary-card__title">Lorem ipsum dolor sit amet.</h2>
           </a>

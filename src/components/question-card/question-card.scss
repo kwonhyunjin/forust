@@ -1,9 +1,5 @@
 .question-card {
-  display: inline-block;
-  height: 100%;
-  margin-bottom: spacing(10);
   padding: spacing(12) spacing(15);
-  box-sizing: border-box;
 
   &__wrapper {
     padding: 0 spacing(5);
@@ -21,7 +17,7 @@
     word-break: break-all;
     font-size: $font-size-level-6;
     font-weight: bold;
-    color: $gray-900;
+    color: $font-color-primary;
   }
 
   &__count {
@@ -31,7 +27,7 @@
   &__count-item {
     margin-right: spacing(3);
     font-size: $font-size-level-2;
-    color: $gray-700;
+    color: $font-color-secondary;
   }
 
   &__vote {
@@ -45,7 +41,7 @@
     font-size: 14px;
     line-height: 2;
     word-break: break-all;
-    color: $gray-900;
+    color: $font-color-primary;
   }
 
   &__tags {
@@ -65,15 +61,16 @@
 
   &__action-item {
     display: flex;
+    align-items: center;
     margin-left: spacing(3);
     font-size: $font-size-level-2;
-    color: $gray-600;
+    color: $font-color-tertiary;
   }
 
   &__action-icon {
     display: flex;
-    align-items: center;
     margin-right: spacing(1);
+    font-size: $font-size-level-4;
     color: $gray-500;
   }
 

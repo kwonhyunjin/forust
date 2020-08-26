@@ -6,9 +6,9 @@ import React from 'react';
 
 export default function AnswerWritingCard({ className, ...rest }) {
   return (
-    <div {...rest} className={classNames('card answer-writing-card', className)}>
-      <h2 className="answer-writing-card__heading">Your answer</h2>
-      <TextArea className="answer-writing-card__field textbox" placeholder="Write your answer here." />
+    <div {...rest} className={classNames('card answer-writing-card', className)} role="listitem">
+      <h3 className="answer-writing-card__heading">Your answer</h3>
+      <TextArea className="answer-writing-card__field" placeholder="Write your answer here." />
       <Button type="submit" className="answer-writing-card__submit">Post yout answer</Button>
     </div>
   );

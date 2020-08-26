@@ -12,16 +12,17 @@ export default function PostComments({ children, className, ...rest }) {
   };
 
   return (
-    <section {...rest} className={classNames('post-comments', className)}>
+    <div {...rest} className={classNames('post-comments', className)}>
       <div className="post-comments__separator" />
-      <h2 className="post-comments__title">3 Comments</h2>
+      {/* @todo 댓글 개수에 따라 단수, 복수 표현 */}
+      <h6 className="post-comments__title">2 Comments</h6>
       <div className="post-comments__list" role="list">{children}</div>
       <form className="post-comments__form">
         <TextArea className="post-comments__field" onChange={handleChange} placeholder="Write your comment here." aria-label="Add comment" />
         <span className="post-comments__filed-limit">0/500</span>
         <Button type="submit" className="post-comments__submit" disabled={content.length < 1}>Comment</Button>
       </form>
-    </section>
+    </div>
   );
 }
 

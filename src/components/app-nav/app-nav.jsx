@@ -8,7 +8,7 @@ export default function AppNav() {
       <h2 className="blind" id="app-nav-heading">Main menu</h2>
       <ul className="app-nav__list">
         <li className="app-nav__item">
-          <Link href="#">
+          <Link href="/forum/list">
             <a className="app-nav__link is-active" aria-current="page">
               <Icon type="help-circle" className="app-nav__icon" aria-hidden="true" />
               All Questions
@@ -16,7 +16,7 @@ export default function AppNav() {
           </Link>
         </li>
         <li className="app-nav__item">
-          <Link href="#">
+          <Link href="/forum/list">
             <a className="app-nav__link">
               <Icon type="chat" className="app-nav__icon" aria-hidden="true" />
               My Participation
@@ -24,7 +24,7 @@ export default function AppNav() {
           </Link>
         </li>
         <li className="app-nav__item">
-          <Link href="#">
+          <Link href="/forum/list">
             <a className="app-nav__link">
               <Icon type="close-circle" className="app-nav__icon" aria-hidden="true" />
               Unsolved
@@ -32,7 +32,7 @@ export default function AppNav() {
           </Link>
         </li>
         <li className="app-nav__item">
-          <Link href="#">
+          <Link href="/forum/list">
             <a className="app-nav__link">
               <Icon type="check-circle" className="app-nav__icon" aria-hidden="true" />
               Solved

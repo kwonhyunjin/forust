@@ -9,8 +9,15 @@ export default function ForumDetails() {
     <DefaultLayout>
       <article className="card-list">
         <QuestionCard />
-        <AnswerCard />
-        <AnswerWritingCard />
+        <section>
+          {/* @todo 답글 개수에 따라 단수, 복수 표현 */}
+          <h2 className="card-list-heading">2 Answers</h2>
+          <div role="list">
+            <AnswerCard role="listitem" />
+            <AnswerCard role="listitem" />
+            <AnswerWritingCard role="listitem" />
+          </div>
+        </section>
       </article>
     </DefaultLayout>
   );

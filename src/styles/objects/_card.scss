@@ -4,6 +4,14 @@
   box-shadow: 0 5px 25px -5px rgba(#000, .1);
 }
 
-.card-list > .card {
+.card-list .card {
   margin-bottom: (spacing(10));
+}
+
+.card-list-heading {
+  margin-bottom: spacing(6);
+  padding-left: spacing(6);
+  font-weight: normal;
+  font-size: $font-size-level-5;
+  color: $font-color-primary;
 }
