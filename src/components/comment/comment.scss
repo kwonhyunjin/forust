@@ -1,0 +1,37 @@
+.comment {
+  word-break: break-all;
+  font-size: $font-size-level-2;
+  color: $font-color-primary;
+
+  &:hover, &:focus-within {
+    .comment__actions {
+      opacity: 1;
+    }
+  }
+
+  &__user {
+    color: $green-dark;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &__date {
+    color: $font-color-secondary;
+  }
+
+  &__actions {
+    display: inline-block;
+    margin-left: spacing(2);
+    opacity: 0;
+    transition: opacity $transition-duration-normal $ease-out;
+  }
+
+  &__action {
+    vertical-align: middle;
+    margin-left: spacing(1);
+    color: $gray-500;
+    font-size: $font-size-level-4;
+  }
+}

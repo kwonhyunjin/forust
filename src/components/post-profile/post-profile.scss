@@ -27,12 +27,12 @@
     margin-bottom: spacing(1);
     font-size: $font-size-level-2;
     line-height: 1.17;
-    color: $gray-900;
+    color: $font-color-primary;
   }
 
   &__date {
     font-size: $font-size-level-1;
     line-height: 1;
-    color: $gray-600;
+    color: $font-color-tertiary;
   }
 }

@@ -29,7 +29,7 @@
 .auth-greeting {
   height: 100px;
   margin-bottom: spacing(6);
-  color: $gray-900;
+  color: $font-color-primary;
   font-size: 40px;
   font-weight: bold;
   line-height: 1.25;
@@ -38,12 +38,12 @@
 
 .auth-benefits {
   &__item {
-    color: $gray-700;
+    color: $font-color-secondary;
     font-size: $font-size-level-4;
   }
 }
 
-.auth-header:after {
+.auth-header::after {
   position: absolute;
   content: '';
   width: 760px;

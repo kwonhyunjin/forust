@@ -1,0 +1,56 @@
+.answer-card {
+  padding: spacing(12) spacing(15);
+
+  &__header {
+    position: relative;
+    margin-bottom: spacing(5);
+    padding-right: $post-vote-width;
+  }
+
+  &__content {
+    font-size: 14px;
+    line-height: 2;
+    word-break: break-all;
+    color: $font-color-primary;
+  }
+
+  &__vote {
+    position: absolute;
+    top: 0;
+    right: -16px;
+  }
+
+  &__tags {
+    margin-bottom: spacing(10);
+  }
+
+  &__profile {
+    float: left;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: flex-end;
+    float: right;
+    height: 32px;
+  }
+
+  &__action-item {
+    display: flex;
+    align-items: center;
+    margin-left: spacing(3);
+    font-size: $font-size-level-2;
+    color: $font-color-tertiary;
+  }
+
+  &__action-icon {
+    display: flex;
+    margin-right: spacing(1);
+    font-size: $font-size-level-4;
+    color: $gray-500;
+  }
+
+  &__comment-item {
+    margin-bottom: spacing(4);
+  }
+}

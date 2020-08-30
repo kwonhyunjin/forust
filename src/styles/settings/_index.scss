@@ -4,3 +4,6 @@
 @import './spacing';
 @import './transition';
 @import './z-index';
+
+// Should be imported last
+@import './shared';

@@ -19,8 +19,8 @@ export default function AppHeader() {
           <Dropdown
             toggle={(
               <button className="app-profile">
-                <div className="app-profile__avatar">
-                  <img src="/images/avatar-sample.jpeg" className="app-profile__avatar-img" alt="" aria-hidden="true" />
+                <div className="app-profile__avatar" aria-hidden="true">
+                  <img src="/images/avatar-sample.jpeg" className="app-profile__avatar-img" alt="" />
                 </div>
                 <span className="app-profile__name">Chamdori</span>
                 <Icon type="caret-down" className="app-profile__icon" aria-hidden="true" />

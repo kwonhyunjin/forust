@@ -15,6 +15,7 @@ try {
 
 export default function Icon({ className, type, ...rest }) {
   return (
+    // eslint-disable-next-line react/no-danger
     <i {...rest} className={classNames('icon', className)} dangerouslySetInnerHTML={{ __html: icons[`./${type}.svg`] }} />
   );
 }
