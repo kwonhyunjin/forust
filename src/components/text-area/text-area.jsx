@@ -4,7 +4,7 @@ import React from 'react';
 
 export default function TextArea({ className, ...rest }) {
   return (
-    <textarea {...rest} className={classNames('text-area textbox', className)} />
+    <textarea {...rest} className={classNames('text-area text-box', className)} />
   );
 }
 

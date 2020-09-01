@@ -4,7 +4,7 @@ import React from 'react';
 
 export default function TextField({ className, ...rest }) {
   return (
-    <input {...rest} className={classNames('text-field textbox', className)} />
+    <input {...rest} className={classNames('text-field text-box', className)} />
   );
 }
 
