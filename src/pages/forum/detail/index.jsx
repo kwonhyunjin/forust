@@ -4,7 +4,7 @@ import QuestionCard from '@/components/question-card/question-card';
 import DefaultLayout from '@/layouts/default-layout/default-layout';
 import React from 'react';
 
-export default function ForumDetails() {
+export default function ForumDetail() {
   return (
     <DefaultLayout>
       <article className="card-list">
