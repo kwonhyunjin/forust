@@ -1,6 +1,7 @@
 import Button from '@/components/button/button';
 import Checkbox from '@/components/checkbox/checkbox';
 import FormField from '@/components/form-field/form-field';
+import Label from '@/components/label/label';
 import TextField from '@/components/text-field/text-field';
 import AuthLayout from '@/layouts/auth-layout/auth-layout';
 import { NextSeo } from 'next-seo';
@@ -39,8 +40,9 @@ export default function Login() {
           <div className="grid-row">
             <div className="grid-col">
               <label className="keep-auth">
-                <Checkbox />
-                <span className="keep-auth__label">Keep me logged in.</span>
+                <Label input={<Checkbox />}>
+                  Keep me logged in.
+                </Label>
               </label>
             </div>
           </div>
