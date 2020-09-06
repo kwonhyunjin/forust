@@ -5,6 +5,37 @@
   border-radius: 2px;
   box-shadow: 0 1px 2px 0 rgba(#000, 0.08);
   background: #ffffff;
+  appearance: none;
+  transition: $transition-duration-normal $ease-out;
+  transition-property: box-shadow, background-color, border-color;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:checked {
+    border: solid 1px $green-dark;
+    background: $green-dark;
+
+    &::before {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 16px;
+      background: url('~@/icons/check.svg');
+      background-size: contain;
+      filter: brightness(0) invert(1);
+    }
+  }
+
+  &:disabled {
+    border: solid 1px $gray-300;
+    background: $gray-200;
+  }
+
+  &:hover, &:focus {
+    border-color: $green-dark;
+  }
 }
 
-// @todo checked style
+
