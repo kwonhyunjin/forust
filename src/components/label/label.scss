@@ -10,10 +10,6 @@
     font-size: $font-size-level-2;
     color: $font-color-tertiary;
 
-    .checkbox:checked ~ &, .radio:checked ~ & {
-      color: $font-color-tertiary;
-    }
-
     .checkbox:disabled ~ &, .radio:disabled ~ & {
       color: $font-color-disabled;
     }

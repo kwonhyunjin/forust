@@ -9,13 +9,9 @@
   transition: $transition-duration-normal $ease-out;
   transition-property: box-shadow, background-color, border-color;
 
-  &:focus {
-    outline: none;
-  }
-
   &:checked {
     border: solid 1px $green-dark;
-    background: $green-dark;
+    background-color: $green-dark;
 
     &::before {
       content: '';
@@ -28,14 +24,13 @@
     }
   }
 
-  &:disabled {
-    border: solid 1px $gray-300;
-    background: $gray-200;
-  }
-
   &:hover, &:focus {
     border-color: $green-dark;
+    outline: none;
+  }
+
+  &:disabled {
+    border-color: $gray-300;
+    background-color: $gray-200;
   }
 }
-
-

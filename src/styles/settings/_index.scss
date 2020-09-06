@@ -1,9 +1,9 @@
+// Do not sort alphabetically.
 @import './color';
 @import './font';
 @import './screen';
 @import './spacing';
+@import './grid';
 @import './transition';
 @import './z-index';
-
-// Should be imported last
 @import './shared';

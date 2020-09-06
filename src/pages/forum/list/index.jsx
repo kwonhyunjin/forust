@@ -9,14 +9,14 @@ export default function ForumList() {
   return (
     <DefaultLayout>
       <section>
-        <CardListHeader className="question-list-header">
-          <CardListHeader.Heading className="question-list-header__heading" level="2" size="2">
+        <CardListHeader>
+          <CardListHeader.Heading level="2" size="2">
             {/* @todo 질문 개수에 따라 단수, 복수 표현 */}
             3 Questions
           </CardListHeader.Heading>
           <CardListHeader.Actions>
             <Link href="/forum/write">
-              <Button className="question-list-header__submit" type="anchor">Ask Question</Button>
+              <Button type="anchor">Ask Question</Button>
             </Link>
           </CardListHeader.Actions>
         </CardListHeader>

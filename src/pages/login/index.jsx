@@ -23,27 +23,25 @@ export default function Login() {
       <AuthLayout>
         <div className="auth-form">
           <h2 className="auth-form-heading">Login to Forust</h2>
-          <div className="grid-row">
+          <div className="grid-row form-row">
             <div className="grid-col">
               <FormField label="Username or Email">
                 <TextField type="text" id="username" />
               </FormField>
             </div>
           </div>
-          <div className="grid-row">
+          <div className="grid-row form-row">
             <div className="grid-col">
               <FormField label="Password">
                 <TextField type="password" id="password" />
               </FormField>
             </div>
           </div>
-          <div className="grid-row">
+          <div className="grid-row form-row">
             <div className="grid-col">
-              <label className="keep-auth">
-                <Label input={<Checkbox />}>
-                  Keep me logged in.
-                </Label>
-              </label>
+              <Label input={<Checkbox />}>
+                Keep me logged in.
+              </Label>
             </div>
           </div>
           <div className="grid-row auth-form-submit-row">

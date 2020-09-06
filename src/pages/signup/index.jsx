@@ -21,7 +21,7 @@ export default function Signup() {
       <AuthLayout>
         <form className="auth-form">
           <h2 className="auth-form-heading">Create your Forust Account</h2>
-          <div className="grid-row">
+          <div className="grid-row form-row">
             <div className="grid-col">
               <FormField label="Name">
                 <TextField type="text" id="name" />
@@ -33,14 +33,14 @@ export default function Signup() {
               </FormField>
             </div>
           </div>
-          <div className="grid-row">
+          <div className="grid-row form-row">
             <div className="grid-col">
               <FormField label="Email">
                 <TextField type="text" id="email" />
               </FormField>
             </div>
           </div>
-          <div className="grid-row">
+          <div className="grid-row form-row">
             <div className="grid-col">
               <FormField label="Password">
                 <TextField type="password" id="password" />

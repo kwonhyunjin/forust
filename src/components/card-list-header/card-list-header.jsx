@@ -2,37 +2,38 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-function HeadingItem({
-  children, className, level = 2, size = 2,
+function CardListHeaderHeading({
+  children, className, level = 2, size = 2, ...rest
 }) {
-  const HeadingLevel = `h${level}`;
-  const headingSize = `heading${size}`;
+  const Heading = `h${level}`;
+  const headingClassName = `heading${size}`;
 
   return (
-    <HeadingLevel className={classNames('', className, headingSize)} level={level}>{children}</HeadingLevel>
+    <Heading {...rest} className={classNames('card-list-header__heading', headingClassName, className)}>{children}</Heading>
   );
 }
 
-HeadingItem.propTypes = {
+CardListHeaderHeading.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   level: PropTypes.string,
   size: PropTypes.string,
 };
 
-function HeadingActions({ children }) {
+function CardListHeaderActions({ children, className, ...rest }) {
   return (
-    <>{children}</>
+    <div {...rest} className={classNames('card-list-header__actions', className)}>{children}</div>
   );
 }
 
-HeadingActions.propTypes = {
+CardListHeaderActions.propTypes = {
   children: PropTypes.node,
+  className: PropTypes.string,
 };
 
-function CardListHeader({ children, className }) {
+function CardListHeader({ children, className, ...rest }) {
   return (
-    <div className={classNames('card-list-header', className)}>
+    <div {...rest} className={classNames('card-list-header', className)}>
       {children}
     </div>
   );
@@ -43,7 +44,10 @@ CardListHeader.propTypes = {
   className: PropTypes.string,
 };
 
-CardListHeader.Heading = HeadingItem;
-CardListHeader.Actions = HeadingActions;
+CardListHeaderHeading.displayName = 'CardListHeader.Heading';
+CardListHeaderActions.displayName = 'CardListHeader.Actions';
+
+CardListHeader.Heading = CardListHeaderHeading;
+CardListHeader.Actions = CardListHeaderActions;
 
 export default CardListHeader;

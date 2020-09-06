@@ -11,8 +11,8 @@ export default function ForumDetail() {
       <article className="card-list">
         <QuestionCard />
         <section>
-          <CardListHeader className="answer-list-header">
-            <CardListHeader.Heading className="answer-list-header__heading" level="2" size="3">
+          <CardListHeader>
+            <CardListHeader.Heading level="2" size="3">
               {/* @todo 답글 개수에 따라 단수, 복수 표현 */}
               2 Answers
             </CardListHeader.Heading>

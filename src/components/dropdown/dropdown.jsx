@@ -28,6 +28,8 @@ Dropdown.propTypes = {
   toggle: PropTypes.node,
 };
 
+DropdownMenuitem.displayName = 'Dropdown.Menuitem';
+
 Dropdown.Menuitem = DropdownMenuitem;
 
 export default Dropdown;

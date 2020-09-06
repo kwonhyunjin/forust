@@ -11,7 +11,7 @@
   transition-property: border, box-shadow, color, background-color;
 
   &:hover, &:focus {
-    border: 1px solid $gray-500;
+    border-color: $gray-500;
     box-shadow: 0 1px 2px 0 rgba(#000, 0.16);
     outline: none;
   }
@@ -21,6 +21,7 @@
   }
 
   &:disabled {
+    border-color: $gray-300;
     background-color: $gray-50;
     box-shadow: 0 1px 2px 0 rgba(#000, 0.06);
     color: $font-color-disabled;
