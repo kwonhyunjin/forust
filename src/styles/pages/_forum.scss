@@ -1,0 +1,23 @@
+.question-list-header {
+  margin-bottom: spacing(6);
+
+  &__heading {
+    padding-left: spacing(4);
+  }
+
+  &__submit {
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.answer-list-header {
+  margin-bottom: spacing(6);
+
+  &__heading {
+    padding-left: spacing(4);
+  }
+}
