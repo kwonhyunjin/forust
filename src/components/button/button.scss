@@ -2,6 +2,7 @@
   display: inline-flex;
   justify-content: center;
   align-content: center;
+  width: max-content;
   height: 40px;
   padding: 0 spacing(5);
   background: $green;
@@ -13,10 +14,12 @@
   line-height: 38px;
   transition: $transition-duration-normal $ease-out;
   transition-property: box-shadow, background-color, border-color;
+  cursor: pointer;
 
   &:hover {
     background-color: $green-light;
     border-color: $green-light;
+    text-decoration: none;
   }
 
   &:focus {
@@ -34,5 +37,6 @@
   &:disabled {
     background-color: $gray-300;
     border-color: $gray-300;
+    cursor: default;
   }
 }

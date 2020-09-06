@@ -18,8 +18,9 @@
     display: flex;
     pointer-events: auto;
 
-    .text-field {
+    .text-field, .text-area {
       width: 100%;
+      vertical-align: top;
     }
   }
 

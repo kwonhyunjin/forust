@@ -1,0 +1,32 @@
+.question-writing-card {
+  padding: spacing(12) spacing(15);
+
+  &__form {
+    &::after {
+      display: table;
+      clear: both;
+      content: '';
+    }
+  }
+
+  &__heading {
+    font-size: $font-size-level-6;
+    font-weight: bold;
+    color: $font-color-primary;
+  }
+
+  &__field {
+    width: 100%;
+    height: 400px;
+  }
+
+  &__submit {
+    float: right;
+    margin-top: spacing(2);
+  }
+}
+
+.form-field__slot {
+  display: block;
+}
+

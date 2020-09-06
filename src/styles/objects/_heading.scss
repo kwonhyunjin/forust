@@ -1,0 +1,41 @@
+.heading1 {
+  font-size: $font-size-level-6;
+  font-weight: bold;
+  color: $font-color-primary;
+  line-height: 1.5;
+}
+
+.heading2 {
+  font-size: $font-size-level-6;
+  font-weight: normal;
+  color: $font-color-primary;
+  line-height: 1.5;
+}
+
+.heading3 {
+  font-size: $font-size-level-5;
+  font-weight: normal;
+  color: $font-color-primary;
+  line-height: 1.5;
+}
+
+.heading4 {
+  font-size: $font-size-level-4;
+  font-weight: normal;
+  color: $font-color-primary;
+  line-height: 1.5;
+}
+
+.heading5 {
+  font-size: $font-size-level-3;
+  font-weight: bold;
+  color: $font-color-primary;
+  line-height: 1.5;
+}
+
+.heading6 {
+  font-size: $font-size-level-3;
+  font-weight: bold;
+  color: $font-color-tertiary;
+  line-height: 1.5;
+}

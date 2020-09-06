@@ -1,0 +1,17 @@
+.label {
+  display: flex;
+  align-items: center;
+
+  .checkbox, .radio {
+    margin-right: 0.5em;
+  }
+
+  &__body {
+    font-size: $font-size-level-2;
+    color: $font-color-tertiary;
+
+    .checkbox:disabled ~ &, .radio:disabled ~ & {
+      color: $font-color-disabled;
+    }
+  }
+}
