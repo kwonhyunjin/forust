@@ -21,6 +21,7 @@ module.exports = {
     "airbnb/hooks",
   ],
   "rules": {
+    "import/no-extraneous-dependencies": 0,
     "import/no-unresolved": [2, {
       ignore: ['^@/'],
     }],
