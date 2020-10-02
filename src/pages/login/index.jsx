@@ -1,16 +1,36 @@
 import Button from '@/components/button/button';
-import Checkbox from '@/components/checkbox/checkbox';
 import FormField from '@/components/form-field/form-field';
-import Label from '@/components/label/label';
 import TextField from '@/components/text-field/text-field';
+import firebase from '@/firebase/index';
 import AuthLayout from '@/layouts/auth-layout/auth-layout';
 import { NextSeo } from 'next-seo';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
+import { useForm } from 'react-hook-form';
 
 const pageTitle = 'Login | Forust';
 
-export default function Login() {
+const Login = () => {
+  const router = useRouter();
+  const {
+    register, setError, errors, handleSubmit,
+  } = useForm({
+    mode: 'onChange',
+  });
+
+  const handleFormSubmit = async (data) => {
+    try {
+      await firebase.auth().signInWithEmailAndPassword(data.email, data.password);
+      router.push('/');
+    } catch (err) {
+      setError('password', {
+        type: err.code,
+        message: err.message,
+      });
+    }
+  };
+
   return (
     <>
       <NextSeo
@@ -21,27 +41,44 @@ export default function Login() {
       />
       <h1 className="blind">Forust</h1>
       <AuthLayout>
-        <div className="auth-form">
+        <form className="auth-form" onSubmit={handleSubmit(handleFormSubmit)}>
           <h2 className="auth-form-heading">Login to Forust</h2>
           <div className="grid-row form-row">
             <div className="grid-col">
-              <FormField label="Username or Email">
-                <TextField type="text" id="username" />
+              <FormField label="Email" error={errors.email && errors.email.message}>
+                <TextField
+                  type="text"
+                  name="email"
+                  ref={
+                    register({
+                      required: 'this is required',
+                      pattern: {
+                        value: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                        message: 'Invalid email address',
+                      },
+                    })
+                  }
+                />
               </FormField>
             </div>
           </div>
           <div className="grid-row form-row">
             <div className="grid-col">
-              <FormField label="Password">
-                <TextField type="password" id="password" />
+              <FormField label="Password" error={errors.password && errors.password.message}>
+                <TextField
+                  type="password"
+                  name="password"
+                  ref={
+                    register({
+                      required: 'this is required',
+                      minLength: {
+                        value: 6,
+                        message: 'Min length is 6',
+                      },
+                    })
+                  }
+                />
               </FormField>
-            </div>
-          </div>
-          <div className="grid-row form-row">
-            <div className="grid-col">
-              <Label input={<Checkbox />}>
-                Keep me logged in.
-              </Label>
             </div>
           </div>
           <div className="grid-row auth-form-submit-row">
@@ -58,8 +95,10 @@ export default function Login() {
               </Link>
             </div>
           </div>
-        </div>
+        </form>
       </AuthLayout>
     </>
   );
-}
+};
+
+export default Login;
