@@ -36,7 +36,8 @@
     "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "react-hook-form": "^6.8.2"
   },
   "devDependencies": {
     "babel-plugin-inline-react-svg": "^1.1.1",
