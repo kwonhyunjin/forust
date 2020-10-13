@@ -6,22 +6,28 @@ import AuthLayout from '@/layouts/auth-layout/auth-layout';
 import { NextSeo } from 'next-seo';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 const pageTitle = 'Create Account | Forust';
 
-const Signup = () => {
+function Signup() {
   const router = useRouter();
+  const [disabled, setDisabled] = useState(false);
   const {
     register, setError, clearErrors, errors, handleSubmit,
   } = useForm({
-    mode: 'onChange',
+    mode: 'onBlur',
   });
 
+  const emailValidate = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
   const handleFormSubmit = async (data) => {
+    setDisabled(true);
+    clearErrors();
     try {
       await firebase.auth().createUserWithEmailAndPassword(data.email, data.password);
+      // 트랜잭션 일관성이 보장되지 않아 회원가입 직후 사용자 정보를 가져오지 못하는 버그 대응 (2020.09.21 이후 재현 불가)
       setTimeout(async () => {
         const user = firebase.auth().currentUser;
         await user.updateProfile({
@@ -36,6 +42,7 @@ const Signup = () => {
         message: err.message,
       });
     }
+    setDisabled(false);
   };
 
   return (
@@ -58,10 +65,10 @@ const Signup = () => {
                   name="displayName"
                   ref={
                     register({
-                      required: 'this is a required',
+                      required: 'Enter your name',
                       maxLength: {
                         value: 10,
-                        message: 'Max length is 10',
+                        message: 'Use up to 10 characters for your name',
                       },
                     })
                   }
@@ -74,11 +81,12 @@ const Signup = () => {
               <FormField label="Email" error={errors.email && errors.email.message}>
                 <TextField
                   type="text"
+                  inputMode="email"
                   name="email"
                   ref={register({
-                    required: 'this is required',
+                    required: 'Enter your email',
                     pattern: {
-                      value: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                      value: emailValidate,
                       message: 'Invalid email address',
                     },
                   })}
@@ -93,10 +101,10 @@ const Signup = () => {
                   type="password"
                   name="password"
                   ref={register({
-                    required: 'this is required',
+                    required: 'Enter your password',
                     minLength: {
                       value: 6,
-                      message: 'Min length is 6',
+                      message: 'Use 6 characters or more for your password',
                     },
                   })}
                 />
@@ -105,7 +113,7 @@ const Signup = () => {
           </div>
           <div className="grid-row auth-form-submit-row">
             <div className="grid-col">
-              <Button className="auth-submit" type="submit" onClick={() => clearErrors()}>Create Account</Button>
+              <Button className="auth-submit" type="submit" disabled={disabled}>Create Account</Button>
             </div>
           </div>
           <div className="grid-row auth-form-desc-row">
@@ -119,6 +127,6 @@ const Signup = () => {
       </AuthLayout>
     </>
   );
-};
+}
 
 export default Signup;
