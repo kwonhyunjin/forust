@@ -1,3 +1,4 @@
+import Alert from '@/components/alert/alert';
 import Button from '@/components/button/button';
 import FormField from '@/components/form-field/form-field';
 import TextField from '@/components/text-field/text-field';
@@ -11,20 +12,22 @@ import { useForm } from 'react-hook-form';
 
 const pageTitle = 'Create Account | Forust';
 
+const emailValidate = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
 function Signup() {
   const router = useRouter();
+  const [alert, setAlert] = useState();
   const [disabled, setDisabled] = useState(false);
   const {
-    register, setError, clearErrors, errors, handleSubmit,
+    register, clearErrors, errors, handleSubmit,
   } = useForm({
     mode: 'onBlur',
   });
 
-  const emailValidate = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
   const handleFormSubmit = async (data) => {
-    setDisabled(true);
     clearErrors();
+    setDisabled(true);
+    setAlert(undefined);
     try {
       await firebase.auth().createUserWithEmailAndPassword(data.email, data.password);
       // 트랜잭션 일관성이 보장되지 않아 회원가입 직후 사용자 정보를 가져오지 못하는 버그 대응 (2020.09.21 이후 재현 불가)
@@ -36,11 +39,7 @@ function Signup() {
         router.push('/');
       }, 200);
     } catch (err) {
-      // @todo Alert 컴포넌트 개발
-      setError('email', {
-        type: err.code,
-        message: err.message,
-      });
+      setAlert(err.message);
     }
     setDisabled(false);
   };
@@ -57,9 +56,10 @@ function Signup() {
       <AuthLayout>
         <form className="auth-form" onSubmit={handleSubmit(handleFormSubmit)}>
           <h2 className="auth-form-heading">Create your Forust Account</h2>
+          {alert && (<Alert type="error">{alert}</Alert>)}
           <div className="grid-row form-row">
             <div className="grid-col">
-              <FormField label="Name" error={errors.displayName && errors.displayName.message}>
+              <FormField label="Name" error={errors.displayName?.message}>
                 <TextField
                   type="text"
                   name="displayName"
@@ -78,13 +78,13 @@ function Signup() {
           </div>
           <div className="grid-row form-row">
             <div className="grid-col">
-              <FormField label="Email" error={errors.email && errors.email.message}>
+              <FormField label="Email" error={errors.email?.message}>
                 <TextField
                   type="text"
                   inputMode="email"
                   name="email"
                   ref={register({
-                    required: 'Enter your email',
+                    required: 'Enter your email address',
                     pattern: {
                       value: emailValidate,
                       message: 'Invalid email address',
@@ -96,15 +96,15 @@ function Signup() {
           </div>
           <div className="grid-row form-row">
             <div className="grid-col">
-              <FormField label="Password" error={errors.password && errors.password.message}>
+              <FormField label="Password" error={errors.password?.message}>
                 <TextField
                   type="password"
                   name="password"
                   ref={register({
-                    required: 'Enter your password',
+                    required: 'Enter a password',
                     minLength: {
                       value: 6,
-                      message: 'Use 6 characters or more for your password',
+                      message: 'Use 6 characters or more for a password',
                     },
                   })}
                 />

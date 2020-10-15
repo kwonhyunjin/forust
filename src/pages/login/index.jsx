@@ -1,3 +1,4 @@
+import Alert from '@/components/alert/alert';
 import Button from '@/components/button/button';
 import FormField from '@/components/form-field/form-field';
 import TextField from '@/components/text-field/text-field';
@@ -11,28 +12,28 @@ import { useForm } from 'react-hook-form';
 
 const pageTitle = 'Login | Forust';
 
+const emailValidate = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
 function Login() {
   const router = useRouter();
+  const [alert, setAlert] = useState();
   const [disabled, setDisabled] = useState(false);
   const {
-    register, setError, clearErrors, errors, handleSubmit,
+    register, clearErrors, errors, handleSubmit,
   } = useForm({
     mode: 'onSubmit',
+    reValidateMode: 'onSubmit',
   });
 
-  const emailValidate = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
   const handleFormSubmit = async (data) => {
-    setDisabled(true);
     clearErrors();
+    setDisabled(true);
+    setAlert(undefined);
     try {
       await firebase.auth().signInWithEmailAndPassword(data.email, data.password);
       router.push('/');
     } catch (err) {
-      setError('password', {
-        type: err.code,
-        message: err.message,
-      });
+      setAlert(err.message);
     }
     setDisabled(false);
   };
@@ -49,9 +50,10 @@ function Login() {
       <AuthLayout>
         <form className="auth-form" onSubmit={handleSubmit(handleFormSubmit)}>
           <h2 className="auth-form-heading">Login to Forust</h2>
+          {alert && (<Alert type="error">{alert}</Alert>)}
           <div className="grid-row form-row">
             <div className="grid-col">
-              <FormField label="Email" error={errors.email && errors.email.message}>
+              <FormField label="Email" error={errors.email?.message}>
                 <TextField
                   type="text"
                   inputMode="email"
@@ -65,13 +67,16 @@ function Login() {
                       },
                     })
                   }
+                  onChange={() => {
+                    clearErrors('email');
+                  }}
                 />
               </FormField>
             </div>
           </div>
           <div className="grid-row form-row">
             <div className="grid-col">
-              <FormField label="Password" error={errors.password && errors.password.message}>
+              <FormField label="Password" error={errors.password?.message}>
                 <TextField
                   type="password"
                   name="password"
@@ -80,6 +85,9 @@ function Login() {
                       required: 'Enter your password',
                     })
                   }
+                  onChange={() => {
+                    clearErrors('password');
+                  }}
                 />
               </FormField>
             </div>
