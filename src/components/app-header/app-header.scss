@@ -9,6 +9,7 @@
   z-index: map-get($z-indexes, "floating");
 
   &__wrapper {
+    position: relative;
     display: flex;
     align-items: center;
     height: 82px;
@@ -57,15 +58,27 @@
   font-size: $font-size-level-6;
 }
 
+.app-auth {
+  display: flex;
+  margin-left: spacing(3);
+  font-size: $font-size-level-3;
+  color: $font-color-primary;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.app-profile-dropdown {
+  right: 0;
+  top: 70px;
+}
+
 .app-profile {
   display: flex;
   align-items: center;
   list-style: none;
   cursor: pointer;
-
-  &::-webkit-details-marker {
-    display: none;
-  }
 
   &__dropdown {
     display: flex;
@@ -99,5 +112,9 @@
   &__icon {
     margin-left: spacing(1);
     font-size: $font-size-level-5;
+  }
+
+  &:focus {
+    outline: none;
   }
 }

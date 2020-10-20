@@ -28,5 +28,9 @@
     padding-left: 2px;
     color: $font-color-tertiary;
     font-size: $font-size-level-1;
+
+    &--error {
+      color: $red;
+    }
   }
 }

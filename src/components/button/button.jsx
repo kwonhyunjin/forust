@@ -28,4 +28,6 @@ Button.propTypes = {
   type: PropTypes.string,
 };
 
+Button.displayName = 'Button';
+
 export default React.memo(Button);

@@ -12,7 +12,7 @@ export default function FormField({
         <span className="form-field__slot">{children}</span>
       </label>
       {description && <p className="form-field__message">{description}</p>}
-      {error && <p className="form-field__message form-field__message-error">{error}</p>}
+      {error && <p className="form-field__message form-field__message--error">{error}</p>}
     </div>
   );
 }

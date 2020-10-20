@@ -2,20 +2,24 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-// @todo popover 컴포넌트 개발
-export default function Popover({ children, className, toggle }) {
-  return (
-    <>
-      {toggle}
-      <div className={classNames('popover', className)} style={{ display: 'none' }}>
-        {children}
-      </div>
-    </>
-  );
-}
+const Popover = React.forwardRef(({
+  children, className, open = false, ...rest
+}, ref) => (
+  open && (
+  <div {...rest} className={classNames('popover', className)} ref={ref}>
+    {children}
+  </div>
+  )
+));
 
 Popover.propTypes = {
+  // @todo anchor 엘리먼트 위치로 Popover 컴포넌트의 위치 이동
+  // anchor: PropTypes.string.isRequired,
   children: PropTypes.node,
   className: PropTypes.string,
-  toggle: PropTypes.node,
+  open: PropTypes.bool,
 };
+
+Popover.displayName = 'Popover';
+
+export default Popover;

@@ -20,6 +20,7 @@ module.exports = {
     "airbnb",
     "airbnb/hooks",
   ],
+  "parser": "babel-eslint",
   "rules": {
     "import/no-extraneous-dependencies": 0,
     "import/no-unresolved": [2, {
