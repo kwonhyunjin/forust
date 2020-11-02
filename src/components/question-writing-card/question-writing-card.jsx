@@ -3,6 +3,7 @@ import FormField from '@/components/form-field/form-field';
 import TextField from '@/components/text-field/text-field';
 import firebase from '@/firebase/index';
 import classNames from 'classnames';
+import dayjs from 'dayjs';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
@@ -38,7 +39,7 @@ export default function QuestionWritingCard({ className, props, ...rest }) {
           title: data.title,
           content: data.content,
           tags: data.tags.trim().split(/\s+/),
-          updated: new Date(),
+          updated: dayjs().format(),
         })
         .then((doc) => {
           router.push(`/forum/detail/${doc.id}`);
