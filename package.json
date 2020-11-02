@@ -55,6 +55,7 @@
     "firebase-tools": "^8.10.0",
     "husky": "^4.2.5",
     "node-sass": "^4.14.1",
+    "remove-markdown": "^0.3.0",
     "svg-inline-loader": "^0.8.2"
   }
 }
