@@ -17,11 +17,11 @@ const clientCredentials = {
   measurementId: process.env.FIREBASE_MEASUREMENT_ID,
 };
 
-// Check that `window` is in scope for the analytics module!
 if (typeof window !== 'undefined' && !firebase.apps.length) {
   firebase.initializeApp(clientCredentials);
-  // To enable analytics. https://firebase.google.com/docs/analytics/get-started
-  // firebase.analytics();
+  firebase.analytics();
 }
+
+export const fbapp = !firebase.apps.length ? firebase.initializeApp(clientCredentials) : firebase.app();
 
 export default firebase;
