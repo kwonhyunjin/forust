@@ -4,27 +4,38 @@ import PostTags from '@/components/post-tags/post-tags';
 import PostVote from '@/components/post-vote/post-vote';
 import Tag from '@/components/tag/tag';
 import classNames from 'classnames';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
+import removeMd from 'remove-markdown';
 
-export default function QuestionSummaryCard({ className, ...rest }) {
+dayjs.extend(relativeTime);
+
+export default function QuestionSummaryCard({ className, posts, ...rest }) {
+  const fromAskedDays = `${dayjs().from(dayjs(posts.updated))} ago`;
+  const askedDate = dayjs(posts.updated).format('MMM D \'YY [at] H:mm');
+
   return (
     <article {...rest} className={classNames('card question-summary-card', className)}>
       <PostVote className="question-summary-card__vote" />
       <div className="question-summary-card__main">
-        <Link href="/forum/detail">
+        <Link href="/forum/detail/[id]" as={`/forum/detail/${posts.id}`}>
           <a className="question-summary-card__link">
-            <h2 className="question-summary-card__title">Lorem ipsum dolor sit amet.</h2>
+            <h2 className="question-summary-card__title" title={askedDate}>{posts.title}</h2>
           </a>
         </Link>
-        <p className="question-summary-card__content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p className="question-summary-card__content">{removeMd(posts.content)}</p>
         <PostTags className="question-summary-card__tags">
-          <Tag>next.js</Tag>
-          <Tag>javascript</Tag>
-          <Tag>react</Tag>
+          {posts.tags.map((tag) => <Tag key={tag}>{tag}</Tag>)}
         </PostTags>
-        <PostProfile className="question-summary-card__profile" aria-label="Author" />
+        <PostProfile
+          className="question-summary-card__profile"
+          aria-label="Author"
+          author={posts.author}
+          updated={fromAskedDays.charAt(0) === '8' ? askedDate : fromAskedDays}
+        />
         <ul className="question-summary-card__count">
           <li className="question-summary-card__count-item">
             <Icon type="eye" className="question-summary-card__count-icon" aria-label="View count:" />
@@ -42,4 +53,12 @@ export default function QuestionSummaryCard({ className, ...rest }) {
 
 QuestionSummaryCard.propTypes = {
   className: PropTypes.string,
+  posts: PropTypes.shape({
+    author: PropTypes.node,
+    content: PropTypes.node,
+    id: PropTypes.node,
+    title: PropTypes.node,
+    tags: PropTypes.node,
+    updated: PropTypes.node,
+  }),
 };
