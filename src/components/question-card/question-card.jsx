@@ -5,12 +5,14 @@ import PostProfile from '@/components/post-profile/post-profile';
 import PostTags from '@/components/post-tags/post-tags';
 import PostVote from '@/components/post-vote/post-vote';
 import Tag from '@/components/tag/tag';
+import firebase from '@/firebase/index';
 import classNames from 'classnames';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 const Viewer = dynamic(
   () => import('@/components/viewer/viewer'),
@@ -22,8 +24,32 @@ dayjs.extend(relativeTime);
 export default function QuestionCard({
   className, posts, ...rest
 }) {
-  const fromAskedDays = `${dayjs().from(dayjs(posts.updated))} ago`;
-  const askedDate = dayjs(posts.updated).format('MMM D \'YY [at] H:mm');
+  const router = useRouter();
+
+  const fromDay = dayjs().diff(posts.created, 'day');
+  const fromAskedDay = `${dayjs().from(dayjs(posts.created))} ago`;
+  const askedDate = dayjs(posts.created).format('MMM D \'YY [at] H:mm');
+
+  const { currentUser } = firebase.auth();
+  const isAuthor = useMemo(() => posts.authorUid === currentUser.uid, [posts.authorUid, currentUser.uid]);
+
+  const handleEdit = () => {
+    router.push(`/forum/write/${posts.questionUid}`);
+  };
+
+  const handleDelete = () => {
+    const deleteConfirm = confirm('Are you sure you want to delete it?'); // eslint-disable-line
+    if (isAuthor) {
+      if (!deleteConfirm) { return; }
+      firebase.firestore()
+        .collection('question')
+        .doc(posts.questionUid)
+        .delete();
+      router.push('/forum/list');
+    } else {
+      alert('Make sure you have edit rights'); // eslint-disable-line no-alert
+    }
+  };
 
   return (
     <div {...rest} className={classNames('card question-card', className)}>
@@ -33,7 +59,7 @@ export default function QuestionCard({
           <span className="question-card__count-item">
             Asked
             {' '}
-            {dayjs(posts.updated).format('MMM D \'YY [at] H:mm')}
+            {dayjs(posts.created).format('MMM D \'YY [at] H:mm')}
           </span>
           <span className="question-card__count-item">Active 3 days ago</span>
           <span className="question-card__count-item">Viewed 1.5m times</span>
@@ -50,18 +76,23 @@ export default function QuestionCard({
       </PostTags>
       <PostProfile
         className="question-card__profile"
-        author={posts.author}
-        updated={fromAskedDays.charAt(0) === '8' ? askedDate : fromAskedDays}
+        author={posts.displayName}
+        created={fromDay > '7' ? askedDate : fromAskedDay}
       />
       <div className="question-card__actions">
-        <button type="button" className="question-card__action-item">
-          <Icon type="pencil" className="question-card__action-icon" aria-hidden="true" />
-          Edit
-        </button>
-        <button type="button" className="question-card__action-item">
-          <Icon type="trash" className="question-card__action-icon" aria-hidden="true" />
-          Delete
-        </button>
+        {isAuthor
+          && (
+            <>
+              <button type="button" className="question-card__action-item" onClick={handleEdit}>
+                <Icon type="pencil" className="question-card__action-icon" aria-hidden="true" />
+                Edit
+              </button>
+              <button type="button" className="question-card__action-item" onClick={handleDelete}>
+                <Icon type="trash" className="question-card__action-icon" aria-hidden="true" />
+                Delete
+              </button>
+            </>
+          )}
         <button type="button" className="question-card__action-item">
           <Icon type="share" className="question-card__action-icon" aria-hidden="true" />
           Share
@@ -80,11 +111,13 @@ export default function QuestionCard({
 QuestionCard.propTypes = {
   className: PropTypes.string,
   posts: PropTypes.shape({
-    author: PropTypes.node,
-    content: PropTypes.node,
-    id: PropTypes.node,
-    title: PropTypes.node,
+    authorUid: PropTypes.string,
+    displayName: PropTypes.string,
+    content: PropTypes.string,
+    created: PropTypes.string,
     tags: PropTypes.node,
-    updated: PropTypes.node,
+    title: PropTypes.string,
+    questionUid: PropTypes.string,
   }),
+  userName: PropTypes.string,
 };

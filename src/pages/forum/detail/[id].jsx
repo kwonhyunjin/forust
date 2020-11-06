@@ -8,26 +8,29 @@ import React from 'react';
 
 export const getServerSideProps = async ({ query }) => {
   const content = {};
-
   await firebase.firestore()
     .collection('question')
     .doc(query.id)
     .get()
     .then((result) => {
-      content.author = result.data().author;
+      content.authorUid = result.data().authorUid;
+      content.displayName = result.data().displayName;
       content.title = result.data().title;
       content.content = result.data().content;
       content.tags = result.data().tags;
-      content.updated = result.data().updated;
+      content.created = result.data().created;
+      content.questionUid = result.data().questionUid;
     });
 
   return {
     props: {
-      author: content.author,
+      authorUid: content.authorUid,
+      displayName: content.displayName,
       title: content.title,
       content: content.content,
       tags: content.tags,
-      updated: content.updated,
+      created: content.created,
+      questionUid: content.questionUid,
     },
   };
 };

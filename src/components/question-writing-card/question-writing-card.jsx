@@ -7,7 +7,9 @@ import dayjs from 'dayjs';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import React, { useRef, useState } from 'react';
+import React, {
+  useMemo, useRef, useState,
+} from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
 const Editor = dynamic(
@@ -15,37 +17,55 @@ const Editor = dynamic(
   { ssr: false },
 );
 
-export default function QuestionWritingCard({ className, props, ...rest }) {
+export default function QuestionWritingCard({
+  className, props, originalPost, isEdit, ...rest
+}) {
   const router = useRouter();
   const [disabled, setDisabled] = useState(false);
   const editorRef = useRef(null);
   const { currentUser } = firebase.auth();
 
+  const defaultValues = useMemo(() => (originalPost != null ? {
+    title: originalPost.title,
+    content: originalPost.content,
+    tags: originalPost.tags.join(' '),
+  } : undefined), [originalPost]);
+
   const {
     register, clearErrors, errors, handleSubmit, control,
   } = useForm({
     mode: 'onSubmit',
-    reValidateMode: 'onSubmit',
+    defaultValues,
   });
 
   const handleFormSubmit = async (data) => {
     clearErrors();
     setDisabled(true);
     try {
-      await firebase.firestore()
-        .collection('question')
-        .add({
-          author: currentUser.displayName,
+      if (originalPost) {
+        const newPostRef = firebase.firestore().collection('question').doc(originalPost.questionUid);
+        await newPostRef.update({
           title: data.title,
           content: data.content,
           tags: data.tags.trim().split(/\s+/),
           updated: dayjs().format(),
-        })
-        .then((doc) => {
-          router.push(`/forum/detail/${doc.id}`);
         });
+        router.push(`/forum/detail/${originalPost.questionUid}`);
+        return;
+      }
+      const newPostRef = firebase.firestore().collection('question').doc();
+      await newPostRef.set({
+        displayName: firebase.auth().currentUser.displayName,
+        authorUid: currentUser.uid,
+        title: data.title,
+        content: data.content,
+        tags: data.tags.trim().split(/\s+/),
+        created: dayjs().format(),
+        questionUid: newPostRef.id,
+      });
+      router.push(`/forum/detail/${newPostRef.id}`);
     } catch (err) {
-      //
+      // @todo 에러 메세지 노출
     }
     setDisabled(false);
   };
@@ -96,6 +116,7 @@ export default function QuestionWritingCard({ className, props, ...rest }) {
                     initialEditType="markdown"
                     useCommandShortcut
                     innerRef={editorRef}
+                    initialValue={originalPost ? originalPost.content : ''}
                     onChange={() => onChange(editorRef.current.getInstance().getMarkdown())}
                   />
                 )}
@@ -130,7 +151,13 @@ export default function QuestionWritingCard({ className, props, ...rest }) {
             </FormField>
           </div>
         </div>
-        <Button className="question-writing-card__submit" type="submit" disabled={disabled}>Review your question</Button>
+        <Button
+          className="question-writing-card__submit"
+          type="submit"
+          disabled={disabled}
+        >
+          {isEdit ? 'Update your question' : 'Review your question'}
+        </Button>
       </form>
     </div>
   );
@@ -138,5 +165,14 @@ export default function QuestionWritingCard({ className, props, ...rest }) {
 
 QuestionWritingCard.propTypes = {
   className: PropTypes.string,
+  isEdit: PropTypes.bool,
   props: PropTypes.node,
+  originalPost: PropTypes.shape({
+    authorUid: PropTypes.string,
+    content: PropTypes.string,
+    created: PropTypes.string,
+    tags: PropTypes.node,
+    title: PropTypes.string,
+    questionUid: PropTypes.string,
+  }),
 };

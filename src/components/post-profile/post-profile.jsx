@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 export default function PostProfile({
-  author, updated, className, ...rest
+  author, created, className, ...rest
 }) {
   return (
     <Link href="#">
@@ -14,7 +14,7 @@ export default function PostProfile({
         </div>
         <div className="post-profile__info" aria-hidden="true">
           <div className="post-profile__name">{author}</div>
-          <div className="post-profile__date">{updated}</div>
+          <div className="post-profile__date">{created}</div>
         </div>
       </a>
     </Link>
@@ -22,7 +22,7 @@ export default function PostProfile({
 }
 
 PostProfile.propTypes = {
-  author: PropTypes.node,
-  updated: PropTypes.node,
+  author: PropTypes.string,
+  created: PropTypes.string,
   className: PropTypes.string,
 };
