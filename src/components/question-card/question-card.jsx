@@ -38,7 +38,8 @@ export default function QuestionCard({
   };
 
   const handleDelete = () => {
-    const deleteConfirm = confirm('Are you sure you want to delete it?'); // eslint-disable-line
+    // eslint-disable-next-line no-alert
+    const deleteConfirm = window.confirm('Are you sure you want to delete it?');
     if (isAuthor) {
       if (!deleteConfirm) { return; }
       firebase.firestore()
@@ -47,7 +48,8 @@ export default function QuestionCard({
         .delete();
       router.push('/forum/list');
     } else {
-      alert('Make sure you have edit rights'); // eslint-disable-line no-alert
+      // eslint-disable-next-line no-alert
+      alert('Make sure you have edit rights');
     }
   };
 
