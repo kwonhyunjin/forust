@@ -3,6 +3,7 @@ import PostProfile from '@/components/post-profile/post-profile';
 import PostTags from '@/components/post-tags/post-tags';
 import PostVote from '@/components/post-vote/post-vote';
 import Tag from '@/components/tag/tag';
+import { TIMESTAMP_PROP_TYPES } from '@/utils/react';
 import classNames from 'classnames';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -14,31 +15,25 @@ import removeMd from 'remove-markdown';
 dayjs.extend(relativeTime);
 
 export default function QuestionSummaryCard({
-  className, posts, ...rest
+  className, question, ...rest
 }) {
-  const fromDay = dayjs().diff(posts.created, 'day');
-  const fromAskedDay = `${dayjs().from(dayjs(posts.created))} ago`;
-  const askedDate = dayjs(posts.created).format('MMM D \'YY [at] H:mm');
-
   return (
     <article {...rest} className={classNames('card question-summary-card', className)}>
       <PostVote className="question-summary-card__vote" />
       <div className="question-summary-card__main">
-        <Link href="/forum/detail/[id]" as={`/forum/detail/${posts.questionUid}`}>
+        <Link href="/forum/detail/[id]" as={`/forum/detail/${question.questionUid}`}>
           <a className="question-summary-card__link">
-            <h2 className="question-summary-card__title">{posts.title}</h2>
+            <h2 className="question-summary-card__title">{question.title}</h2>
           </a>
         </Link>
-        <p className="question-summary-card__content">{removeMd(posts.content)}</p>
+        <p className="question-summary-card__content">{removeMd(question.content)}</p>
         <PostTags className="question-summary-card__tags">
-          {posts.tags.map((tag) => <Tag key={tag}>{tag}</Tag>)}
+          {question.tags.map((tag) => <Tag key={tag}>{tag}</Tag>)}
         </PostTags>
         <PostProfile
           className="question-summary-card__profile"
-          aria-label="Author"
-          author={posts.displayName}
-          created={fromDay > '7' ? askedDate : fromAskedDay}
-          title={askedDate}
+          author={question.displayName}
+          created={question.created}
         />
         <ul className="question-summary-card__count">
           <li className="question-summary-card__count-item">
@@ -57,11 +52,11 @@ export default function QuestionSummaryCard({
 
 QuestionSummaryCard.propTypes = {
   className: PropTypes.string,
-  posts: PropTypes.shape({
+  question: PropTypes.shape({
     authorUid: PropTypes.string,
     displayName: PropTypes.string,
     content: PropTypes.string,
-    created: PropTypes.string,
+    created: TIMESTAMP_PROP_TYPES,
     tags: PropTypes.node,
     title: PropTypes.string,
     questionUid: PropTypes.string,

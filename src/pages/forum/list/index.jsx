@@ -7,18 +7,18 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 const ForumList = () => {
-  const [posts, setPosts] = useState([]);
-  const postNum = posts.length;
+  const [questions, setQuestions] = useState([]);
+  const questionsLen = questions.length;
 
   useEffect(() => {
     firebase.firestore()
       .collection('question')
       .onSnapshot((snap) => {
-        const post = snap.docs.map((doc) => ({
+        const question = snap.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-        setPosts(post);
+        setQuestions(question);
       });
   }, []);
 
@@ -27,7 +27,7 @@ const ForumList = () => {
       <section>
         <CardListHeader>
           <CardListHeader.Heading level="2" size="2">
-            {postNum === 1 ? `${postNum} Question` : `${postNum} Questions`}
+            {questionsLen === 1 ? `${questionsLen} Question` : `${questionsLen} Questions`}
           </CardListHeader.Heading>
           <CardListHeader.Actions>
             <Link href="/forum/write">
@@ -36,7 +36,7 @@ const ForumList = () => {
           </CardListHeader.Actions>
         </CardListHeader>
         <ul className="card-list">
-          {posts.map((post) => <li key={post.id}><QuestionSummaryCard posts={post} /></li>)}
+          {questions.map((question) => <li key={question.id}><QuestionSummaryCard question={question} /></li>)}
         </ul>
       </section>
     </DefaultLayout>

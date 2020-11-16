@@ -8,17 +8,17 @@ import React, {
 
 export default function ForumWrite() {
   const router = useRouter();
-  const postId = router.query.slug[0];
-  const [post, setPost] = useState();
+  const questionUid = (router.query.slug ?? [])[0];
+  const [question, setQuestion] = useState();
   const { currentUser } = firebase.auth();
-  const isEdit = useMemo(() => postId != null, [postId]);
+  const isEdit = useMemo(() => questionUid != null, [questionUid]);
 
   const rejectAccess = useCallback(() => {
-    const fallbackUrl = postId ? `/forum/detail/${postId}` : '/forum/list';
+    const fallbackUrl = questionUid ? `/forum/detail/${questionUid}` : '/forum/list';
     // eslint-disable-next-line no-alert
     alert('Make sure you have edit rights.');
     router.replace(fallbackUrl);
-  }, [postId, router]);
+  }, [questionUid, router]);
 
   useEffect(() => {
     if (currentUser == null) { return rejectAccess(); }
@@ -26,11 +26,11 @@ export default function ForumWrite() {
 
     const unsub = firebase.firestore()
       .collection('question')
-      .doc(postId)
+      .doc(questionUid)
       .onSnapshot((doc) => {
         const data = doc.data();
         if (data != null && data.authorUid === currentUser.uid) {
-          setPost(data);
+          setQuestion(data);
         } else {
           unsub();
           rejectAccess();
@@ -38,13 +38,13 @@ export default function ForumWrite() {
       });
 
     return () => { unsub(); };
-  }, [currentUser.uid, isEdit, postId]);
+  }, [currentUser, isEdit, questionUid]);
 
   return (
     <DefaultLayout>
       <section>
-        {(!postId || post) && (
-          <QuestionWritingCard originalPost={post} isEdit={isEdit} />
+        {(!questionUid || question) && (
+          <QuestionWritingCard originalPost={question} isEdit={isEdit} />
         )}
       </section>
     </DefaultLayout>

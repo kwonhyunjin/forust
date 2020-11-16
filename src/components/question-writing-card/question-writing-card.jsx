@@ -2,8 +2,8 @@ import Button from '@/components/button/button';
 import FormField from '@/components/form-field/form-field';
 import TextField from '@/components/text-field/text-field';
 import firebase from '@/firebase/index';
+import { TIMESTAMP_PROP_TYPES } from '@/utils/react';
 import classNames from 'classnames';
-import dayjs from 'dayjs';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
@@ -48,7 +48,7 @@ export default function QuestionWritingCard({
           title: data.title,
           content: data.content,
           tags: data.tags.trim().split(/\s+/),
-          updated: dayjs().format(),
+          updated: firebase.firestore.Timestamp.now(),
         });
         router.push(`/forum/detail/${originalPost.questionUid}`);
         return;
@@ -60,7 +60,7 @@ export default function QuestionWritingCard({
         title: data.title,
         content: data.content,
         tags: data.tags.trim().split(/\s+/),
-        created: dayjs().format(),
+        created: firebase.firestore.Timestamp.now(),
         questionUid: newPostRef.id,
       });
       router.push(`/forum/detail/${newPostRef.id}`);
@@ -170,7 +170,7 @@ QuestionWritingCard.propTypes = {
   originalPost: PropTypes.shape({
     authorUid: PropTypes.string,
     content: PropTypes.string,
-    created: PropTypes.string,
+    created: TIMESTAMP_PROP_TYPES,
     tags: PropTypes.node,
     title: PropTypes.string,
     questionUid: PropTypes.string,

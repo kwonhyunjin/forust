@@ -6,6 +6,8 @@ import PostTags from '@/components/post-tags/post-tags';
 import PostVote from '@/components/post-vote/post-vote';
 import Tag from '@/components/tag/tag';
 import firebase from '@/firebase/index';
+import { LOCALE_DATE_TIME_FORMAT } from '@/utils/date';
+import { TIMESTAMP_PROP_TYPES } from '@/utils/react';
 import classNames from 'classnames';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -22,47 +24,48 @@ const Viewer = dynamic(
 dayjs.extend(relativeTime);
 
 export default function QuestionCard({
-  className, posts, ...rest
+  className, question, ...rest
 }) {
   const router = useRouter();
 
-  const fromDay = dayjs().diff(posts.created, 'day');
-  const fromAskedDay = `${dayjs().from(dayjs(posts.created))} ago`;
-  const askedDate = dayjs(posts.created).format('MMM D \'YY [at] H:mm');
-
   const { currentUser } = firebase.auth();
-  const isAuthor = useMemo(() => posts.authorUid === currentUser.uid, [posts.authorUid, currentUser.uid]);
+  const isUser = useMemo(() => currentUser?.uid === undefined, [currentUser]);
+  const isAuthor = useMemo(() => question.authorUid === currentUser?.uid, [question.authorUid, currentUser]);
 
   const handleEdit = () => {
-    router.push(`/forum/write/${posts.questionUid}`);
+    router.push(`/forum/write/${question.questionUid}`);
   };
-
   const handleDelete = () => {
-    // eslint-disable-next-line no-alert
-    const deleteConfirm = window.confirm('Are you sure you want to delete it?');
-    if (isAuthor) {
+    if (isUser) {
+      // eslint-disable-next-line no-alert
+      alert('Please log in first.');
+      router.push('/login');
+    } else if (isAuthor) {
+      // eslint-disable-next-line no-alert
+      const deleteConfirm = window.confirm('Are you sure you want to delete it?');
       if (!deleteConfirm) { return; }
       firebase.firestore()
         .collection('question')
-        .doc(posts.questionUid)
+        .doc(question.questionUid)
         .delete();
       router.push('/forum/list');
     } else {
       // eslint-disable-next-line no-alert
-      alert('Make sure you have edit rights');
+      alert('Make sure you have delete rights');
     }
   };
 
   return (
     <div {...rest} className={classNames('card question-card', className)}>
       <div className="question-card__header">
-        <h2 className="question-card__title">{posts.title}</h2>
+        <h2 className="question-card__title">{question.title}</h2>
         <div className="question-card__count">
           <span className="question-card__count-item">
             Asked
             {' '}
-            {dayjs(posts.created).format('MMM D \'YY [at] H:mm')}
+            {dayjs.unix(question.created.seconds).format(LOCALE_DATE_TIME_FORMAT)}
           </span>
+          {/* @todo 활동 시간, 조회수 개발 예정 */}
           <span className="question-card__count-item">Active 3 days ago</span>
           <span className="question-card__count-item">Viewed 1.5m times</span>
         </div>
@@ -70,19 +73,19 @@ export default function QuestionCard({
       </div>
       <div className="question-card__content">
         <Viewer
-          initialValue={posts.content}
+          initialValue={question.content}
         />
       </div>
       <PostTags className="question-card__tags">
-        {posts.tags.map((tag) => <Tag key={tag}>{tag}</Tag>)}
+        {question.tags.map((tag) => <Tag key={tag}>{tag}</Tag>)}
       </PostTags>
       <PostProfile
         className="question-card__profile"
-        author={posts.displayName}
-        created={fromDay > '7' ? askedDate : fromAskedDay}
+        author={question.displayName}
+        created={question.created}
       />
       <div className="question-card__actions">
-        {isAuthor
+        {(isAuthor || isUser)
           && (
             <>
               <button type="button" className="question-card__action-item" onClick={handleEdit}>
@@ -112,11 +115,11 @@ export default function QuestionCard({
 
 QuestionCard.propTypes = {
   className: PropTypes.string,
-  posts: PropTypes.shape({
+  question: PropTypes.shape({
     authorUid: PropTypes.string,
     displayName: PropTypes.string,
     content: PropTypes.string,
-    created: PropTypes.string,
+    created: TIMESTAMP_PROP_TYPES,
     tags: PropTypes.node,
     title: PropTypes.string,
     questionUid: PropTypes.string,

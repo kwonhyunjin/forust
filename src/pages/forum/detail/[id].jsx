@@ -29,7 +29,7 @@ export const getServerSideProps = async ({ query }) => {
       title: content.title,
       content: content.content,
       tags: content.tags,
-      created: content.created,
+      created: JSON.parse(JSON.stringify(content.created)),
       questionUid: content.questionUid,
     },
   };
@@ -39,7 +39,7 @@ export default function ForumDetail(props) {
   return (
     <DefaultLayout>
       <article className="card-list">
-        <QuestionCard posts={props} />
+        <QuestionCard question={props} />
         <section>
           <CardListHeader>
             <CardListHeader.Heading level="2" size="3">
