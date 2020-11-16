@@ -1,50 +1,106 @@
+import AnswerWritingForm from '@/components/answer-writing-form/answer-writing-form';
 import Comment from '@/components/comment/comment';
+import Confirm from '@/components/confirm/confirm';
 import Icon from '@/components/icon/icon';
 import PostComments from '@/components/post-comments/post-comments';
 import PostProfile from '@/components/post-profile/post-profile';
-import PostTags from '@/components/post-tags/post-tags';
 import PostVote from '@/components/post-vote/post-vote';
-import Tag from '@/components/tag/tag';
 import firebase from '@/firebase/index';
+import { TIMESTAMP_PROP_TYPES } from '@/utils/react';
 import classNames from 'classnames';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 
-export default function AnswerCard({ children, className, ...rest }) {
+dayjs.extend(relativeTime);
+
+const Viewer = dynamic(
+  () => import('@/components/viewer/viewer'),
+  { ssr: false },
+);
+
+export default function AnswerCard({
+  answer, children, className, onUpdate, ...rest
+}) {
+  const router = useRouter();
+
+  const { currentUser } = firebase.auth();
+
+  const isUser = currentUser?.uid != null;
+  const isAuthor = answer.authorUid === currentUser?.uid;
+  const [edit, setEdit] = useState(false);
+
+  const handleEdit = () => {
+    if (!isUser) {
+      router.push('/login');
+    }
+    if (!edit) {
+      setEdit(true);
+    } else {
+      setEdit(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!isUser) {
+      router.push('/login');
+    } else if (isAuthor) {
+      if (await Confirm.fn({ ok: 'Delete', heading: 'Are you sure you want to delete it?' })) {
+        // @todo delete 대신 '삭제됨' 필드 값 변경
+        firebase.firestore()
+          .collection('answer')
+          .doc(answer.answerUid)
+          .delete();
+        onUpdate();
+      }
+    }
+  };
+
   return (
     <div {...rest} className={classNames('card answer-card', className)}>
       <h3 className="blind">Chamdori&apos;s answer</h3>
-      <div className="answer-card__header">
-        <div className="answer-card__content">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </div>
-        <PostVote className="answer-card__vote" />
-      </div>
-      <PostTags className="answer-card__tags">
-        <Tag>forust</Tag>
-        <Tag>chamdori</Tag>
-        <Tag>gyumin</Tag>
-        <Tag>hyunjin</Tag>
-      </PostTags>
-      <PostProfile
-        className="answer-card__profile"
-        author="참돌이"
-        created={firebase.firestore.Timestamp.now()}
-      />
-      <div className="answer-card__actions">
-        <button type="button" className="answer-card__action-item">
-          <Icon type="pencil" className="answer-card__action-icon" aria-hidden="true" />
-          Edit
-        </button>
-        <button type="button" className="answer-card__action-item">
-          <Icon type="trash" className="answer-card__action-icon" aria-hidden="true" />
-          Delete
-        </button>
-        <button type="button" className="answer-card__action-item">
-          <Icon type="share" className="answer-card__action-icon" aria-hidden="true" />
-          Share
-        </button>
-      </div>
+      {!edit && (
+        <>
+          <div className="answer-card__header">
+            <div className="answer-card__content">
+              <Viewer
+                initialValue={answer.content}
+              />
+            </div>
+            <PostVote className="answer-card__vote" />
+          </div>
+          <PostProfile
+            className="answer-card__profile"
+            author={answer.displayName}
+            created={answer.created}
+          />
+          <div className="answer-card__actions">
+            {(isAuthor || !isUser)
+        && (
+        <>
+          <button type="button" className="answer-card__action-item" onClick={handleEdit}>
+            <Icon type="pencil" className="answer-card__action-icon" aria-hidden="true" />
+            Edit
+          </button>
+          <button type="button" className="answer-card__action-item" onClick={handleDelete}>
+            <Icon type="trash" className="answer-card__action-icon" aria-hidden="true" />
+            Delete
+          </button>
+        </>
+        )}
+            <button type="button" className="answer-card__action-item">
+              <Icon type="share" className="answer-card__action-icon" aria-hidden="true" />
+              Share
+            </button>
+          </div>
+        </>
+      )}
+      {edit && (
+        <AnswerWritingForm button="Save edits" answer={answer} edit={edit} />
+      )}
       <PostComments className="answer-card__comment">
         <Comment className="answer-card__comment-item" role="listitem" user="Gyumin" date="5 month ago">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Comment>
         <Comment className="answer-card__comment-item" role="listitem" user="Hyunjin" date="8 years ago">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Comment>
@@ -54,6 +110,15 @@ export default function AnswerCard({ children, className, ...rest }) {
 }
 
 AnswerCard.propTypes = {
+  answer: PropTypes.shape({
+    answerUid: PropTypes.string,
+    authorUid: PropTypes.string,
+    displayName: PropTypes.string,
+    content: PropTypes.string,
+    created: TIMESTAMP_PROP_TYPES,
+    questionUid: PropTypes.string,
+  }),
   children: PropTypes.node,
   className: PropTypes.string,
+  onUpdate: PropTypes.func,
 };

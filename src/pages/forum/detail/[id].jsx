@@ -4,7 +4,8 @@ import CardListHeader from '@/components/card-list-header/card-list-header';
 import QuestionCard from '@/components/question-card/question-card';
 import firebase from '@/firebase/index';
 import DefaultLayout from '@/layouts/default-layout/default-layout';
-import React from 'react';
+import PropTypes from 'prop-types';
+import React, { useCallback, useEffect, useState } from 'react';
 
 export const getServerSideProps = async ({ query }) => {
   const content = {};
@@ -36,6 +37,38 @@ export const getServerSideProps = async ({ query }) => {
 };
 
 export default function ForumDetail(props) {
+  const [answers, setAnswers] = useState([]);
+  const answersLen = answers.length;
+  const { questionUid } = props;
+
+  useEffect(() => {
+    firebase.firestore()
+      .collection('answer')
+      .where('questionUid', '==', questionUid)
+      .get()
+      .then((snap) => {
+        const answer = snap.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setAnswers(answer);
+      });
+  }, [questionUid]);
+
+  const onUpdate = useCallback(() => {
+    firebase.firestore()
+      .collection('answer')
+      .where('questionUid', '==', questionUid)
+      .get()
+      .then((snap) => {
+        const answer = snap.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setAnswers(answer);
+      });
+  }, [answers]);
+
   return (
     <DefaultLayout>
       <article className="card-list">
@@ -43,17 +76,19 @@ export default function ForumDetail(props) {
         <section>
           <CardListHeader>
             <CardListHeader.Heading level="2" size="3">
-              {/* @todo 답글 개수에 따라 단수, 복수 표현 */}
-              2 Answers
+              {answersLen === 1 ? `${answersLen} Answer` : `${answersLen} Answers`}
             </CardListHeader.Heading>
           </CardListHeader>
           <div role="list">
-            <AnswerCard role="listitem" />
-            <AnswerCard role="listitem" />
-            <AnswerWritingCard role="listitem" />
+            {answers.map((answer) => <AnswerCard answer={answer} onUpdate={onUpdate} key={answer.id} role="listitem" />)}
+            <AnswerWritingCard onUpdate={onUpdate} role="listitem" />
           </div>
         </section>
       </article>
     </DefaultLayout>
   );
 }
+
+ForumDetail.propTypes = {
+  questionUid: PropTypes.string,
+};

@@ -1,4 +1,5 @@
 import Comment from '@/components/comment/comment';
+import Confirm from '@/components/confirm/confirm';
 import Icon from '@/components/icon/icon';
 import PostComments from '@/components/post-comments/post-comments';
 import PostProfile from '@/components/post-profile/post-profile';
@@ -34,25 +35,25 @@ export default function QuestionCard({
   const isAuthor = question.authorUid === currentUser?.uid;
 
   const handleEdit = () => {
+    if (!isUser) {
+      router.push('/login');
+      return;
+    }
     router.push(`/forum/write/${question.questionUid}`);
   };
-  const handleDelete = () => {
+
+  const handleDelete = async () => {
     if (!isUser) {
-      // eslint-disable-next-line no-alert
-      alert('Please log in first.');
       router.push('/login');
     } else if (isAuthor) {
-      // eslint-disable-next-line no-alert
-      const deleteConfirm = window.confirm('Are you sure you want to delete it?');
-      if (!deleteConfirm) { return; }
-      firebase.firestore()
-        .collection('question')
-        .doc(question.questionUid)
-        .delete();
-      router.push('/forum/list');
-    } else {
-      // eslint-disable-next-line no-alert
-      alert('Make sure you have delete rights');
+      if (await Confirm.fn({ ok: 'Delete', heading: 'Are you sure you want to delete it?' })) {
+        // @todo delete 대신 '삭제됨' 필드 값 변경
+        firebase.firestore()
+          .collection('question')
+          .doc(question.questionUid)
+          .delete();
+        router.push('/forum/list');
+      }
     }
   };
 

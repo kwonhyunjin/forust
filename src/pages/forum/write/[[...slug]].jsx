@@ -16,7 +16,7 @@ export default function ForumWrite() {
   const rejectAccess = useCallback(() => {
     const fallbackUrl = questionUid ? `/forum/detail/${questionUid}` : '/forum/list';
     // eslint-disable-next-line no-alert
-    alert('Make sure you have edit rights.');
+    alert('Make sure you have rights.');
     router.replace(fallbackUrl);
   }, [questionUid, router]);
 

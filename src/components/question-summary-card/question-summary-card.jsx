@@ -3,13 +3,14 @@ import PostProfile from '@/components/post-profile/post-profile';
 import PostTags from '@/components/post-tags/post-tags';
 import PostVote from '@/components/post-vote/post-vote';
 import Tag from '@/components/tag/tag';
+import firebase from '@/firebase/index';
 import { TIMESTAMP_PROP_TYPES } from '@/utils/react';
 import classNames from 'classnames';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import removeMd from 'remove-markdown';
 
 dayjs.extend(relativeTime);
@@ -17,6 +18,23 @@ dayjs.extend(relativeTime);
 export default function QuestionSummaryCard({
   className, question, ...rest
 }) {
+  const [answers, setAnswers] = useState([]);
+  const answersLen = answers.length;
+
+  useEffect(() => {
+    firebase.firestore()
+      .collection('answer')
+      .where('questionUid', '==', question.questionUid)
+      .get()
+      .then((snap) => {
+        const answer = snap.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setAnswers(answer);
+      });
+  }, [question.questionUid]);
+
   return (
     <article {...rest} className={classNames('card question-summary-card', className)}>
       <PostVote className="question-summary-card__vote" />
@@ -42,7 +60,7 @@ export default function QuestionSummaryCard({
           </li>
           <li className="question-summary-card__count-item">
             <Icon type="comment" className="question-summary-card__count-icon" aria-label="Comment count:" />
-            319
+            {answersLen}
           </li>
         </ul>
       </div>

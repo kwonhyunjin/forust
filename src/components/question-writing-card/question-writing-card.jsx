@@ -43,6 +43,7 @@ export default function QuestionWritingCard({
     setDisabled(true);
     try {
       if (originalPost) {
+        // @todo update 대신 새로운 값으로 insert
         const newPostRef = firebase.firestore().collection('question').doc(originalPost.questionUid);
         await newPostRef.update({
           title: data.title,
