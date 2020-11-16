@@ -32,6 +32,7 @@ module.exports = {
         "caseInsensitive": true,
       },
     }],
+    "import/prefer-default-export": 0,
     "jsx-a11y/anchor-is-valid": 0,
     "jsx-a11y/label-has-associated-control": 0,
     "max-len": 0,
@@ -42,5 +43,6 @@ module.exports = {
     "react/button-has-type": 0,
     "react/jsx-props-no-spreading": 0,
     "react/require-default-props": 0,
+    "react-hooks/exhaustive-deps": 0,
   },
 };
