@@ -14,7 +14,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import React, { useMemo } from 'react';
+import React from 'react';
 
 const Viewer = dynamic(
   () => import('@/components/viewer/viewer'),
@@ -29,14 +29,15 @@ export default function QuestionCard({
   const router = useRouter();
 
   const { currentUser } = firebase.auth();
-  const isUser = useMemo(() => currentUser?.uid === undefined, [currentUser]);
-  const isAuthor = useMemo(() => question.authorUid === currentUser?.uid, [question.authorUid, currentUser]);
+
+  const isUser = currentUser?.uid != null;
+  const isAuthor = question.authorUid === currentUser?.uid;
 
   const handleEdit = () => {
     router.push(`/forum/write/${question.questionUid}`);
   };
   const handleDelete = () => {
-    if (isUser) {
+    if (!isUser) {
       // eslint-disable-next-line no-alert
       alert('Please log in first.');
       router.push('/login');
@@ -85,7 +86,7 @@ export default function QuestionCard({
         created={question.created}
       />
       <div className="question-card__actions">
-        {(isAuthor || isUser)
+        {(isAuthor || !isUser)
           && (
             <>
               <button type="button" className="question-card__action-item" onClick={handleEdit}>

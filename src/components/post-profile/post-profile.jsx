@@ -18,7 +18,7 @@ export default function PostProfile({
       <a
         {...rest}
         className={classNames('post-profile', className)}
-        aria-label={author}
+        aria-label={`${author} written ${fromDay > '7' ? askedDate : fromAskedDay}`}
         title={askedDate}
       >
         <div className="post-profile__avatar" aria-hidden="true">
