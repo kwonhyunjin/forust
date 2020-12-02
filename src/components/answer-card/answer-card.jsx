@@ -5,6 +5,7 @@ import PostProfile from '@/components/post-profile/post-profile';
 import PostTags from '@/components/post-tags/post-tags';
 import PostVote from '@/components/post-vote/post-vote';
 import Tag from '@/components/tag/tag';
+import firebase from '@/firebase/index';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -25,7 +26,11 @@ export default function AnswerCard({ children, className, ...rest }) {
         <Tag>gyumin</Tag>
         <Tag>hyunjin</Tag>
       </PostTags>
-      <PostProfile className="answer-card__profile" />
+      <PostProfile
+        className="answer-card__profile"
+        author="참돌이"
+        created={firebase.firestore.Timestamp.now()}
+      />
       <div className="answer-card__actions">
         <button type="button" className="answer-card__action-item">
           <Icon type="pencil" className="answer-card__action-icon" aria-hidden="true" />
