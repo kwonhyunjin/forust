@@ -5,10 +5,7 @@
   width: max-content;
   height: 40px;
   padding: 0 spacing(5);
-  background: $green;
   border-radius: 20px;
-  border: 1px solid $green;
-  color: #ffffff;
   font-size: $font-size-level-3;
   font-weight: bold;
   line-height: 38px;
@@ -16,27 +13,62 @@
   transition-property: box-shadow, background-color, border-color;
   cursor: pointer;
 
-  &:hover {
-    background-color: $green-light;
-    border-color: $green-light;
-    text-decoration: none;
+  &--primary {
+    background: $green;
+    border: 1px solid $green;
+    color: #ffffff;
+
+    &:hover {
+      background-color: $green-light;
+      border-color: $green-light;
+      text-decoration: none;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 4px rgba($green, .33);
+      outline: none;
+    }
+
+    &:active {
+      background-color: $green-dark;
+      border-color: $green-dark;
+      box-shadow: none;
+      outline: none;
+    }
+
+    &:disabled {
+      background-color: $gray-300;
+      border-color: $gray-300;
+      cursor: default;
+    }
   }
 
-  &:focus {
-    box-shadow: 0 0 0 4px rgba($green, .33);
-    outline: none;
-  }
+  &--secondary {
+    background: #fff;
+    border: 1px solid $gray-300;
+    color: $font-color-secondary;
 
-  &:active {
-    background-color: $green-dark;
-    border-color: $green-dark;
-    box-shadow: none;
-    outline: none;
-  }
+    &:hover {
+      border: 1px solid $gray-200;
+      color: $font-color-placeholder;
+    }
 
-  &:disabled {
-    background-color: $gray-300;
-    border-color: $gray-300;
-    cursor: default;
+    &:focus {
+      box-shadow: 0 0 0 4px rgba($green, .33);
+      outline: none;
+    }
+
+    &:active {
+      background-color: $gray-100;
+      box-shadow: none;
+      color: $font-color-secondary;
+      outline: none;
+    }
+
+    &:disabled {
+      background-color: $font-color-disabled;
+      border: 1px solid $font-color-disabled;
+      color: #fff;
+    }
   }
 }
