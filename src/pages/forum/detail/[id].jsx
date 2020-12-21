@@ -41,22 +41,8 @@ export default function ForumDetail(props) {
   const answersLen = answers.length;
   const { questionUid } = props;
 
-  useEffect(() => {
-    firebase.firestore()
-      .collection('answer')
-      .where('questionUid', '==', questionUid)
-      .get()
-      .then((snap) => {
-        const answer = snap.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setAnswers(answer);
-      });
-  }, [questionUid]);
-
-  const onUpdate = useCallback(() => {
-    firebase.firestore()
+  const fetchAnswers = useCallback(async () => {
+    await firebase.firestore()
       .collection('answer')
       .where('questionUid', '==', questionUid)
       .get()
@@ -69,6 +55,14 @@ export default function ForumDetail(props) {
       });
   }, [answers]);
 
+  useEffect(() => {
+    fetchAnswers();
+  }, [questionUid]);
+
+  const handleUpdate = useCallback(async () => {
+    await fetchAnswers();
+  }, [fetchAnswers]);
+
   return (
     <DefaultLayout>
       <article className="card-list">
@@ -80,8 +74,8 @@ export default function ForumDetail(props) {
             </CardListHeader.Heading>
           </CardListHeader>
           <div role="list">
-            {answers.map((answer) => <AnswerCard answer={answer} onUpdate={onUpdate} key={answer.id} role="listitem" />)}
-            <AnswerWritingCard onUpdate={onUpdate} role="listitem" />
+            {answers.map((answer) => <AnswerCard answer={answer} onUpdate={handleUpdate} key={answer.id} role="listitem" />)}
+            <AnswerWritingCard onUpdate={handleUpdate} role="listitem" />
           </div>
         </section>
       </article>

@@ -15,8 +15,9 @@ export default function ForumWrite() {
 
   const rejectAccess = useCallback(() => {
     const fallbackUrl = questionUid ? `/forum/detail/${questionUid}` : '/forum/list';
+    // @todo 403, 404 페이지 개발
     // eslint-disable-next-line no-alert
-    alert('Make sure you have rights.');
+    alert("You don't have permission to access this page.");
     router.replace(fallbackUrl);
   }, [questionUid, router]);
 

@@ -65,10 +65,10 @@ function Signup() {
                   name="displayName"
                   ref={
                     register({
-                      required: 'Enter your name',
+                      required: 'Enter your name.',
                       maxLength: {
                         value: 10,
-                        message: 'Use up to 10 characters for your name',
+                        message: 'Use up to 10 characters for your name.',
                       },
                     })
                   }
@@ -84,10 +84,10 @@ function Signup() {
                   inputMode="email"
                   name="email"
                   ref={register({
-                    required: 'Enter your email address',
+                    required: 'Enter your email address.',
                     pattern: {
                       value: emailValidate,
-                      message: 'Invalid email address',
+                      message: 'Invalid email address.',
                     },
                   })}
                 />
@@ -101,10 +101,10 @@ function Signup() {
                   type="password"
                   name="password"
                   ref={register({
-                    required: 'Enter a password',
+                    required: 'Enter a password.',
                     minLength: {
                       value: 6,
-                      message: 'Use 6 characters or more for a password',
+                      message: 'Use 6 characters or more for a password.',
                     },
                   })}
                 />

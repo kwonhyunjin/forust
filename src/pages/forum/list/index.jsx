@@ -31,7 +31,7 @@ const ForumList = () => {
           </CardListHeader.Heading>
           <CardListHeader.Actions>
             <Link href="/forum/write">
-              <Button type="anchor">Ask Question</Button>
+              <Button type="anchor" href="/login">Ask Question</Button>
             </Link>
           </CardListHeader.Actions>
         </CardListHeader>

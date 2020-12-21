@@ -24,5 +24,10 @@
 
   &__submit {
     float: right;
+    margin-left: spacing(3);
+  }
+
+  &__cancel {
+    float: right;
   }
 }

@@ -46,13 +46,13 @@ function makeFn(component) {
       function handleClose(...args) {
         props.open = false;
         render(props);
-        // @todo 닫힘 애니메이션을 개발하지 않을 경우 setInterval 삭제
-        const id = setInterval(() => {
-          if (container.children.length > 0) { return; }
-          resolve(args);
-          clearInterval(id);
-          document.body.removeChild(container);
-        }, 100);
+        // @todo 애니메이션 개발할 경우 setInterval 적용
+        // const id = setInterval(() => {
+        // if (container.children.length > 0) { return; }
+        resolve(args);
+        // clearInterval(id);
+        // document.body.removeChild(container);
+        // }, 100);
       }
 
       render(props);

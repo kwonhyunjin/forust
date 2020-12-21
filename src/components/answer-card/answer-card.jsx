@@ -13,7 +13,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 dayjs.extend(relativeTime);
 
@@ -31,24 +31,25 @@ export default function AnswerCard({
 
   const isUser = currentUser?.uid != null;
   const isAuthor = answer.authorUid === currentUser?.uid;
-  const [edit, setEdit] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
 
-  const handleEdit = () => {
+  const handleEdit = useCallback(() => {
     if (!isUser) {
       router.push('/login');
     }
-    if (!edit) {
-      setEdit(true);
-    } else {
-      setEdit(false);
-    }
-  };
+    setIsEdit(!isEdit);
+  }, [isUser, isEdit]);
+
+  const handleUpdate = useCallback(async () => {
+    await onUpdate();
+    await setIsEdit(false);
+  }, [isEdit]);
 
   const handleDelete = async () => {
     if (!isUser) {
       router.push('/login');
     } else if (isAuthor) {
-      if (await Confirm.fn({ ok: 'Delete', heading: 'Are you sure you want to delete it?' })) {
+      if (await Confirm.open({ ok: 'Delete', heading: 'Are you sure you want to delete it?' })) {
         // @todo delete 대신 '삭제됨' 필드 값 변경
         firebase.firestore()
           .collection('answer')
@@ -61,8 +62,11 @@ export default function AnswerCard({
 
   return (
     <div {...rest} className={classNames('card answer-card', className)}>
-      <h3 className="blind">Chamdori&apos;s answer</h3>
-      {!edit && (
+      <h3 className="blind">
+        {answer.displayName}
+        &apos;s answer
+      </h3>
+      {!isEdit && (
         <>
           <div className="answer-card__header">
             <div className="answer-card__content">
@@ -98,8 +102,8 @@ export default function AnswerCard({
           </div>
         </>
       )}
-      {edit && (
-        <AnswerWritingForm button="Save edits" answer={answer} edit={edit} />
+      {isEdit && (
+        <AnswerWritingForm answer={answer} onUpdate={handleUpdate} />
       )}
       <PostComments className="answer-card__comment">
         <Comment className="answer-card__comment-item" role="listitem" user="Gyumin" date="5 month ago">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Comment>

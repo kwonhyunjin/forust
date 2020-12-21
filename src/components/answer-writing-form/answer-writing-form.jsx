@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import React, {
-  useEffect, useMemo, useRef, useState,
+  useCallback, useMemo, useRef, useState,
 } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
@@ -15,7 +15,7 @@ const Editor = dynamic(
 );
 
 export default function AnswerWritingForm({
-  answer, button, onUpdate, props,
+  answer, onUpdate,
 }) {
   const [disabled, setDisabled] = useState(false);
   const editorRef = useRef(null);
@@ -27,42 +27,39 @@ export default function AnswerWritingForm({
   } = useForm({
     mode: 'onSubmit',
   });
-  const checkAnswer = useMemo(() => answer != null, [answer]);
-  const [saveEdit, setSaveEdit] = useState();
-
-  useEffect(() => {
-    if (!checkAnswer) { return undefined; }
-    return setSaveEdit(answer);
-  }, [checkAnswer]);
+  const hasAnswer = useMemo(() => answer != null, [answer]);
 
   const handleFormSubmit = async (data) => {
     clearErrors();
     setDisabled(true);
-    // 수정을 누르면 edit이 false -> Save edits 버튼을 누르면 edit이 true가 되어야 함
     try {
-      if (saveEdit) {
-        const newSaveEditRef = firebase.firestore().collection('answer').doc(saveEdit.answerUid);
+      if (hasAnswer) {
+        const newSaveEditRef = firebase.firestore().collection('answer').doc(answer.answerUid);
         await newSaveEditRef.update({
           content: data.content,
           updated: firebase.firestore.Timestamp.now(),
         });
-        onUpdate();
+      } else {
+        const newAnswerRef = firebase.firestore().collection('answer').doc();
+        await newAnswerRef.set({
+          displayName: firebase.auth().currentUser.displayName,
+          authorUid: currentUser.uid,
+          content: data.content,
+          created: firebase.firestore.Timestamp.now(),
+          questionUid,
+          answerUid: newAnswerRef.id,
+        });
       }
-      const newAnswerRef = firebase.firestore().collection('answer').doc();
-      await newAnswerRef.set({
-        displayName: firebase.auth().currentUser.displayName,
-        authorUid: currentUser.uid,
-        content: data.content,
-        created: firebase.firestore.Timestamp.now(),
-        questionUid,
-        answerUid: newAnswerRef.id,
-      });
-      onUpdate();
+      await onUpdate();
     } catch (err) {
-      // @todo 에러 메세지 노출
+      console.error(err);
     }
     setDisabled(false);
   };
+
+  const onCancel = useCallback(() => {
+    onUpdate({ setEdit: false });
+  }, [onUpdate]);
 
   return (
     <form className="answer-writing-card__form" onSubmit={handleSubmit(handleFormSubmit)}>
@@ -70,7 +67,7 @@ export default function AnswerWritingForm({
         <div className="grid-col">
           <FormField
             label="Content"
-            description="Include all the information someone would need to answer your question"
+            description="Include all the information someone would need to answer your question."
             error={errors.content?.message}
           >
             <Controller
@@ -79,7 +76,6 @@ export default function AnswerWritingForm({
               defaultValue=""
               render={({ onChange }) => (
                 <Editor
-                  {...props}
                   previewStyle="vertical"
                   height="400px"
                   initialEditType="markdown"
@@ -93,7 +89,7 @@ export default function AnswerWritingForm({
                 required: 'Enter a body',
                 minLength: {
                   value: 30,
-                  message: 'Use 30 characters or more for a body',
+                  message: 'Use 30 characters or more for a body.',
                 },
               }}
             />
@@ -105,19 +101,26 @@ export default function AnswerWritingForm({
         className="answer-writing-card__submit"
         disabled={disabled}
       >
-        {button}
+        {answer ? 'Save edits' : 'Post your answer'}
       </Button>
+      {answer && (
+      <Button
+        className="answer-writing-card__cancel"
+        color="error"
+        onClick={onCancel}
+      >
+        Cancel
+      </Button>
+      )}
     </form>
   );
 }
 
 AnswerWritingForm.propTypes = {
   answer: PropTypes.shape({
-    id: PropTypes.string,
+    answerUid: PropTypes.string,
     content: PropTypes.string,
+    id: PropTypes.string,
   }),
-  button: PropTypes.string,
-  className: PropTypes.string,
   onUpdate: PropTypes.func,
-  props: PropTypes.node,
 };

@@ -9,7 +9,7 @@ export default function AnswerWritingCard({
   return (
     <div {...rest} className={classNames('card answer-writing-card', className)} role="listitem">
       <h3 className="answer-writing-card__heading">Your answer</h3>
-      <AnswerWritingForm button="Post your answer" onUpdate={onUpdate} />
+      <AnswerWritingForm onUpdate={onUpdate} />
     </div>
   );
 }

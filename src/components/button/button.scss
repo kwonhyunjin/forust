@@ -13,6 +13,23 @@
   transition-property: box-shadow, background-color, border-color;
   cursor: pointer;
 
+  &:focus {
+    box-shadow: 0 0 0 4px rgba($green, .33);
+    outline: none;
+  }
+
+  &:active {
+    box-shadow: none;
+    outline: none;
+  }
+
+  &:disabled {
+    background-color: $font-color-disabled;
+    border-color: $font-color-disabled;
+    color: #fff;
+    cursor: default;
+  }
+
   &--primary {
     background: $green;
     border: 1px solid $green;
@@ -21,25 +38,11 @@
     &:hover {
       background-color: $green-light;
       border-color: $green-light;
-      text-decoration: none;
-    }
-
-    &:focus {
-      box-shadow: 0 0 0 4px rgba($green, .33);
-      outline: none;
     }
 
     &:active {
       background-color: $green-dark;
       border-color: $green-dark;
-      box-shadow: none;
-      outline: none;
-    }
-
-    &:disabled {
-      background-color: $gray-300;
-      border-color: $gray-300;
-      cursor: default;
     }
   }
 
@@ -49,26 +52,35 @@
     color: $font-color-secondary;
 
     &:hover {
-      border: 1px solid $gray-200;
+      border-color: $gray-200;
       color: $font-color-placeholder;
-    }
-
-    &:focus {
-      box-shadow: 0 0 0 4px rgba($green, .33);
-      outline: none;
     }
 
     &:active {
       background-color: $gray-100;
-      box-shadow: none;
       color: $font-color-secondary;
-      outline: none;
+    }
+  }
+
+  &--error {
+    background: $red;
+    border: 1px solid $red;
+    color: #fff;
+
+    &:hover {
+      background-color: $red-light;
+      border-color: $red-light;
     }
 
-    &:disabled {
-      background-color: $font-color-disabled;
-      border: 1px solid $font-color-disabled;
-      color: #fff;
+    &:focus {
+      box-shadow: 0 0 0 4px rgba($red-light, .33);
+    }
+
+    &:active {
+      background-color: $red-dark;
+      border-color: $red-dark;
+      // box-shadow: none;
+      // outline: none;
     }
   }
 }

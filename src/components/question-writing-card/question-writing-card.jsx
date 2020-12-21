@@ -18,7 +18,7 @@ const Editor = dynamic(
 );
 
 export default function QuestionWritingCard({
-  className, props, originalPost, isEdit, ...rest
+  className, originalPost, isEdit, ...rest
 }) {
   const router = useRouter();
   const [disabled, setDisabled] = useState(false);
@@ -79,7 +79,7 @@ export default function QuestionWritingCard({
           <div className="grid-col">
             <FormField
               label="Title"
-              description="Be specific and imagine you’re asking a question to another person"
+              description="Be specific and imagine you’re asking a question to another person."
               error={errors.title?.message}
             >
               <TextField
@@ -87,10 +87,10 @@ export default function QuestionWritingCard({
                 name="title"
                 ref={
                   register({
-                    required: 'Enter a title',
+                    required: 'Enter a title.',
                     minLength: {
                       value: 15,
-                      message: 'Use 15 characters or more for a title',
+                      message: 'Use 15 characters or more for a title.',
                     },
                   })
                 }
@@ -102,7 +102,7 @@ export default function QuestionWritingCard({
           <div className="grid-col">
             <FormField
               label="Content"
-              description="Include all the information someone would need to answer your question"
+              description="Include all the information someone would need to answer your question."
               error={errors.content?.message}
             >
               <Controller
@@ -111,7 +111,6 @@ export default function QuestionWritingCard({
                 defaultValue=""
                 render={({ onChange }) => (
                   <Editor
-                    {...props}
                     previewStyle="vertical"
                     height="400px"
                     initialEditType="markdown"
@@ -122,10 +121,10 @@ export default function QuestionWritingCard({
                   />
                 )}
                 rules={{
-                  required: 'Enter a body',
+                  required: 'Enter a body.',
                   minLength: {
                     value: 30,
-                    message: 'Use 30 characters or more for a body',
+                    message: 'Use 30 characters or more for a body.',
                   },
                 }}
               />
@@ -136,7 +135,7 @@ export default function QuestionWritingCard({
           <div className="grid-col">
             <FormField
               label="Tags"
-              description="Add up to 5 tags to describe what your question is about"
+              description="Add up to 5 tags to describe what your question is about. Tags separated by spaces."
               error={errors.tags?.message}
             >
               <TextField
@@ -144,8 +143,8 @@ export default function QuestionWritingCard({
                 name="tags"
                 ref={
                   register({
-                    required: 'Enter at least one tag',
-                    validate: (value) => value.trim().split(/\s+/).length < 6 || 'Please enter no more than 5 tags',
+                    required: 'Enter at least one tag.',
+                    validate: (value) => value.trim().split(/\s+/).length < 6 || 'Please enter no more than 5 tags.',
                   })
                 }
               />
@@ -167,7 +166,6 @@ export default function QuestionWritingCard({
 QuestionWritingCard.propTypes = {
   className: PropTypes.string,
   isEdit: PropTypes.bool,
-  props: PropTypes.node,
   originalPost: PropTypes.shape({
     authorUid: PropTypes.string,
     content: PropTypes.string,

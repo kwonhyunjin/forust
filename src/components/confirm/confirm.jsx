@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 
+// @todo 애니메이션 정의
 function Confirm({
   cancel: cancelNode = 'Cancel', className, description, heading, onClose, ok: okNode = 'OK', open, ...rest
 }) {
@@ -42,11 +43,11 @@ Confirm.propTypes = {
   open: PropTypes.bool,
 };
 
-async function fn(config) {
+async function openFn(config) {
   const [confirmed] = await Modal.makeFn(Confirm)(config);
   return confirmed;
 }
 
-fn.displayName = 'Confirm.fn';
+openFn.displayName = 'Confirm.open';
 
-export default Object.assign(Confirm, { fn });
+export default Object.assign(Confirm, { open: openFn });
