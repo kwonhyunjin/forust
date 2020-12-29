@@ -36,6 +36,7 @@ export default function AnswerCard({
   const handleEdit = useCallback(() => {
     if (!isUser) {
       router.push('/login');
+      return;
     }
     setIsEdit(!isEdit);
   }, [isUser, isEdit]);

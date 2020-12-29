@@ -47,11 +47,11 @@ export default function ForumDetail(props) {
       .where('questionUid', '==', questionUid)
       .get()
       .then((snap) => {
-        const answer = snap.docs.map((doc) => ({
+        const newAnswers = snap.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-        setAnswers(answer);
+        setAnswers(newAnswers);
       });
   }, [answers]);
 

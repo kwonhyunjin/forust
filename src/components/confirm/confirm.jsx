@@ -36,8 +36,8 @@ function Confirm({
 Confirm.propTypes = {
   cancel: PropTypes.node,
   className: PropTypes.string,
-  description: PropTypes.string,
-  heading: PropTypes.string,
+  description: PropTypes.node,
+  heading: PropTypes.node,
   onClose: PropTypes.func,
   ok: PropTypes.node,
   open: PropTypes.bool,

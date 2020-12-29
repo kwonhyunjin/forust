@@ -1,11 +1,12 @@
 import Button from '@/components/button/button';
+import Confirm from '@/components/confirm/confirm';
 import FormField from '@/components/form-field/form-field';
 import firebase from '@/firebase/index';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import React, {
-  useCallback, useMemo, useRef, useState,
+  useCallback, useRef, useState,
 } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
@@ -27,7 +28,7 @@ export default function AnswerWritingForm({
   } = useForm({
     mode: 'onSubmit',
   });
-  const hasAnswer = useMemo(() => answer != null, [answer]);
+  const hasAnswer = answer != null;
 
   const handleFormSubmit = async (data) => {
     clearErrors();
@@ -57,7 +58,22 @@ export default function AnswerWritingForm({
     setDisabled(false);
   };
 
-  const onCancel = useCallback(() => {
+  const onCancel = useCallback(async () => {
+    if (answer.content !== editorRef.current.getInstance().getMarkdown()) {
+      if (await Confirm.open({
+        ok: 'Discard changes',
+        heading: 'Are you sure?',
+        description:
+  <>
+    Are you sure you want to discard your unsaved changes?
+    <br />
+    This action cannot be reversed.
+  </>,
+      })) {
+        onUpdate();
+      }
+      return;
+    }
     onUpdate({ setEdit: false });
   }, [onUpdate]);
 
@@ -82,7 +98,10 @@ export default function AnswerWritingForm({
                   useCommandShortcut
                   innerRef={editorRef}
                   initialValue={answer ? answer.content : ''}
-                  onChange={() => onChange(editorRef.current.getInstance().getMarkdown())}
+                  onChange={() => {
+                    onChange(editorRef.current.getInstance().getMarkdown());
+                    // console.log(editorRef.current.getInstance().getMarkdown());
+                  }}
                 />
               )}
               rules={{

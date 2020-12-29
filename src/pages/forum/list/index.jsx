@@ -7,8 +7,10 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 const ForumList = () => {
+  const [loading, setLoading] = useState(true);
   const [questions, setQuestions] = useState([]);
   const questionsLen = questions.length;
+  const { currentUser } = firebase.auth();
 
   useEffect(() => {
     firebase.firestore()
@@ -19,26 +21,30 @@ const ForumList = () => {
           ...doc.data(),
         }));
         setQuestions(question);
+        setLoading(false);
       });
+    setLoading(true);
   }, []);
 
   return (
     <DefaultLayout>
-      <section>
-        <CardListHeader>
-          <CardListHeader.Heading level="2" size="2">
-            {questionsLen === 1 ? `${questionsLen} Question` : `${questionsLen} Questions`}
-          </CardListHeader.Heading>
-          <CardListHeader.Actions>
-            <Link href="/forum/write">
-              <Button type="anchor" href="/login">Ask Question</Button>
-            </Link>
-          </CardListHeader.Actions>
-        </CardListHeader>
-        <ul className="card-list">
-          {questions.map((question) => <li key={question.id}><QuestionSummaryCard question={question} /></li>)}
-        </ul>
-      </section>
+      {!loading && (
+        <section>
+          <CardListHeader>
+            <CardListHeader.Heading level="2" size="2">
+              {questionsLen === 1 ? `${questionsLen} Question` : `${questionsLen} Questions`}
+            </CardListHeader.Heading>
+            <CardListHeader.Actions>
+              <Link href={currentUser ? '/forum/write' : '/login'}>
+                <Button type="anchor">Ask Question</Button>
+              </Link>
+            </CardListHeader.Actions>
+          </CardListHeader>
+          <ul className="card-list">
+            {questions.map((question) => <li key={question.id}><QuestionSummaryCard question={question} /></li>)}
+          </ul>
+        </section>
+      )}
     </DefaultLayout>
   );
 };

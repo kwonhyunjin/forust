@@ -51,7 +51,7 @@ function makeFn(component) {
         // if (container.children.length > 0) { return; }
         resolve(args);
         // clearInterval(id);
-        // document.body.removeChild(container);
+        document.body.removeChild(container);
         // }, 100);
       }
 
