@@ -50,7 +50,7 @@ export default function ForumDetail(props) {
         const newAnswers = snap.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
-        }));
+        })).sort((a, b) => b.created.seconds - a.created.seconds);
         setAnswers(newAnswers);
       });
   }, [answers]);

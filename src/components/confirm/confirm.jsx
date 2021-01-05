@@ -8,7 +8,7 @@ import React, { useCallback } from 'react';
 
 // @todo 애니메이션 정의
 function Confirm({
-  cancel: cancelNode = 'Cancel', className, description, heading, onClose, ok: okNode = 'OK', open, ...rest
+  cancel: cancelNode = 'Cancel', className, description, heading, onClose, ok: okNode = 'OK', okColor = 'primary', open, ...rest
 }) {
   const handleCancelClick = useCallback(() => {
     onClose?.(false);
@@ -26,7 +26,7 @@ function Confirm({
         <p className="confirm__description">{description}</p>
         <div className="confirm__button">
           {isRenderable(cancelNode) && <Button className="confirm__button--cancel" color="secondary" onClick={handleCancelClick}>{cancelNode}</Button>}
-          {isRenderable(okNode) && <Button className="confirm__button--ok" onClick={handleOkClick}>{okNode}</Button>}
+          {isRenderable(okNode) && <Button className="confirm__button--ok" color={okColor} onClick={handleOkClick}>{okNode}</Button>}
         </div>
       </section>
     </Modal>
@@ -40,6 +40,7 @@ Confirm.propTypes = {
   heading: PropTypes.node,
   onClose: PropTypes.func,
   ok: PropTypes.node,
+  okColor: PropTypes.string,
   open: PropTypes.bool,
 };
 

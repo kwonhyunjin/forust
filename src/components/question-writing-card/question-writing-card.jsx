@@ -44,6 +44,7 @@ export default function QuestionWritingCard({
   const handleConfirm = useCallback(async () => {
     if (await Confirm.open({
       ok: 'Discard changes',
+      okColor: 'error',
       heading: 'Are you sure?',
       description:
   <>
@@ -194,7 +195,7 @@ export default function QuestionWritingCard({
         </Button>
         <Button
           className="question-writing-card__cancel"
-          color="error"
+          color="secondary"
           onClick={handleCancel}
         >
           Cancel

@@ -23,13 +23,6 @@
     outline: none;
   }
 
-  &:disabled {
-    background-color: $font-color-disabled;
-    border-color: $font-color-disabled;
-    color: #fff;
-    cursor: default;
-  }
-
   &--primary {
     background: $green;
     border: 1px solid $green;
@@ -81,4 +74,12 @@
       border-color: $red-dark;
     }
   }
+
+  &:disabled {
+    background-color: $font-color-disabled;
+    border-color: $font-color-disabled;
+    color: #fff;
+    cursor: default;
+  }
+
 }

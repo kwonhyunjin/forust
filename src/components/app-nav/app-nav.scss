@@ -1,7 +1,7 @@
 .app-nav {
   position: sticky;
-  top: 0;
-  height: 100px;
+  top: $app-header-height;
+  height: max-content;
   flex: 1;
   padding: spacing(25) spacing(20) 0 0;
 

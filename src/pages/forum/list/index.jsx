@@ -16,11 +16,11 @@ const ForumList = () => {
     firebase.firestore()
       .collection('question')
       .onSnapshot((snap) => {
-        const question = snap.docs.map((doc) => ({
+        const newQuestions = snap.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
-        }));
-        setQuestions(question);
+        })).sort((a, b) => b.created.seconds - a.created.seconds);
+        setQuestions(newQuestions);
         setLoading(false);
       });
     setLoading(true);

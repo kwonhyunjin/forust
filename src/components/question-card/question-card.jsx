@@ -46,7 +46,7 @@ export default function QuestionCard({
     if (!isUser) {
       router.push('/login');
     } else if (isAuthor) {
-      if (await Confirm.open({ ok: 'Delete', heading: 'Are you sure you want to delete it?' })) {
+      if (await Confirm.open({ ok: 'Delete', okColor: 'error', heading: 'Are you sure you want to delete it?' })) {
         // @todo delete 대신 '삭제됨' 필드 값 변경
         firebase.firestore()
           .collection('question')

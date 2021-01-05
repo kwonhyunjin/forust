@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import React, {
-  useCallback, useRef, useState,
+  useCallback, useEffect, useRef, useState,
 } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
@@ -29,6 +29,10 @@ export default function AnswerWritingForm({
     mode: 'onSubmit',
   });
   const hasAnswer = answer != null;
+
+  useEffect(() => {
+    if (currentUser == null) { setDisabled(true); }
+  }, [currentUser]);
 
   const handleFormSubmit = async (data) => {
     clearErrors();
@@ -58,10 +62,11 @@ export default function AnswerWritingForm({
     setDisabled(false);
   };
 
-  const onCancel = useCallback(async () => {
+  const handleCancel = useCallback(async () => {
     if (answer.content !== editorRef.current.getInstance().getMarkdown()) {
       if (await Confirm.open({
         ok: 'Discard changes',
+        okColor: 'error',
         heading: 'Are you sure?',
         description:
   <>
@@ -76,6 +81,12 @@ export default function AnswerWritingForm({
     }
     onUpdate({ setEdit: false });
   }, [onUpdate]);
+
+  const handleFocus = useCallback(() => {
+    if (currentUser == null) {
+      router.push('/login');
+    }
+  }, [currentUser]);
 
   return (
     <form className="answer-writing-card__form" onSubmit={handleSubmit(handleFormSubmit)}>
@@ -97,11 +108,11 @@ export default function AnswerWritingForm({
                   initialEditType="markdown"
                   useCommandShortcut
                   innerRef={editorRef}
-                  initialValue={answer ? answer.content : ''}
+                  initialValue={currentUser == null ? '###### You must login to post answer.' : answer ? answer.content : ''}
                   onChange={() => {
                     onChange(editorRef.current.getInstance().getMarkdown());
-                    // console.log(editorRef.current.getInstance().getMarkdown());
                   }}
+                  onFocus={handleFocus}
                 />
               )}
               rules={{
@@ -125,8 +136,8 @@ export default function AnswerWritingForm({
       {answer && (
       <Button
         className="answer-writing-card__cancel"
-        color="error"
-        onClick={onCancel}
+        color="secondary"
+        onClick={handleCancel}
       >
         Cancel
       </Button>

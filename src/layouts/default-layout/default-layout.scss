@@ -12,4 +12,11 @@
 .app-main {
   flex: 0 0 $app-main-width;
   padding-top: 80px;
+
+  &::after {
+    display: table;
+    clear: both;
+    content: '';
+    margin-bottom: 160px;
+  }
 }
