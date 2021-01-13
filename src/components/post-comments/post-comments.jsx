@@ -27,7 +27,7 @@ export default function PostComments({ children, className, ...rest }) {
       <h6 className="post-comments__title">2 Comments</h6>
       <div className="post-comments__list" role="list">{children}</div>
       <form className="post-comments__form">
-        <TextArea className="post-comments__field" onChange={handleChange} placeholder="Write your comment here." aria-label="Add comment" />
+        <TextArea className="post-comments__field" size="small" onChange={handleChange} placeholder="Write your comment here." aria-label="Add comment" />
         <span className="post-comments__filed-limit">0/500</span>
         {/* @todo 댓글 폼  */}
         <Button type="submit" className="post-comments__submit" onClick={handleClick} disabled={content.length < 1}>Comment</Button>
