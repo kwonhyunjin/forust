@@ -1,0 +1,12 @@
+.select {
+  width: 60px;
+  background: url('~@/icons/caret-down.svg') no-repeat 81% 50%;
+  background-size: 20px 20px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  &::-ms-expand {
+    display: none;
+  }
+}
