@@ -1,0 +1,31 @@
+.confirm {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-height: 60px;
+  padding: spacing(7) spacing(7) spacing(5);
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px -5px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  z-index: map-get($z-indexes, "dialog");
+
+
+  &__heading {
+    margin-bottom: spacing(2);
+  }
+
+  &__description {
+    margin-bottom: spacing(8);
+  }
+
+  &__button {
+    display: flex;
+    justify-content: flex-end;
+
+    &--ok {
+      margin-left: spacing(3);
+    }
+  }
+}

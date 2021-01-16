@@ -1,4 +1,5 @@
 import Button from '@/components/button/button';
+import Confirm from '@/components/confirm/confirm';
 import FormField from '@/components/form-field/form-field';
 import TextField from '@/components/text-field/text-field';
 import firebase from '@/firebase/index';
@@ -8,7 +9,7 @@ import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import React, {
-  useMemo, useRef, useState,
+  useCallback, useMemo, useRef, useState,
 } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
@@ -18,7 +19,7 @@ const Editor = dynamic(
 );
 
 export default function QuestionWritingCard({
-  className, props, originalPost, isEdit, ...rest
+  className, originalPost, isEdit, ...rest
 }) {
   const router = useRouter();
   const [disabled, setDisabled] = useState(false);
@@ -32,17 +33,52 @@ export default function QuestionWritingCard({
   } : undefined), [originalPost]);
 
   const {
-    register, clearErrors, errors, handleSubmit, control,
+    register, clearErrors, errors, handleSubmit, control, getValues,
   } = useForm({
     mode: 'onSubmit',
     defaultValues,
   });
+
+  const originalPostFallbackUrl = useMemo(() => (originalPost ? `/forum/detail/${originalPost.questionUid}` : '/forum/list'), [originalPost]);
+
+  const handleConfirm = useCallback(async () => {
+    if (await Confirm.open({
+      ok: 'Discard changes',
+      okColor: 'error',
+      heading: 'Are you sure?',
+      description:
+  <>
+    Are you sure you want to discard your unsaved changes?
+    <br />
+    This action cannot be reversed.
+  </>,
+    })) {
+      router.push(originalPostFallbackUrl);
+    }
+  }, [originalPostFallbackUrl]);
+
+  const handleCancel = useCallback(() => {
+    if (!originalPost) {
+      if (getValues('title') !== '' || editorRef.current.getInstance().getMarkdown() !== '' || getValues('tags') !== '') {
+        handleConfirm();
+        return;
+      }
+      router.push(originalPostFallbackUrl);
+    } else {
+      if (originalPost.title !== getValues('title') || originalPost.content !== editorRef.current.getInstance().getMarkdown() || originalPost.tags.join(' ') !== getValues('tags')) {
+        handleConfirm();
+        return;
+      }
+      router.push(originalPostFallbackUrl);
+    }
+  }, [originalPost]);
 
   const handleFormSubmit = async (data) => {
     clearErrors();
     setDisabled(true);
     try {
       if (originalPost) {
+        // @todo update 대신 새로운 값으로 insert
         const newPostRef = firebase.firestore().collection('question').doc(originalPost.questionUid);
         await newPostRef.update({
           title: data.title,
@@ -65,7 +101,7 @@ export default function QuestionWritingCard({
       });
       router.push(`/forum/detail/${newPostRef.id}`);
     } catch (err) {
-      // @todo 에러 메세지 노출
+      console.error(err);
     }
     setDisabled(false);
   };
@@ -78,7 +114,7 @@ export default function QuestionWritingCard({
           <div className="grid-col">
             <FormField
               label="Title"
-              description="Be specific and imagine you’re asking a question to another person"
+              description="Be specific and imagine you’re asking a question to another person."
               error={errors.title?.message}
             >
               <TextField
@@ -86,10 +122,10 @@ export default function QuestionWritingCard({
                 name="title"
                 ref={
                   register({
-                    required: 'Enter a title',
+                    required: 'Enter a title.',
                     minLength: {
                       value: 15,
-                      message: 'Use 15 characters or more for a title',
+                      message: 'Use 15 characters or more for a title.',
                     },
                   })
                 }
@@ -101,7 +137,7 @@ export default function QuestionWritingCard({
           <div className="grid-col">
             <FormField
               label="Content"
-              description="Include all the information someone would need to answer your question"
+              description="Include all the information someone would need to answer your question."
               error={errors.content?.message}
             >
               <Controller
@@ -110,7 +146,6 @@ export default function QuestionWritingCard({
                 defaultValue=""
                 render={({ onChange }) => (
                   <Editor
-                    {...props}
                     previewStyle="vertical"
                     height="400px"
                     initialEditType="markdown"
@@ -121,10 +156,10 @@ export default function QuestionWritingCard({
                   />
                 )}
                 rules={{
-                  required: 'Enter a body',
+                  required: 'Enter a body.',
                   minLength: {
                     value: 30,
-                    message: 'Use 30 characters or more for a body',
+                    message: 'Use 30 characters or more for a body.',
                   },
                 }}
               />
@@ -135,7 +170,7 @@ export default function QuestionWritingCard({
           <div className="grid-col">
             <FormField
               label="Tags"
-              description="Add up to 5 tags to describe what your question is about"
+              description="Add up to 5 tags to describe what your question is about. Tags separated by spaces."
               error={errors.tags?.message}
             >
               <TextField
@@ -143,8 +178,8 @@ export default function QuestionWritingCard({
                 name="tags"
                 ref={
                   register({
-                    required: 'Enter at least one tag',
-                    validate: (value) => value.trim().split(/\s+/).length < 6 || 'Please enter no more than 5 tags',
+                    required: 'Enter at least one tag.',
+                    validate: (value) => value.trim().split(/\s+/).length < 6 || 'Please enter no more than 5 tags.',
                   })
                 }
               />
@@ -158,6 +193,13 @@ export default function QuestionWritingCard({
         >
           {isEdit ? 'Update your question' : 'Review your question'}
         </Button>
+        <Button
+          className="question-writing-card__cancel"
+          color="secondary"
+          onClick={handleCancel}
+        >
+          Cancel
+        </Button>
       </form>
     </div>
   );
@@ -166,7 +208,6 @@ export default function QuestionWritingCard({
 QuestionWritingCard.propTypes = {
   className: PropTypes.string,
   isEdit: PropTypes.bool,
-  props: PropTypes.node,
   originalPost: PropTypes.shape({
     authorUid: PropTypes.string,
     content: PropTypes.string,

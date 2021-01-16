@@ -60,10 +60,10 @@ function Login() {
                   name="email"
                   ref={
                     register({
-                      required: 'Enter your email address',
+                      required: 'Enter your email address.',
                       pattern: {
                         value: emailValidate,
-                        message: 'Invalid email address',
+                        message: 'Invalid email address.',
                       },
                     })
                   }
@@ -82,7 +82,7 @@ function Login() {
                   name="password"
                   ref={
                     register({
-                      required: 'Enter your password',
+                      required: 'Enter your password.',
                     })
                   }
                   onChange={() => {

@@ -1,10 +1,12 @@
 .answer-writing-card {
   padding: spacing(12) spacing(15);
 
-  &::after {
-    display: table;
-    clear: both;
-    content: '';
+  &__form {
+    &::after {
+      display: table;
+      clear: both;
+      content: '';
+    }
   }
 
   &__heading {
@@ -21,6 +23,11 @@
   }
 
   &__submit {
+    float: right;
+    margin-left: spacing(3);
+  }
+
+  &__cancel {
     float: right;
   }
 }

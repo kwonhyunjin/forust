@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const Button = React.forwardRef(({
-  children, className, href = '#', type = 'button', ...rest
+  children, className, color = 'primary', href = '#', type = 'button', ...rest
 }, ref) => {
   const isAnchor = type === 'anchor';
   const Element = isAnchor ? 'a' : 'button';
@@ -11,7 +11,8 @@ const Button = React.forwardRef(({
   return (
     <Element
       {...rest}
-      className={classNames('button', className)}
+      className={classNames('button', `button--${color}`, className)}
+      color={color}
       href={isAnchor ? href : undefined}
       type={isAnchor ? undefined : type}
       ref={ref}
@@ -24,6 +25,7 @@ const Button = React.forwardRef(({
 Button.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  color: PropTypes.string,
   href: PropTypes.string,
   type: PropTypes.string,
 };

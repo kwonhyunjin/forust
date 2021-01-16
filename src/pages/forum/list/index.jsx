@@ -7,38 +7,44 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 const ForumList = () => {
+  const [loading, setLoading] = useState(true);
   const [questions, setQuestions] = useState([]);
   const questionsLen = questions.length;
+  const { currentUser } = firebase.auth();
 
   useEffect(() => {
     firebase.firestore()
       .collection('question')
       .onSnapshot((snap) => {
-        const question = snap.docs.map((doc) => ({
+        const newQuestions = snap.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
-        }));
-        setQuestions(question);
+        })).sort((a, b) => b.created.seconds - a.created.seconds);
+        setQuestions(newQuestions);
+        setLoading(false);
       });
+    setLoading(true);
   }, []);
 
   return (
     <DefaultLayout>
-      <section>
-        <CardListHeader>
-          <CardListHeader.Heading level="2" size="2">
-            {questionsLen === 1 ? `${questionsLen} Question` : `${questionsLen} Questions`}
-          </CardListHeader.Heading>
-          <CardListHeader.Actions>
-            <Link href="/forum/write">
-              <Button type="anchor">Ask Question</Button>
-            </Link>
-          </CardListHeader.Actions>
-        </CardListHeader>
-        <ul className="card-list">
-          {questions.map((question) => <li key={question.id}><QuestionSummaryCard question={question} /></li>)}
-        </ul>
-      </section>
+      {!loading && (
+        <section>
+          <CardListHeader>
+            <CardListHeader.Heading level="2" size="2">
+              {questionsLen === 1 ? `${questionsLen} Question` : `${questionsLen} Questions`}
+            </CardListHeader.Heading>
+            <CardListHeader.Actions>
+              <Link href={currentUser ? '/forum/write' : '/login'}>
+                <Button type="anchor">Ask Question</Button>
+              </Link>
+            </CardListHeader.Actions>
+          </CardListHeader>
+          <ul className="card-list">
+            {questions.map((question) => <li key={question.id}><QuestionSummaryCard question={question} /></li>)}
+          </ul>
+        </section>
+      )}
     </DefaultLayout>
   );
 };

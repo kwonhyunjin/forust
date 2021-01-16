@@ -3,21 +3,25 @@ import Dropdown from '@/components/dropdown/dropdown';
 import Icon from '@/components/icon/icon';
 import firebase from '@/firebase/index';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 
 export default function AppHeader() {
+  const router = useRouter();
   const [loggedin, setLoggedIn] = useState(firebase.auth().currentUser != null);
 
-  const handleLogout = () => {
-    firebase.auth().signOut();
+  const handleLogout = async () => {
+    await firebase.auth().signOut();
+    router.push('/forum/list');
   };
+
   const { currentUser } = firebase.auth();
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       setLoggedIn(user != null);
     });
-  });
+  }, []);
 
   return (
     <>
