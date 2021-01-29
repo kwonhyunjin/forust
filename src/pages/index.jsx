@@ -1,3 +1,3 @@
-import ForumList from '@/pages/forum/list/index';
+import ForumList from '@/pages/forum/list/[[...slug]]';
 
 export default ForumList;
