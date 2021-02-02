@@ -9,22 +9,17 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useCallback, useState } from 'react';
 
 const ForumList = () => {
-  const router = useRouter();
-  const currentPage = Number((router.query.slug ?? [])[0]) || 1;
-
   const [loading, setLoading] = useState(true);
   const [questions, setQuestions] = useState([]);
-  const questionsLen = questions.length;
   const { currentUser } = firebase.auth();
 
+  const router = useRouter();
+  const currentPage = Number((router.query.slug ?? [])[0]) || 1;
   const currentPerPage = Number(router.query.perPage) || 5;
+  const totalLen = Number(router.query.totalLen) || questions.length;
+
   const indexOfLastQuestion = currentPage * currentPerPage;
   const indexOfFirstQuestion = indexOfLastQuestion - currentPerPage;
-  const currentPageQuestions = questions.slice(indexOfFirstQuestion, indexOfLastQuestion);
-
-  const handleChange = useCallback((page, perPage) => {
-    router.push(`/forum/list/${page}?perPage=${perPage}`);
-  }, []);
 
   const fetchAnswers = useCallback(async () => {
     await firebase.firestore()
@@ -44,13 +39,18 @@ const ForumList = () => {
     fetchAnswers();
   }, [currentPage, currentPerPage]);
 
+  const handleChange = useCallback((page, perPage) => {
+    router.push(`/forum/list/${page}?perPage=${perPage}`);
+  }, []);
+
+  // @todo 결과가 없을 때 UI 추가
   return (
     <DefaultLayout>
       {!loading && (
         <section>
           <CardListHeader>
             <CardListHeader.Heading level="2" size="2">
-              {questionsLen === 1 ? `${questionsLen} Question` : `${questionsLen} Questions`}
+              {totalLen === 1 ? `${totalLen} Question` : `${totalLen} Questions`}
             </CardListHeader.Heading>
             <CardListHeader.Actions>
               <Link href={currentUser ? '/forum/write' : '/login'}>
@@ -59,7 +59,7 @@ const ForumList = () => {
             </CardListHeader.Actions>
           </CardListHeader>
           <ul className="card-list">
-            {currentPageQuestions.map((question) => (
+            {questions.slice(indexOfFirstQuestion, indexOfLastQuestion).map((question) => (
               <li
                 key={question.id}
                 question={question}
@@ -72,7 +72,7 @@ const ForumList = () => {
             <Pagination
               page={currentPage}
               perPage={currentPerPage}
-              totalLen={questionsLen}
+              totalLen={totalLen}
               onChange={handleChange}
             />
           )}

@@ -36,6 +36,12 @@
     margin: 0 0 0 spacing(3);
   }
 
+  &__item-number {
+    font-size: $font-size-level-3;
+    font-weight: bold;
+    color: $font-color-primary;
+  }
+
   &__icon {
     font-size: spacing(7);
   }
@@ -45,7 +51,11 @@
     pointer-events: none;
   }
 
-  &__select-text {
+  &__per-page {
+    min-width: 60px;
+  }
+
+  &__per-page-label {
     margin-left: spacing(2);
     font-size: $font-size-level-2;
     color: $font-color-primary;
