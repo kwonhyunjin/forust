@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const SelectOption = React.forwardRef(({
-  children, ...rest
+  children, value, ...rest
 }, ref) => (
   <option
     {...rest}
+    value={value}
     ref={ref}
   >
     {children}
@@ -15,6 +16,7 @@ const SelectOption = React.forwardRef(({
 
 SelectOption.propTypes = {
   children: PropTypes.node,
+  value: PropTypes.node,
 };
 
 const Select = React.forwardRef(({

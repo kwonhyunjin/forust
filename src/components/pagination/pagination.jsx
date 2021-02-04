@@ -4,11 +4,10 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useMemo } from 'react';
 
-const maxPageSize = 5;
-
 export default function Pagination({
   children, className, page: currentPage, onChange, totalLen, perPage: currentPerPage, ...rest
 }) {
+  const maxPageSize = 5;
   const totalPage = Math.ceil(totalLen / currentPerPage);
 
   let startPage = 0;
@@ -52,50 +51,31 @@ export default function Pagination({
             href="#"
             className={currentPage === 1 ? 'pagination__icon is-disabled' : 'pagination__icon'}
             onClick={createPageButtonClickHandler(currentPage - 1)}
-            aria-label="Previous page"
-            title="Previous page"
-            tabIndex={currentPage === 1 ? -1 : null}
           >
             <Icon type="caret-left" />
           </a>
         </li>
         {pageNumbers.map((pageNum) => (
           <li className={currentPage === pageNum ? 'pagination__item is-active' : 'pagination__item'} key={pageNum}>
-            <a
-              href="#"
-              className="pagination__item-number"
-              onClick={createPageButtonClickHandler(pageNum)}
-              aria-label={`Page ${pageNum}`}
-            >
-              {pageNum}
-            </a>
+            <a href="#" className="heading5" onClick={createPageButtonClickHandler(pageNum)}>{pageNum}</a>
           </li>
         ))}
-        <li className="pagination__item">
+        <li className="pagination__item" role="presentation">
           <a
             href="#"
             className={currentPage === totalPage ? 'pagination__icon is-disabled' : 'pagination__icon'}
             onClick={createPageButtonClickHandler(currentPage + 1)}
-            aria-label="Next page"
-            title="Next page"
-            tabIndex={currentPage === totalPage ? -1 : null}
           >
             <Icon type="caret-right" />
           </a>
         </li>
       </ul>
-      <Select
-        className="pagination__per-page"
-        size="small"
-        value={currentPerPage}
-        onChange={handlePerPageSelectChange}
-        aria-label="Number of items per page"
-      >
+      <Select size="small" value={currentPerPage} onChange={handlePerPageSelectChange}>
         <Select.Option value={5}>5</Select.Option>
         <Select.Option value={10}>10</Select.Option>
         <Select.Option value={20}>20</Select.Option>
       </Select>
-      <span className="pagination__per-page-label" aria-hidden="true">per page</span>
+      <span className="pagination__select-text">per page</span>
     </div>
   );
 }
