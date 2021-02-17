@@ -1,15 +1,22 @@
 .text-box {
-  padding: 11px spacing(3);
+  background: #ffffff;
   border-radius: 8px;
   box-shadow: 0 1px 2px 0 rgba(#000, 0.06);
   box-sizing: border-box;
   border: solid 1px $gray-300;
-  background-color: #ffffff;
+  height: 40px;
+  padding: 10px 11px;
   font-size: $font-size-level-2;
   color: $font-color-primary;
   line-height: 1.5;
   transition: $transition-duration-fast $ease-out;
   transition-property: border, box-shadow, color, background-color;
+
+  &--small {
+    height: 32px;
+    padding: 6px 11px;
+    font-size: $font-size-level-1;
+  }
 
   &:hover, &:focus {
     border-color: $gray-500;
