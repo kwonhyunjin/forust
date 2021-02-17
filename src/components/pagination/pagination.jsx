@@ -50,11 +50,11 @@ export default function Pagination({
         <li className="pagination__item">
           <a
             href="#"
-            className={currentPage === 1 ? 'pagination__icon is-disabled' : 'pagination__icon'}
+            className={currentPage < 2 ? 'pagination__icon is-disabled' : 'pagination__icon'}
             onClick={createPageButtonClickHandler(currentPage - 1)}
             aria-label="Previous page"
             title="Previous page"
-            tabIndex={currentPage === 1 ? -1 : null}
+            tabIndex={currentPage < 2 ? -1 : null}
           >
             <Icon type="caret-left" />
           </a>
@@ -74,11 +74,11 @@ export default function Pagination({
         <li className="pagination__item">
           <a
             href="#"
-            className={currentPage === totalPage ? 'pagination__icon is-disabled' : 'pagination__icon'}
+            className={currentPage >= totalPage ? 'pagination__icon is-disabled' : 'pagination__icon'}
             onClick={createPageButtonClickHandler(currentPage + 1)}
             aria-label="Next page"
             title="Next page"
-            tabIndex={currentPage === totalPage ? -1 : null}
+            tabIndex={currentPage >= totalPage ? -1 : null}
           >
             <Icon type="caret-right" />
           </a>

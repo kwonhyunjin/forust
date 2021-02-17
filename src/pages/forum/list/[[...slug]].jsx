@@ -11,32 +11,35 @@ import React, { useEffect, useCallback, useState } from 'react';
 const ForumList = () => {
   const [loading, setLoading] = useState(true);
   const [questions, setQuestions] = useState([]);
+  const [totalLen, setTotalLen] = useState();
   const { currentUser } = firebase.auth();
 
   const router = useRouter();
   const currentPage = Number((router.query.slug ?? [])[0]) || 1;
   const currentPerPage = Number(router.query.perPage) || 5;
-  const totalLen = Number(router.query.totalLen) || questions.length;
 
   const indexOfLastQuestion = currentPage * currentPerPage;
   const indexOfFirstQuestion = indexOfLastQuestion - currentPerPage;
 
-  const fetchAnswers = useCallback(async () => {
+  // @todo Firebase에 count 기능 구현 시 대체
+  const fetchQuestions = useCallback(async () => {
     await firebase.firestore()
       .collection('question')
+      .orderBy('created', 'desc')
       .onSnapshot((snap) => {
         const newQuestions = snap.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
-        })).sort((a, b) => b.created.seconds - a.created.seconds);
-        setQuestions(newQuestions);
+        }));
+        setTotalLen(newQuestions.length);
+        setQuestions(newQuestions.slice(indexOfFirstQuestion, indexOfLastQuestion));
         setLoading(false);
       });
     return () => setLoading(true);
-  }, [questions]);
+  }, [questions, indexOfFirstQuestion, indexOfLastQuestion]);
 
   useEffect(() => {
-    fetchAnswers();
+    fetchQuestions();
   }, [currentPage, currentPerPage]);
 
   const handleChange = useCallback((page, perPage) => {
@@ -59,7 +62,7 @@ const ForumList = () => {
             </CardListHeader.Actions>
           </CardListHeader>
           <ul className="card-list">
-            {questions.slice(indexOfFirstQuestion, indexOfLastQuestion).map((question) => (
+            {questions.map((question) => (
               <li
                 key={question.id}
                 question={question}
